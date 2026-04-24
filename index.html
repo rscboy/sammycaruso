@@ -7,13 +7,13 @@
     
     <!-- Social Media Thumbnails & Meta Tags -->
     <meta property="og:title" content="Samuel Caruso | Portfolio">
-    <meta property="og:description" content="I build businesses, run an archive, and fix problems. A decade of strategy, organizing, and building systems that actually work.">
+    <meta property="og:description" content="Entrepreneurship, public service, and advocacy. A decade of building businesses, organizing movements, and creating systems that actually work.">
     <meta property="og:image" content="https://i.ibb.co/xKgNgxTh/IMG-4053.avif">
     <meta property="og:type" content="website">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Samuel Caruso | Portfolio">
-    <meta name="twitter:description" content="I build businesses, run an archive, and fix problems. A decade of strategy, organizing, and building systems that actually work.">
+    <meta name="twitter:description" content="Entrepreneurship, public service, and advocacy. A decade of building businesses, organizing movements, and creating systems that actually work.">
     <meta name="twitter:image" content="https://i.ibb.co/xKgNgxTh/IMG-4053.avif">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -61,6 +61,17 @@
             text-shadow: 0px 8px 16px rgba(200, 68, 26, 0.3);
             z-index: 10;
             position: relative;
+        }
+
+        .headline-title {
+            font-size: clamp(3rem, 12vw, 6rem);
+            line-height: 0.92;
+            letter-spacing: 0;
+        }
+
+        .headline-word {
+            display: inline-block;
+            white-space: nowrap;
         }
 
         /* Reveal animation */
@@ -178,6 +189,24 @@
             color: var(--muted);
             font-weight: 500;
         }
+
+        @media (min-width: 768px) {
+            .headline-title {
+                font-size: clamp(4.5rem, 8vw, 6rem);
+                line-height: 0.9;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .headline-title {
+                font-size: clamp(2.15rem, 10vw, 2.65rem);
+                line-height: 1;
+            }
+
+            .hover-letter:hover {
+                transform: translateY(-4px) scale(1.04) rotate(-2deg);
+            }
+        }
     </style>
 </head>
 <body>
@@ -200,7 +229,7 @@
             </div>
 
             <!-- Headline -->
-            <h1 class="display text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight mb-10" id="interactive-headline">
+            <h1 class="headline-title display font-black text-white mb-10" id="interactive-headline">
                 <!-- Javascript will inject the interactive letters here -->
             </h1>
 
@@ -208,15 +237,15 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-px border border-white border-opacity-10 rounded-2xl overflow-hidden mt-6 reveal">
                 <div class="p-6 bg-white bg-opacity-5 backdrop-blur-sm">
                     <div class="section-label text-white opacity-40 mb-3">Origins</div>
-                    <p class="text-white text-opacity-70 text-sm leading-relaxed">Started at fourteen fixing shattered iPhone screens. Realized organizing people was harder but more effective, so I charted buses for protests, debated on national television, and became the youngest elected Bernie delegate in Ohio.</p>
+                    <p class="text-white text-opacity-70 text-sm leading-relaxed">Started young fixing shattered iPhone screens through iCareScreenRepair. Realized organizing people was harder but more effective, so I chartered buses, helped lead mass citywide protests, debated on national television, and became the youngest elected Bernie delegate in Ohio.</p>
                 </div>
                 <div class="p-6 bg-white bg-opacity-5 backdrop-blur-sm">
                     <div class="section-label text-white opacity-40 mb-3">Education</div>
-                    <p class="text-white text-opacity-70 text-sm leading-relaxed">BA in History and Political Science Summa Cum Laude at Michigan. MS in Emerging Tech and Entrepreneurship at Miami University. Won a Branstrom Prize and a Dean's Medallion because I actually do the reading.</p>
+                    <p class="text-white text-opacity-70 text-sm leading-relaxed">BA in History and Political Science Summa Cum Laude at Michigan. MS in Emerging Tech and Entrepreneurship at Miami University. Branstrom Prize, Dean's Medallion, Difference Maker, and tapped for leadership at UM because I actually do the reading.</p>
                 </div>
                 <div class="p-6 bg-white bg-opacity-5 backdrop-blur-sm">
                     <div class="section-label text-white opacity-40 mb-3">Today</div>
-                    <p class="text-white text-opacity-70 text-sm leading-relaxed">Running tech businesses, building software ecosystems, and directing a digital human rights archive. I have a habit of starting organizations because I assume I can fix things better than whoever is currently failing at the job.</p>
+                    <p class="text-white text-opacity-70 text-sm leading-relaxed">Running tech businesses, building software ecosystems, and directing a digital human rights archive. The throughline is simple: entrepreneurship, public service, and advocacy, with enough operational discipline to make ideas move in public.</p>
                 </div>
             </div>
         </div>
@@ -373,7 +402,7 @@
                             <p class="text-sm leading-relaxed" style="color:var(--muted);">Healthcare startup where I optimized their HubSpot CRM and researched ketamine studies. Proved that good data hygiene is more effective than buzzwords.</p>
                         </div>
                         <div>
-                            <h3 class="display font-bold text-xl mb-1">Co created The Travel Agents Academy</h3>
+                            <h3 class="display font-bold text-xl mb-1">Co-created The Travel Agents Academy</h3>
                             <p class="text-sm leading-relaxed" style="color:var(--muted);">A new host agency for travel advisors under Chima Travel. Teaching people how to actually navigate the travel industry.</p>
                         </div>
                     </div>
@@ -398,8 +427,8 @@
                         <div class="flex-1 w-px bg-rule mt-2"></div>
                     </div>
                     <div>
-                        <h3 class="display font-bold text-xl mb-1">Voter Registration Organizer</h3>
-                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Registered over one thousand seven hundred students to vote. Verified thousands of petition signatures for the Board of Elections. Democracy requires actual paperwork.</p>
+                            <h3 class="display font-bold text-xl mb-1">Voter Registration Organizer & UM Leader</h3>
+                            <p class="text-sm leading-relaxed" style="color:var(--muted);">Registered over one thousand seven hundred students to vote, built Dinners for Democracy programming, and was tapped for student leadership at the University of Michigan. Democracy requires actual paperwork.</p>
                     </div>
                 </div>
 
@@ -445,7 +474,7 @@
                             </div>
                             <div>
                                 <h3 class="display font-bold text-xl mb-1">TEDxYouth Speaker</h3>
-                                <p class="text-sm leading-relaxed" style="color:var(--muted);">Delivered a talk on why waiting for adult permission is a losing strategy for student activists.</p>
+                                <p class="text-sm leading-relaxed" style="color:var(--muted);">Delivered The Future Is Ours on youth activism and why waiting for adult permission is a losing strategy for student organizers.</p>
                             </div>
                         </div>
                     </div>
@@ -459,7 +488,7 @@
                     </div>
                     <div>
                         <h3 class="display font-bold text-xl mb-1">Anti Gun Violence Organizer</h3>
-                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Organized a fleet of buses from Dayton to Washington D.C. Coordinated the National Science March on Washington. If you want a crowd to move, you need to be the one holding the map.</p>
+                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Organized bus trips from Dayton to Washington D.C. and helped lead mass citywide walkouts and rallies for gun violence prevention. If you want a crowd to move, you need to be the one holding the map.</p>
                     </div>
                 </div>
 
@@ -481,8 +510,8 @@
                         <div class="timeline-dot"></div>
                     </div>
                     <div>
-                        <h3 class="display font-bold text-xl mb-1">Founded iCareScreen Repair</h3>
-                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Chief Executive Officer at age fourteen. My first real lesson in business strategy and fixing things that other people drop.</p>
+                        <h3 class="display font-bold text-xl mb-1">Founded iCareScreenRepair</h3>
+                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Started repairing iPhone screens while I was still young enough that most people underestimated the invoice. My first real lesson in business strategy and fixing things that other people drop.</p>
                     </div>
                 </div>
 
@@ -565,7 +594,7 @@
                 
                 <div class="space-y-6 text-neutral-400 text-sm md:text-base leading-relaxed">
                     <p>
-                        My advocacy as an Anti Zionist Jewish American has drawn intense, targeted scrutiny. After speaking up for Palestinian rights at a Dayton rally, I publicly commended the local Jewish Observer for printing an opposing perspective. 
+                        My advocacy as an Anti-Zionist Jewish American has drawn intense, targeted scrutiny. After speaking up for Palestinian rights at a Dayton rally, I publicly commended the local Jewish Observer for printing an opposing perspective. 
                     </p>
                     <p>
                         The establishment reaction was immediate. Extremists doxxed me. My family received death threats. The President of the local Jewish Federation quickly published an op ed to defend the status quo and explicitly reject my stance.
@@ -751,27 +780,36 @@
 
     <script>
         // Headline Interactive Letters Logic
-        const headlineText = "I build businesses,<br>run an archive,<br>and fix problems.";
+        const desktopHeadlineLines = [
+            ['I', 'build', 'ventures,'],
+            ['archive', 'history,'],
+            ['and', 'move', 'people.']
+        ];
+        const compactHeadlineLines = [
+            ['I', 'build'],
+            ['ventures,'],
+            ['archive'],
+            ['history,'],
+            ['and', 'move'],
+            ['people.']
+        ];
+        const headlineLines = window.matchMedia('(max-width: 560px)').matches
+            ? compactHeadlineLines
+            : desktopHeadlineLines;
         const headlineContainer = document.getElementById('interactive-headline');
         
-        const wrapLetters = (text) => {
+        const wrapLetters = (word) => {
             let result = '';
-            let inTag = false;
-            for (let i = 0; i < text.length; i++) {
-                if (text[i] === '<') inTag = true;
-                
-                if (inTag) {
-                    result += text[i];
-                    if (text[i] === '>') inTag = false;
-                } else if (text[i] === ' ') {
-                    result += ' ';
-                } else {
-                    result += `<span class="hover-letter">${text[i]}</span>`;
-                }
+            for (let i = 0; i < word.length; i++) {
+                result += `<span class="hover-letter">${word[i]}</span>`;
             }
             return result;
         };
-        headlineContainer.innerHTML = wrapLetters(headlineText);
+        headlineContainer.innerHTML = headlineLines
+            .map(line => line
+                .map(word => `<span class="headline-word">${wrapLetters(word)}</span>`)
+                .join(' '))
+            .join('<br>');
 
         // Reveal on scroll
         const observer = new IntersectionObserver((entries) => {
