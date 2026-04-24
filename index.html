@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel Caruso | Portfolio</title>
+    
+    <!-- Social Media Thumbnails & Meta Tags -->
+    <meta property="og:title" content="Samuel Caruso | Portfolio">
+    <meta property="og:description" content="I build businesses, run an archive, and fix problems. A decade of strategy, organizing, and building systems that actually work.">
+    <meta property="og:image" content="https://daytonjewishobserver.org/wp-content/uploads/2025/11/IMG_0866.jpg">
+    <meta property="og:type" content="website">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Samuel Caruso | Portfolio">
+    <meta name="twitter:description" content="I build businesses, run an archive, and fix problems. A decade of strategy, organizing, and building systems that actually work.">
+    <meta name="twitter:image" content="https://daytonjewishobserver.org/wp-content/uploads/2025/11/IMG_0866.jpg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0f0f0f;
+            --paper: #f5f0e8;
+            --paper-dark: #ede8e0;
+            --accent: #c8441a;
+            --muted: #7a7063;
+            --rule: #d4cfc6;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--paper-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+        /* Typography */
+        .display { font-family: 'Playfair Display', serif; }
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* Cursor blink */
+        .cursor::after {
+            content: '_';
+            animation: blink 0.9s step-end infinite;
+            color: var(--accent);
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Horizontal rule divider */
+        .rule { border-color: var(--rule); }
+
+        /* Hero */
+        .hero-bg {
+            background: var(--ink);
+        }
+
+        /* Sticky nav */
+        .nav-bar {
+            background: var(--paper);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        /* Section alternation */
+        .bg-paper { background: var(--paper); }
+        .bg-paper-dark { background: var(--paper-dark); }
+        .bg-ink { background: var(--ink); }
+
+        /* Card */
+        .card {
+            background: var(--paper);
+            border: 1px solid var(--rule);
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        .card:hover {
+            border-color: var(--ink);
+            box-shadow: 4px 4px 0px var(--ink);
+            transform: translate(-2px, -2px);
+        }
+
+        /* Timeline */
+        .timeline-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--rule);
+            border: 2px solid var(--muted);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 6px;
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .timeline-dot.active-dot {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Drop cap */
+        .drop-cap::first-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5em;
+            font-weight: 900;
+            line-height: 0.75;
+            float: left;
+            margin-right: 8px;
+            margin-top: 4px;
+            color: var(--accent);
+        }
+
+        /* Link cards on hover */
+        .press-card {
+            border: 1px solid var(--rule);
+            transition: all 0.2s;
+        }
+        .press-card:hover {
+            background: var(--ink);
+            color: white;
+            border-color: var(--ink);
+        }
+        .press-card:hover .press-source { color: #aaa; }
+        .press-card:hover .press-arrow { background: #333; color: white; }
+
+        /* Venture link */
+        .venture-card {
+            border: 1px solid var(--rule);
+            transition: all 0.2s;
+            background: var(--paper);
+        }
+        .venture-card:hover {
+            box-shadow: 6px 6px 0 var(--ink);
+            transform: translate(-3px, -3px);
+            border-color: var(--ink);
+        }
+
+        /* Stagger delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* Number marker */
+        .year-tag {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 0.75rem;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* Section label */
+        .section-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <header class="hero-bg relative min-h-[85vh] flex flex-col">
+        <!-- Background image -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <img src="https://daytonjewishobserver.org/wp-content/uploads/2025/11/IMG_0866.jpg" alt="" class="w-full h-full object-cover opacity-50 scale-105" style="object-position: center 25%;">
+            <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(15,15,15,0.2) 0%, rgba(15,15,15,0.6) 40%, #0f0f0f 100%);"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 flex-1 flex flex-col justify-end max-w-5xl mx-auto w-full px-6 md:px-12 pb-16 pt-16">
+            
+            <!-- Eyebrow -->
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-6 h-px bg-white opacity-40"></div>
+                <span class="section-label text-white opacity-50">Samuel Caruso Portfolio</span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="display text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight mb-10">
+                <span id="typewriter" class="cursor"></span>
+            </h1>
+
+            <!-- Three column intro -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-px border border-white border-opacity-10 rounded-2xl overflow-hidden mt-6 reveal">
+                <div class="p-6 bg-white bg-opacity-5 backdrop-blur-sm">
+                    <div class="section-label text-white opacity-40 mb-3">Origins</div>
+                    <p class="text-white text-opacity-70 text-sm leading-relaxed">Started at fourteen fixing shattered iPhone screens. Realized organizing people was harder but more effective, so I charted buses for protests, debated on national television, and became the youngest elected Bernie delegate in Ohio.</p>
+                </div>
+                <div class="p-6 bg-white bg-opacity-5 backdrop-blur-sm">
+                    <div class="section-label text-white opacity-40 mb-3">Education</div>
+                    <p class="text-white text-opacity-70 text-sm leading-relaxed">BA in History and Political Science Summa Cum Laude at Michigan. MS in Emerging Tech and Entrepreneurship at Miami University. Won a Branstrom Prize and a Dean's Medallion because I actually do the reading.</p>
+                </div>
+                <div class="p-6 bg-white bg-opacity-5 backdrop-blur-sm">
+                    <div class="section-label text-white opacity-40 mb-3">Today</div>
+                    <p class="text-white text-opacity-70 text-sm leading-relaxed">Running tech businesses, building software ecosystems, and directing a digital human rights archive. I have a habit of starting organizations because I assume I can fix things better than whoever is currently failing at the job.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll nudge -->
+        <div class="relative z-10 flex justify-center pb-8 opacity-40 animate-bounce">
+            <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><rect x="6.5" y="1" width="3" height="5" rx="1.5" fill="white"/><path d="M8 19L3 14h10L8 19z" fill="white"/></svg>
+        </div>
+    </header>
+
+    <!-- ═══════════ STICKY NAV ═══════════ -->
+    <nav class="nav-bar sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 md:px-12 py-3 flex items-center justify-between gap-6 overflow-x-auto">
+            <span class="display font-bold text-sm whitespace-nowrap">Samuel Caruso</span>
+            <div class="flex items-center gap-1 overflow-x-auto no-scrollbar">
+                <a href="#ventures" class="section-label px-3 py-1.5 rounded-full hover:bg-black hover:text-white transition-all whitespace-nowrap">Ventures</a>
+                <a href="#timeline" class="section-label px-3 py-1.5 rounded-full hover:bg-black hover:text-white transition-all whitespace-nowrap">Timeline</a>
+                <a href="#advocacy" class="section-label px-3 py-1.5 rounded-full hover:bg-black hover:text-white transition-all whitespace-nowrap">Advocacy</a>
+                <a href="#press" class="section-label px-3 py-1.5 rounded-full hover:bg-black hover:text-white transition-all whitespace-nowrap">Press</a>
+            </div>
+            <a href="mailto:sgcaruso@umich.edu" class="hidden md:flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-xs font-semibold whitespace-nowrap hover:bg-neutral-800 transition-colors">
+                Get in touch
+            </a>
+        </div>
+    </nav>
+
+    <!-- ═══════════ CREDENTIALS STRIP ═══════════ -->
+    <div class="bg-paper-dark border-b border-rule py-4">
+        <div class="max-w-5xl mx-auto px-6 md:px-12 flex flex-wrap items-center gap-6 text-xs font-medium" style="color: var(--muted);">
+            <div class="flex items-center gap-2">
+                <img src="https://brand.umich.edu/assets/brand/style-guide/logo-guidelines/U-M_Logo-Hex.png" alt="UMich" class="h-3.5 opacity-60" style="mix-blend-mode: multiply;">
+                <span>BA History and Political Science Summa Cum Laude</span>
+            </div>
+            <div class="w-1 h-1 rounded-full bg-rule hidden md:block"></div>
+            <div class="flex items-center gap-2">
+                <img src="https://miamioh.edu/_hannonhill/_files/images/logos/primary-alternate-logos/alt-logo-stacked-oxford-black.png" alt="Miami" class="h-3.5 opacity-60" style="mix-blend-mode: multiply;">
+                <span>MS Emerging Tech and Entrepreneurship 4.0 GPA</span>
+            </div>
+            <div class="w-1 h-1 rounded-full bg-rule hidden md:block"></div>
+            <div class="flex items-center gap-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Seal_of_the_United_States_House_of_Representatives.svg" alt="Congress" class="h-3.5 opacity-60">
+                <span>U.S. House of Representatives Alum</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ VENTURES (LINKTREE ALTERNATIVE) ═══════════ -->
+    <section id="ventures" class="bg-paper py-20">
+        <div class="max-w-5xl mx-auto px-6 md:px-12">
+
+            <div class="mb-12 reveal flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <div class="section-label mb-2">My Linktree Alternative</div>
+                    <h2 class="display text-4xl md:text-5xl font-black">Current Ventures</h2>
+                </div>
+                <p class="text-sm max-w-sm" style="color:var(--muted);">
+                    Linktree is for influencers. I just link directly to the businesses and organizations I actively run because neither of us has time for corporate fluff.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <a href="https://www.daytongrowth.co/" target="_blank" rel="noopener noreferrer" class="venture-card rounded-2xl p-8 block group reveal">
+                    <div class="flex items-start justify-between mb-6">
+                        <img src="https://i.ibb.co/tpyytrdT/Zoomed-Out-Logo.png" alt="DaytonGrowthCo." class="w-12 h-12 object-contain rounded-xl" style="mix-blend-mode:multiply;">
+                        <svg class="w-5 h-5 opacity-30 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                    <div class="section-label mb-1" style="color:var(--accent);">Founder</div>
+                    <h3 class="display font-bold text-2xl mb-3">DaytonGrowthCo.</h3>
+                    <p class="text-sm leading-relaxed" style="color:var(--muted);">Business automation and local search optimization. I build systems using Framer, Webflow, and Claude Code to handle the soul crushing repetitive work your employees pretend to do while browsing the internet. We make businesses run efficiently so you can focus on actual growth.</p>
+                </a>
+
+                <a href="https://echoesofgaza.org/" target="_blank" rel="noopener noreferrer" class="venture-card rounded-2xl p-8 block group reveal delay-1">
+                    <div class="flex items-start justify-between mb-6">
+                        <img src="https://i.postimg.cc/fT81SwN0/426559D6-9EF9-49AA-8A0B-84A3FA70B3E2.png" alt="Echoes of Gaza" class="w-12 h-12 object-contain rounded-xl" style="mix-blend-mode:multiply;">
+                        <svg class="w-5 h-5 opacity-30 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                    <div class="section-label mb-1" style="color:var(--accent);">Director</div>
+                    <h3 class="display font-bold text-2xl mb-3">Echoes of Gaza</h3>
+                    <p class="text-sm leading-relaxed" style="color:var(--muted);">An open source digital historical archive documenting Palestinian narratives. I designed and built the platform from scratch using HTML, CSS, and JavaScript. History is too important to be left to those trying to overwrite it.</p>
+                </a>
+
+                <a href="https://rscboy.github.io/shmuautomotive/" target="_blank" rel="noopener noreferrer" class="venture-card rounded-2xl p-8 block group reveal">
+                    <div class="flex items-start justify-between mb-6">
+                        <img src="https://i.ibb.co/B5fmCZDS/Screenshot-2026-04-23-at-10-51-12-PM.png" alt="Shmu's Automotive" class="w-12 h-12 object-contain rounded-xl" style="mix-blend-mode:multiply;">
+                        <svg class="w-5 h-5 opacity-30 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                    <div class="section-label mb-1" style="color:var(--accent);">Owner & Mechanic</div>
+                    <h3 class="display font-bold text-2xl mb-3">Shmu's Automotive</h3>
+                    <p class="text-sm leading-relaxed" style="color:var(--muted);">Mobile oil changes and repair. The garage comes to your driveway. No waiting rooms smelling like stale coffee. No service advisors trying to upsell you on blinker fluid. Just clean oil and a car that works.</p>
+                </a>
+
+                <a href="https://www.flightfix.biz/" target="_blank" rel="noopener noreferrer" class="venture-card rounded-2xl p-8 block group reveal delay-1">
+                    <div class="flex items-start justify-between mb-6">
+                        <img src="https://i.postimg.cc/RVjSKdGB/Flight-Fix-Logo.jpg" alt="FlightFix" class="w-12 h-12 object-contain rounded-xl" style="mix-blend-mode:multiply;">
+                        <svg class="w-5 h-5 opacity-30 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                    <div class="section-label mb-1" style="color:var(--accent);">Founder</div>
+                    <h3 class="display font-bold text-2xl mb-3">FlightFix</h3>
+                    <p class="text-sm leading-relaxed" style="color:var(--muted);">Travel planning and crisis management built on predictive analytics and AI. When airlines inevitably lose your luggage or cancel your flight for weather that happened three states away, I fix it. Consider me the cavalry for when the travel industry forgets how to function.</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ TIMELINE ═══════════ -->
+    <section id="timeline" class="bg-paper-dark py-20 border-t border-rule">
+        <div class="max-w-5xl mx-auto px-6 md:px-12">
+
+            <!-- Header -->
+            <div class="flex items-end justify-between mb-12 reveal">
+                <div>
+                    <div class="section-label mb-2">Chapter by Chapter</div>
+                    <h2 class="display text-4xl md:text-5xl font-black">The Timeline</h2>
+                </div>
+                <span class="display italic text-muted text-sm hidden md:block" style="color:var(--muted);">A decade of actual work</span>
+            </div>
+
+            <!-- Timeline entries -->
+            <div class="space-y-0">
+
+                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 pb-10 border-b border-rule">
+                    <div class="year-tag text-right pt-1">2026</div>
+                    <div class="flex flex-col items-center">
+                        <div class="timeline-dot active-dot"></div>
+                        <div class="flex-1 w-px bg-rule mt-2"></div>
+                    </div>
+                    <div class="pb-2 space-y-5">
+                        <div>
+                            <h3 class="display font-bold text-xl mb-1">Launched DaytonGrowthCo.</h3>
+                            <p class="text-sm leading-relaxed" style="color:var(--muted);">Decided local businesses should stop fighting with clunky software. Automating the boring work so humans do not have to.</p>
+                        </div>
+                        <div>
+                            <h3 class="display font-bold text-xl mb-1">Chief of Staff Intern at Matriosh</h3>
+                            <p class="text-sm leading-relaxed" style="color:var(--muted);">Stealth startup out of Wilmington Delaware. I handle recruitment, company culture, and pitch decks. Every founder eventually realizes they need someone to actually organize the chaos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-1">
+                    <div class="year-tag text-right pt-1">2025</div>
+                    <div class="flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                        <div class="flex-1 w-px bg-rule mt-2"></div>
+                    </div>
+                    <div class="space-y-5">
+                        <div>
+                            <h3 class="display font-bold text-xl mb-1">Operations at Tarvo</h3>
+                            <p class="text-sm leading-relaxed" style="color:var(--muted);">Defined product roadmaps for scalable manufacturing software. Figured out how to make generative AI write pitch decks that investors actually read.</p>
+                        </div>
+                        <div>
+                            <h3 class="display font-bold text-xl mb-1">Sales Intern at Enthea</h3>
+                            <p class="text-sm leading-relaxed" style="color:var(--muted);">Healthcare startup where I optimized their HubSpot CRM and researched ketamine studies. Proved that good data hygiene is more effective than buzzwords.</p>
+                        </div>
+                        <div>
+                            <h3 class="display font-bold text-xl mb-1">Co created The Travel Agents Academy</h3>
+                            <p class="text-sm leading-relaxed" style="color:var(--muted);">A new host agency for travel advisors under Chima Travel. Teaching people how to actually navigate the travel industry.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-2">
+                    <div class="year-tag text-right pt-1">2024</div>
+                    <div class="flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                        <div class="flex-1 w-px bg-rule mt-2"></div>
+                    </div>
+                    <div>
+                        <h3 class="display font-bold text-xl mb-1">Director, Echoes of Gaza</h3>
+                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Built and deployed a historical archive from scratch to preserve narratives the twenty four hour news cycle tends to bury.</p>
+                    </div>
+                </div>
+
+                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-1">
+                    <div class="year-tag text-right pt-1">2023</div>
+                    <div class="flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                        <div class="flex-1 w-px bg-rule mt-2"></div>
+                    </div>
+                    <div>
+                        <h3 class="display font-bold text-xl mb-1">Voter Registration Organizer</h3>
+                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Registered over one thousand seven hundred students to vote. Verified thousands of petition signatures for the Board of Elections. Democracy requires actual paperwork.</p>
+                    </div>
+                </div>
+
+                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-2">
+                    <div class="year-tag text-right pt-1">2022</div>
+                    <div class="flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                        <div class="flex-1 w-px bg-rule mt-2"></div>
+                    </div>
+                    <div>
+                        <h3 class="display font-bold text-xl mb-1">Congressional Intern</h3>
+                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Learned how the gears of government turn in Representative Andy Levin's office. Pitched housing policy directly to the Congressman to try and make them turn faster.</p>
+                    </div>
+                </div>
+
+                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-1">
+                    <div class="year-tag text-right pt-1">2020</div>
+                    <div class="flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                        <div class="flex-1 w-px bg-rule mt-2"></div>
+                    </div>
+                    <div>
+                        <h3 class="display font-bold text-xl mb-1">Youngest Elected Bernie Delegate</h3>
+                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Represented Ohio District Ten and served as a precinct captain in Iowa. Learned that political revolutions require a lot of folding chairs.</p>
+                    </div>
+                </div>
+
+                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule">
+                    <div class="year-tag text-right pt-1">2019</div>
+                    <div class="flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                        <div class="flex-1 w-px bg-rule mt-2"></div>
+                    </div>
+                    <div>
+                        <div class="space-y-5">
+                            <div>
+                                <h3 class="display font-bold text-xl mb-1">Campaign Manager</h3>
+                                <p class="text-sm leading-relaxed" style="color:var(--muted);">Ran Adrienne Draper's city council race. Handled social media, accounting, and door knocking. Won by exactly three hundred votes.</p>
+                            </div>
+                            <div>
+                                <h3 class="display font-bold text-xl mb-1">Debated on National Television</h3>
+                                <p class="text-sm leading-relaxed" style="color:var(--muted);">Debated Chris Matthew on MSNBC about gun violence and appeared on The Young Turks network.</p>
+                            </div>
+                            <div>
+                                <h3 class="display font-bold text-xl mb-1">TEDxYouth Speaker</h3>
+                                <p class="text-sm leading-relaxed" style="color:var(--muted);">Delivered a talk on why waiting for adult permission is a losing strategy for student activists.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-1">
+                    <div class="year-tag text-right pt-1">2018</div>
+                    <div class="flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                        <div class="flex-1 w-px bg-rule mt-2"></div>
+                    </div>
+                    <div>
+                        <h3 class="display font-bold text-xl mb-1">Anti Gun Violence Organizer</h3>
+                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Organized a fleet of buses from Dayton to Washington D.C. Coordinated the National Science March on Washington. If you want a crowd to move, you need to be the one holding the map.</p>
+                    </div>
+                </div>
+
+                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-2">
+                    <div class="year-tag text-right pt-1">2016</div>
+                    <div class="flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                        <div class="flex-1 w-px bg-rule mt-2"></div>
+                    </div>
+                    <div>
+                        <h3 class="display font-bold text-xl mb-1">Music Teacher at Temple Israel</h3>
+                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Taught music for a year in Dayton Ohio. My introduction to standing in front of groups of people and hoping they listen.</p>
+                    </div>
+                </div>
+
+                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10">
+                    <div class="year-tag text-right pt-1">2015</div>
+                    <div class="flex flex-col items-center">
+                        <div class="timeline-dot"></div>
+                    </div>
+                    <div>
+                        <h3 class="display font-bold text-xl mb-1">Founded iCareScreen Repair</h3>
+                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Chief Executive Officer at age fourteen. My first real lesson in business strategy and fixing things that other people drop.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="advocacy" class="bg-ink text-white py-20">
+        <div class="max-w-5xl mx-auto px-6 md:px-12">
+
+            <div class="mb-12 reveal">
+                <div class="section-label mb-2" style="color:#888;">Action and Reaction</div>
+                <h2 class="display text-4xl md:text-5xl font-black">Public Scrutiny<br><em class="font-normal">& Advocacy</em></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-12">
+                <div class="md:col-span-2 space-y-6 reveal">
+                    <p class="text-sm leading-relaxed text-neutral-400">
+                        When you actually do the work instead of just posting about it, you occasionally make people uncomfortable. My advocacy has drawn significant scrutiny regarding my stance as an Anti Zionist Jewish American.
+                    </p>
+                    <p class="text-sm leading-relaxed text-neutral-400">
+                        I grew up in a proud Jewish household in Dayton, attending Hillel Academy of Dayton and Oakwood High School. My perspective shifted in 2015 after traveling to the occupied West Bank and witnessing segregated settlements firsthand. Living in Dearborn Michigan surrounded by the largest Arab American population in the country deepened that understanding further.
+                    </p>
+                    <p class="text-sm leading-relaxed text-neutral-400">
+                        What followed was a highly publicized sequence of events that tested exactly how much institutional discomfort the community was willing to tolerate.
+                    </p>
+                </div>
+
+                <div class="md:col-span-3 space-y-6">
+                    
+                    <div class="rounded-2xl p-6 md:p-8 bg-[#1a1a1a] border border-[#333] reveal">
+                        <div class="section-label mb-3" style="color:var(--accent);">Act I</div>
+                        <h3 class="display font-bold text-2xl text-white mb-3">The Stand</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed">
+                            I stood up for Palestinian rights by speaking at a Call It Genocide rally in downtown Dayton. The speech immediately drew criticism and was covered extensively by the Dayton Jewish Observer.
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl p-6 md:p-8 bg-[#1a1a1a] border border-[#333] reveal delay-1">
+                        <div class="section-label mb-3" style="color:var(--accent);">Act II</div>
+                        <h3 class="display font-bold text-2xl text-white mb-3">The First Press Release</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed">
+                            In response to the coverage, I put out a formal press release commending the paper for publishing an Anti Zionist Jewish perspective. I explicitly pointed out that public opinion is shifting rapidly and that communal institutions need to reflect that changing reality.
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl p-6 md:p-8 border border-red-900 bg-red-950 bg-opacity-20 reveal delay-2">
+                        <div class="section-label mb-3 text-red-500 opacity-80">Act III</div>
+                        <h3 class="display font-bold text-2xl text-white mb-3">The Backlash and Second Criticism</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed">
+                            That statement caused an uproar. I was doxxed by a far right extremist group and received a flood of bomb threats and death threats directed at me and my family. Then, I was criticized again in the Dayton Jewish Observer. The President of the local Jewish Federation published a dedicated op ed acting in direct response to my press release, explicitly rejecting my stance and defending the institutional status quo.
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl p-6 md:p-8 bg-[#1a1a1a] border border-[#333] reveal delay-3">
+                        <div class="section-label mb-3" style="color:var(--accent);">Act IV</div>
+                        <h3 class="display font-bold text-2xl text-white mb-3">The Krakow Response</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed">
+                            I did not back down. I put out another press release directly responding to the Federation. I wrote it from Krakow, Poland, where I was visiting Holocaust memorial sites. My message was incredibly simple. Never Again is not conditional. It means never again for anyone.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="press" class="bg-paper py-20 border-t border-rule">
+        <div class="max-w-5xl mx-auto px-6 md:px-12">
+
+            <div class="mb-12 reveal">
+                <div class="section-label mb-2">Documentation</div>
+                <h2 class="display text-4xl md:text-5xl font-black">The Paper Trail</h2>
+                <p class="text-sm mt-3 max-w-lg" style="color:var(--muted);">The full media record of advocacy, national debates, and public scrutiny.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                <a href="https://youtu.be/TixrzeUJmgw?si=2yyA8sO3aDyYbb-X" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">The Young Turks</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Guest appearance to discuss organizing and activism</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://x.com/Oakwood_Schools/status/1141474151741435907" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-1">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">MSNBC</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Live debate with Chris Matthew regarding gun violence</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://youtu.be/jZpLNnJNulo?si=ijo-gqIsnDl5OaN9" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-2">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">TEDx Talks</div>
+                    <p class="text-sm font-medium leading-snug mb-4">The Future Is Ours Student Activism</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://www.daytondailynews.com/local/opinion/voices-death-threats-have-no-place-in-judaism/article_f914b08d-4d67-589e-b286-6cc8f496225a.html" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">Dayton Daily News</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Death threats have no place in Judaism</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://daytonjewishobserver.org/2025/11/local-jewish-grad-student-among-speakers-at-call-it-genocide-rally-downtown/" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-1">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">Dayton Jewish Observer</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Local grad student among speakers at human rights rally</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://daytonjewishobserver.org/2025/12/the-jewish-federation-of-greater-dayton-stands-with-israel/" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-2">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">Dayton Jewish Observer</div>
+                    <p class="text-sm font-medium leading-snug mb-4">The Jewish Federation of Greater Dayton stands with Israel</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://ysnews.com/news/2026/02/community-forum-on-israel-and-palestine-held-at-antioch" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">Yellow Springs News</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Community forum on Israel and Palestine held at Antioch</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://www.daytondailynews.com/local/protesters-in-downtown-dayton-call-for-an-end-to-the-war-against-iran-conflicts-overseas/article_bb0186a6-32ac-4d67-9d97-a305e41e6079.html" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-1">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">Dayton Daily News</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Protesters call for an end to conflicts overseas</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://www.wdtn.com/news/local-news/local-walkouts-spark-conversations-about-tougher-gun-laws/" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-2">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">WDTN News</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Local walkouts spark conversations about tougher gun laws</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://www.wyso.org/news/2018-04-20/local-schools-join-national-school-walkout-on-columbine-anniversary" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">WYSO Public Radio</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Local schools join national school walkout on Columbine anniversary</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://www.wyso.org/news/2018-03-23/crowds-rally-in-dayton-and-cities-nationwide-for-saturday-march-for-our-lives" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-1">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">WYSO Public Radio</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Crowds rally in Dayton and cities nationwide for March For Our Lives</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://www.franceinfo.fr/monde/usa/video-nous-en-avons-assez-nous-sommes-revoltes-ces-lyceens-americains-vont-marcher-contre-les-armes-a-feu_2671178.html" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-2">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">FranceInfo</div>
+                    <p class="text-sm font-medium leading-snug mb-4">International television coverage of local student walkouts</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://dayton247now.com/news/local/fairmont-and-oakwood-students-join-the-national-walkout-movement-together" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">Dayton 247 Now</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Students join the national walkout movement together</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://michigandifferencemakers.com/samuel_caruso" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-1">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">University of Michigan</div>
+                    <p class="text-sm font-medium leading-snug mb-4">University Difference Maker Official Profile</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://www.thejewishnews.com/community/people/jewishedu/jewish-edu-a-different-perspective/article_baa9c7e8-8967-11ee-a259-f306470a9d86.html" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-2">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">The Jewish News</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Jewish Edu A Different Perspective</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://www.wyso.org/news/2018-04-19/dayton-students-to-participate-in-national-school-walkouts-in-protest-of-school-shootings" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">WYSO Public Radio</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Dayton students to participate in national school walkouts</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <a href="https://rac.org/blog/record-number-ohio-reform-jews-turnout-advocate-gvp-and-criminal-justice-reform" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-1">
+                    <div class="section-label press-source mb-2" style="color:var(--muted);">Religious Action Center</div>
+                    <p class="text-sm font-medium leading-snug mb-4">Record number of Ohio Reform Jews turnout to advocate</p>
+                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-paper-dark border-t border-rule py-16">
+        <div class="max-w-5xl mx-auto px-6 md:px-12 reveal">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="display text-3xl md:text-4xl font-black mb-4">You have reached the end.</h2>
+                    <p class="text-sm leading-relaxed max-w-sm" style="color:var(--muted);">I let results speak for themselves. Reach out if you need someone who knows how to execute.</p>
+                    <p class="text-xs mt-8" style="color:var(--rule);">© 2026 Samuel Caruso. No fluff included.</p>
+                </div>
+                <div class="flex justify-start md:justify-end">
+                    <a href="mailto:sgcaruso@umich.edu" class="inline-flex items-center gap-3 px-7 py-4 rounded-full text-white font-semibold text-sm hover:scale-105 active:scale-95 transition-all" style="background:var(--ink);">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Typing effect
+        const text = "I build businesses,\nrun an archive,\nand fix problems.";
+        const el = document.getElementById('typewriter');
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                if (text[i] === '\n') {
+                    el.innerHTML += '<br>';
+                } else {
+                    el.textContent += text[i];
+                    // Re-add br tags lost by textContent
+                    if (text.slice(0, i+1).includes('\n')) {
+                        el.innerHTML = text.slice(0, i+1).replace(/\n/g, '<br>');
+                    }
+                }
+                i++;
+                setTimeout(type, 55);
+            }
+        }
+        setTimeout(type, 600);
+
+        // Reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('active');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Activate timeline dots on scroll
+        const dotObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const dot = e.target.querySelector('.timeline-dot');
+                    if (dot) dot.classList.add('active-dot');
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.grid.grid-cols-\\[64px_20px_1fr\\]').forEach(el => dotObserver.observe(el));
+    </script>
+</body>
+</html>
