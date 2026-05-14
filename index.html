@@ -1,837 +1,3187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samuel Caruso | Portfolio</title>
-    
-    <!-- Social Media Thumbnails & Meta Tags -->
-    <meta property="og:title" content="Samuel Caruso | Portfolio">
-    <meta property="og:description" content="Entrepreneurship, public service, and advocacy. A decade of building businesses, organizing movements, and creating systems that actually work.">
-    <meta property="og:image" content="https://i.ibb.co/xKgNgxTh/IMG-4053.avif">
-    <meta property="og:type" content="website">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Samuel Caruso | Portfolio">
-    <meta name="twitter:description" content="Entrepreneurship, public service, and advocacy. A decade of building businesses, organizing movements, and creating systems that actually work.">
-    <meta name="twitter:image" content="https://i.ibb.co/xKgNgxTh/IMG-4053.avif">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samuel Caruso</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --ink: #0f0f0f;
-            --paper: #f5f0e8;
-            --paper-dark: #ede8e0;
-            --accent: #c8441a;
-            --muted: #7a7063;
-            --rule: #d4cfc6;
-        }
+  <meta property="og:title" content="Samuel Caruso | Portfolio">
+  <meta property="og:description" content="Entrepreneurship, public service, and advocacy. A decade of building businesses, organizing movements, and creating systems that actually work.">
+  <meta property="og:image" content="https://i.ibb.co/xKgNgxTh/IMG-4053.avif">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Samuel Caruso | Portfolio">
+  <meta name="twitter:description" content="Entrepreneurship, public service, and advocacy. A decade of building businesses, organizing movements, and creating systems that actually work.">
+  <meta name="twitter:image" content="https://i.ibb.co/xKgNgxTh/IMG-4053.avif">
+  <link rel="icon" href="data:,">
 
-        * { box-sizing: border-box; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--paper);
-            color: var(--ink);
-            overflow-x: hidden;
-        }
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js" defer></script>
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--paper-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+  <style>
+    /* ─── DESIGN TOKENS ─────────────────────────────────────────── */
+    :root {
+      --bg:        #0a0a0a;
+      --bg-2:      #111111;
+      --bg-3:      #1a1a1a;
+      --border:    #252525;
+      --border-2:  #333333;
+      --text:      #e8e8e8;
+      --text-2:    #888888;
+      --text-3:    #555555;
+      --accent:    #6b62f2;
+      --accent-2:  #8b84f8;
+      --warm:      #c49577;
 
-        /* Typography */
-        .display { font-family: 'Playfair Display', serif; }
-        .serif { font-family: 'Playfair Display', serif; }
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --mono: 'Geist', ui-monospace, monospace;
 
-        /* Interactive Headline Letters */
-        .hover-letter {
-            display: inline-block;
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease, text-shadow 0.2s ease;
-            transform-origin: bottom center;
-        }
-        .hover-letter:hover {
-            transform: translateY(-10px) scale(1.1) rotate(-3deg);
-            color: var(--accent);
-            text-shadow: 0px 8px 16px rgba(200, 68, 26, 0.3);
-            z-index: 10;
-            position: relative;
-        }
+      --r-sm:  6px;
+      --r-md:  12px;
+      --r-lg:  20px;
+      --r-xl:  28px;
 
-        .headline-title {
-            font-size: clamp(3rem, 12vw, 6rem);
-            line-height: 0.92;
-            letter-spacing: 0;
-        }
+      --max-w: 1160px;
+      --pad-x: clamp(1.25rem, 5vw, 3.5rem);
+    }
 
-        .headline-word {
-            display: inline-block;
-            white-space: nowrap;
-        }
+    /* ─── RESET ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html.lenis,
+    html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-stopped { overflow: hidden; }
+    body {
+      font-family: var(--sans);
+      background:
+        radial-gradient(ellipse at 50% -10%, rgba(107,98,242,0.16), transparent 34rem),
+        radial-gradient(ellipse at 80% 30%, rgba(196,149,119,0.09), transparent 28rem),
+        #02030a;
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        /* Reveal animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+    /* ─── SCROLLBAR ──────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 99px; }
 
-        /* Horizontal rule divider */
-        .rule { border-color: var(--rule); }
+    /* ─── PROGRESS BAR ───────────────────────────────────────────── */
+    #progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%; height: 2px;
+      background: var(--accent);
+      z-index: 200;
+      transition: width 0.1s linear;
+    }
 
-        /* Hero */
-        .hero-bg {
-            background: var(--ink);
-        }
+    .skip-link {
+      position: fixed;
+      left: 1rem;
+      top: 1rem;
+      z-index: 1200;
+      transform: translateY(-160%);
+      background: var(--text);
+      color: var(--bg);
+      border-radius: 999px;
+      padding: 0.7rem 1rem;
+      font-family: var(--mono);
+      font-size: 12px;
+      text-decoration: none;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.32);
+      transition: transform 0.18s ease;
+    }
+    .skip-link:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+      transform: translateY(0);
+    }
 
-        /* Sticky nav */
-        .nav-bar {
-            background: var(--paper);
-            border-bottom: 1px solid var(--rule);
-        }
+    /* ─── SPLASH ─────────────────────────────────────────────────── */
+    .splash {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: splashExit 0.7s cubic-bezier(0.76, 0, 0.24, 1) 1.5s forwards;
+      pointer-events: none;
+    }
+    .seen-splash .splash { display: none; }
+    .splash-name {
+      font-family: var(--mono);
+      font-size: clamp(2rem, 8vw, 5rem);
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--text);
+      opacity: 0;
+      animation: splashFadeIn 0.6s ease 0.2s forwards;
+    }
+    @keyframes splashFadeIn { to { opacity: 1; } }
+    @keyframes splashExit   { to { transform: translateY(-100%); } }
 
-        /* Section alternation */
-        .bg-paper { background: var(--paper); }
-        .bg-paper-dark { background: var(--paper-dark); }
-        .bg-ink { background: var(--ink); }
+    /* ─── CINEMATIC CANVAS ───────────────────────────────────────── */
+    #scene-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.94;
+      mix-blend-mode: screen;
+      filter: saturate(1.18) contrast(1.12);
+    }
+    .scene-fallback {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0.72;
+      mix-blend-mode: screen;
+      perspective: 1100px;
+      background:
+        radial-gradient(ellipse at 20% 22%, rgba(107,98,242,0.22), transparent 26rem),
+        radial-gradient(ellipse at 78% 62%, rgba(196,149,119,0.14), transparent 30rem),
+        radial-gradient(circle at 52% 48%, rgba(255,255,255,0.06), transparent 18rem),
+        radial-gradient(ellipse at center, transparent 0 26%, rgba(2,3,10,0.72) 78%);
+    }
+    .scene-fallback::before,
+    .scene-fallback::after {
+      content: '';
+      position: absolute;
+      inset: -20%;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.95) 0 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(139,132,248,0.75) 0 1px, transparent 1.4px),
+        radial-gradient(circle, rgba(196,149,119,0.58) 0 1px, transparent 1.3px);
+      background-size: 160px 160px, 240px 240px, 360px 360px;
+      background-position: 0 0, 80px 120px, 30px 220px;
+      opacity: 0.28;
+      transform: translate3d(0,0,0) scale(1);
+      animation: starDrift 62s linear infinite;
+    }
+    .scene-fallback::after {
+      opacity: 0.18;
+      filter: blur(0.4px);
+      animation-duration: 96s;
+      animation-direction: reverse;
+      transform: scale(1.18);
+    }
+    .depth-frame {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(72vw, 980px);
+      aspect-ratio: 16 / 9;
+      border: 1px solid rgba(107, 98, 242, 0.22);
+      border-radius: 28px;
+      transform: translate(-50%, -50%) translateZ(calc(var(--z) * -1px)) rotateZ(var(--r));
+      box-shadow:
+        0 0 45px rgba(107,98,242,0.06),
+        inset 0 0 60px rgba(196,149,119,0.035);
+      animation: frameBreathe 16s ease-in-out infinite;
+      animation-delay: var(--delay);
+    }
+    .depth-frame:nth-child(2n) {
+      border-color: rgba(196,149,119,0.2);
+    }
+    .light-plane {
+      position: absolute;
+      width: 42vw;
+      height: 10vh;
+      min-height: 80px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, rgba(107,98,242,0.18), rgba(255,255,255,0.08), transparent);
+      filter: blur(10px);
+      transform: translate3d(var(--x), var(--y), 0) rotate(var(--r));
+      animation: lightSweep 22s ease-in-out infinite alternate;
+      animation-delay: var(--delay);
+    }
+    @keyframes frameBreathe {
+      0%, 100% { opacity: 0.28; transform: translate(-50%, -50%) scale(0.96) rotateZ(var(--r)); }
+      50% { opacity: 0.5; transform: translate(-50%, -52%) scale(1.04) rotateZ(calc(var(--r) * -1)); }
+    }
+    @keyframes starDrift {
+      from { transform: translate3d(0, 0, 0) scale(0.92); }
+      to { transform: translate3d(-7vw, 9vh, 0) scale(1.28); }
+    }
+    @keyframes lightSweep {
+      from { opacity: 0.35; translate: -4vw 0; }
+      to { opacity: 0.68; translate: 4vw -2vh; }
+    }
 
-        /* Card */
-        .card {
-            background: var(--paper);
-            border: 1px solid var(--rule);
-            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-        }
-        .card:hover {
-            border-color: var(--ink);
-            box-shadow: 4px 4px 0px var(--ink);
-            transform: translate(-2px, -2px);
-        }
+    /* ─── SECTIONS (z-index layering) ────────────────────────────── */
+    header, section, footer, nav { position: relative; z-index: 2; }
 
-        /* Timeline */
-        .timeline-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--rule);
-            border: 2px solid var(--muted);
-            border-radius: 50%;
-            flex-shrink: 0;
-            margin-top: 6px;
-            transition: background 0.3s, border-color 0.3s;
-        }
-        .timeline-dot.active-dot {
-            background: var(--accent);
-            border-color: var(--accent);
-        }
+    /* ─── UTILITY ────────────────────────────────────────────────── */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-left: var(--pad-x);
+      padding-right: var(--pad-x);
+    }
 
-        /* Drop cap */
-        .drop-cap::first-letter {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5em;
-            font-weight: 900;
-            line-height: 0.75;
-            float: left;
-            margin-right: 8px;
-            margin-top: 4px;
-            color: var(--accent);
-        }
+    .tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
 
-        /* Link cards on hover */
-        .press-card {
-            border: 1px solid var(--rule);
-            transition: all 0.2s;
-        }
-        .press-card:hover {
-            background: var(--ink);
-            color: white;
-            border-color: var(--ink);
-        }
-        .press-card:hover .press-source { color: #aaa; }
-        .press-card:hover .press-arrow { background: #333; color: white; }
+    .rule {
+      width: 24px; height: 1px;
+      background: var(--accent);
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
 
-        /* Venture link */
-        .venture-card {
-            border: 1px solid var(--rule);
-            transition: all 0.2s;
-            background: var(--paper);
-        }
-        .venture-card:hover {
-            box-shadow: 6px 6px 0 var(--ink);
-            transform: translate(-3px, -3px);
-            border-color: var(--ink);
-        }
+    /* ─── REVEAL ─────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: calc(var(--d, 0) * 70ms);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
 
-        /* Stagger delays */
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-        .delay-4 { transition-delay: 0.4s; }
+    .hero-photo-wrap,
+    .photo-card,
+    .venture,
+    .venture-featured,
+    .press-card,
+    .qr-card,
+    .proof-card,
+    .case-card,
+    .platform-card,
+    .advocacy-story {
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      will-change: transform;
+    }
 
-        /* Number marker */
-        .year-tag {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 0.75rem;
-            color: var(--muted);
-            letter-spacing: 0.05em;
-        }
+    .photo-card img,
+    .hero-photo-wrap img {
+      will-change: transform;
+    }
 
-        /* Section label */
-        .section-label {
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--muted);
-            font-weight: 500;
-        }
+    .photo-caption,
+    .venture-body,
+    .press-card p {
+      transform: translateZ(18px);
+    }
 
-        @media (min-width: 768px) {
-            .headline-title {
-                font-size: clamp(4.5rem, 8vw, 6rem);
-                line-height: 0.9;
-            }
-        }
+    /* ─── NAV ────────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      width: min(calc(100% - 2rem), 860px);
+      background: rgba(10, 10, 10, 0.72);
+      border: 1px solid var(--border-2);
+      border-radius: 99px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      gap: 8px;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text);
+      white-space: nowrap;
+      padding: 0 8px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-link {
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--text);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 99px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      transition: background 0.18s, border-color 0.18s;
+    }
+    .nav-link:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--border-2);
+    }
+    .nav-cta {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--bg);
+      background: var(--text);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 99px;
+      white-space: nowrap;
+      transition: background 0.18s, color 0.18s;
+      flex-shrink: 0;
+    }
+    .nav-cta:hover { background: var(--accent); color: #fff; }
 
-        @media (max-width: 420px) {
-            .headline-title {
-                font-size: clamp(2.15rem, 10vw, 2.65rem);
-                line-height: 1;
-            }
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr min(38%, 480px);
+      align-items: center;
+      gap: 3rem;
+      padding: clamp(5rem, 10vh, 9rem) var(--pad-x) clamp(6rem, 12vh, 10rem);
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .hero-photo-wrap {
+      position: relative;
+      height: min(72vh, 640px);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      border: 1px solid var(--border-2);
+    }
+    .hero-photo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      filter: grayscale(0.5) contrast(1.1);
+      opacity: 0.65;
+      transition: transform 8s ease;
+      transform: scale(1.04);
+    }
+    .hero-photo-wrap img.loaded { transform: scale(1); }
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(10,10,10,0.7));
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.75rem;
+    }
+    .hero-title {
+      font-family: var(--mono);
+      font-size: clamp(3rem, 6.5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+    .hero-title .line { display: block; }
+    .hero-sub {
+      font-size: clamp(1rem, 1.6vw, 1.1rem);
+      line-height: 1.7;
+      color: var(--text-2);
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 500; }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      max-width: 440px;
+    }
+    .stat-pill {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 16px 20px;
+    }
+    .stat-pill .num {
+      font-family: var(--mono);
+      font-size: clamp(2.25rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1;
+    }
+    .stat-pill .num sup { font-size: 0.38em; color: var(--accent); }
+    .stat-pill .label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-top: 6px;
+    }
 
-            .hover-letter:hover {
-                transform: translateY(-4px) scale(1.04) rotate(-2deg);
-            }
-        }
-    </style>
+    /* ─── ORIGIN STRIP ───────────────────────────────────────────── */
+    .origin-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .origin-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .origin-card {
+      padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 3vw, 2rem);
+      border-right: 1px solid var(--border);
+    }
+    .origin-card:last-child { border-right: none; }
+    .origin-card .tag { display: block; margin-bottom: 0.75rem; }
+    .origin-card p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-2);
+    }
+
+    /* ─── SECTION SHELL ──────────────────────────────────────────── */
+    .section {
+      padding: clamp(4rem, 8vw, 7rem) 0;
+    }
+    .section-head {
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+    .section-head .tag { display: flex; align-items: center; margin-bottom: 1rem; }
+    .section-title {
+      font-family: var(--mono);
+      font-size: clamp(2rem, 5vw, 3.75rem);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .section-sub {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-2);
+      max-width: 42rem;
+      margin-top: 0.75rem;
+    }
+
+    /* ─── QUICK READ ─────────────────────────────────────────────── */
+    .quick-read { border-bottom: 1px solid var(--border); }
+    .quick-read-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .qr-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 13rem;
+      transition: border-color 0.18s, background 0.18s, transform 0.18s;
+    }
+    .qr-card:hover {
+      border-color: var(--accent);
+      background: #111118;
+      transform: translateY(-2px);
+    }
+    .qr-card .idx {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+      margin-bottom: 1rem;
+    }
+    .qr-card strong {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      font-family: var(--mono);
+    }
+    .qr-card p { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+    .qr-card .arrow {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+    .quick-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .quick-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      min-height: 42px;
+      padding: 0 1rem;
+      border-radius: 99px;
+      border: 1px solid var(--border-2);
+      background: rgba(255,255,255,0.035);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 12px;
+      text-decoration: none;
+      transition: border-color 0.18s, background 0.18s, transform 0.18s;
+    }
+    .quick-action:hover {
+      border-color: var(--accent);
+      background: rgba(107,98,242,0.12);
+      transform: translateY(-2px);
+    }
+
+    /* ─── STAT BAR ───────────────────────────────────────────────── */
+    .stat-bar {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-bar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-block {
+      padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 3vw, 2rem);
+      border-right: 1px solid var(--border);
+    }
+    .stat-block:last-child { border-right: none; }
+    .stat-block .num {
+      font-family: var(--mono);
+      font-size: clamp(2.75rem, 5.5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--text);
+    }
+    .stat-block .num sup { font-size: 0.38em; color: var(--accent); }
+    .stat-block .desc {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      line-height: 1.6;
+      margin-top: 8px;
+    }
+    .stat-block .note {
+      font-size: 12px;
+      color: var(--text-3);
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    /* ─── PROOF / ACADEMICS ──────────────────────────────────────── */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 2rem;
+    }
+    .proof-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color 0.18s, transform 0.18s;
+    }
+    .proof-card:hover { border-color: var(--border-2); transform: translateY(-2px); }
+    .proof-card img {
+      max-width: 140px;
+      max-height: 44px;
+      object-fit: contain;
+      object-position: left center;
+      filter: grayscale(1) brightness(1.6) contrast(0.85);
+      opacity: 0.7;
+    }
+    .proof-card span {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ─── VENTURES ───────────────────────────────────────────────── */
+    .ventures-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .venture {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.18s, transform 0.18s;
+    }
+    .venture:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .venture-header {
+      background: var(--bg-3);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .venture-header img {
+      width: 44px; height: 44px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: var(--bg-2);
+      padding: 3px;
+    }
+    .venture-header svg { color: var(--text-3); transition: color 0.18s, transform 0.18s; }
+    .venture:hover .venture-header svg { color: var(--accent); transform: translate(2px,-2px); }
+    .venture-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+    .venture-role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+    .venture-name { font-family: var(--mono); font-size: 1.2rem; font-weight: 400; color: var(--text); }
+    .venture-desc { font-size: 14px; line-height: 1.65; color: var(--text-2); margin-top: 0.25rem; }
+    .venture-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: auto;
+      padding-top: 1rem;
+    }
+    .venture-proof span {
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 0.35rem 0.55rem;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      background: rgba(255,255,255,0.025);
+    }
+
+    .venture-featured {
+      grid-column: 1 / -1;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: grid;
+      grid-template-columns: min(300px, 34%) 1fr;
+      transition: border-color 0.18s, transform 0.18s;
+    }
+    .venture-featured:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .venture-featured-media {
+      background: var(--bg-3);
+      border-right: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .venture-featured-media img {
+      width: 64px; height: 64px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: var(--bg-2);
+      padding: 4px;
+    }
+    .venture-featured-media svg { color: var(--text-3); transition: color 0.18s, transform 0.18s; }
+    .venture-featured:hover .venture-featured-media svg { color: var(--accent); transform: translate(2px,-2px); }
+    .venture-featured-body { padding: clamp(2rem, 4vw, 3rem); display: flex; flex-direction: column; gap: 0.75rem; justify-content: center; }
+    .venture-featured-body .kicker {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(107,98,242,0.35);
+      border-radius: 99px;
+      padding: 4px 12px;
+    }
+    .venture-featured-body .name { font-family: var(--mono); font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 300; color: var(--text); line-height: 1.05; }
+    .venture-featured-body .desc { font-size: 15px; line-height: 1.7; color: var(--text-2); max-width: 520px; }
+
+    /* ─── FEATURED WORK ─────────────────────────────────────────── */
+    .featured-work {
+      border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(107,98,242,0.12), transparent 26rem),
+        rgba(255,255,255,0.012);
+    }
+    .case-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 8px;
+    }
+    .case-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+      min-height: 26rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.18s, transform 0.18s, background 0.18s;
+    }
+    .case-card:hover {
+      border-color: var(--accent);
+      background: #111118;
+      transform: translateY(-3px);
+    }
+    .case-card.featured-case { grid-row: span 2; }
+    .case-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(107,98,242,0.16), transparent 38%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), transparent 45%);
+      opacity: 0;
+      transition: opacity 0.25s;
+      pointer-events: none;
+    }
+    .case-card:hover::before { opacity: 1; }
+    .case-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .case-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+    }
+    .case-chip {
+      border: 1px solid rgba(107,98,242,0.35);
+      border-radius: 99px;
+      padding: 0.35rem 0.7rem;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      white-space: nowrap;
+    }
+    .case-card h3 {
+      font-family: var(--mono);
+      font-size: clamp(1.45rem, 3vw, 2.25rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 1.35rem;
+      position: relative;
+      z-index: 1;
+    }
+    .case-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 1.35rem;
+      position: relative;
+      z-index: 1;
+    }
+    .case-metric {
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 0.85rem;
+      background: rgba(0,0,0,0.16);
+    }
+    .case-metric strong {
+      display: block;
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .case-metric span {
+      display: block;
+      font-size: 12px;
+      line-height: 1.35;
+      color: #777;
+    }
+    .case-body {
+      display: grid;
+      gap: 0.85rem;
+      position: relative;
+      z-index: 1;
+    }
+    .case-row {
+      display: grid;
+      grid-template-columns: 5.5rem 1fr;
+      gap: 1rem;
+      align-items: baseline;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+    .case-row .label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .case-row p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #aaa;
+    }
+    .case-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: auto;
+      padding-top: 1.5rem;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+    }
+    .case-link svg { transition: transform 0.18s; }
+    .case-card:hover .case-link svg { transform: translate(3px, -3px); }
+
+    /* ─── PHOTO CARDS (visual-card) ──────────────────────────────── */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 4rem;
+    }
+    .photo-card {
+      position: relative;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--bg-3);
+    }
+    .photo-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.4) brightness(0.6) contrast(1.1);
+      transition: transform 0.5s ease, filter 0.3s ease;
+    }
+    .photo-card:hover img { transform: scale(1.04); filter: grayscale(0.2) brightness(0.7) contrast(1.1); }
+    .photo-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.88) 0%, transparent 55%);
+    }
+    .photo-caption {
+      position: absolute;
+      bottom: 1.1rem;
+      left: 1.25rem;
+      right: 1.25rem;
+      z-index: 1;
+    }
+    .photo-caption .source {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: 4px;
+    }
+    .photo-caption strong {
+      display: block;
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.1;
+    }
+
+    /* ─── TIMELINE ───────────────────────────────────────────────── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 64px 1px 1fr;
+      gap: 0 1.75rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-year {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-3);
+      padding-top: 3px;
+      text-align: right;
+    }
+    .tl-line {
+      position: relative;
+      background: var(--border);
+    }
+    .tl-dot {
+      position: absolute;
+      top: 3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--border-2);
+      border: 2px solid var(--text-3);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .tl-dot.active { background: var(--accent); border-color: var(--accent); }
+    .tl-content { display: flex; flex-direction: column; gap: 1.25rem; }
+    .tl-entry h3 {
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .tl-entry p { font-size: 14px; line-height: 1.65; color: var(--text-2); }
+
+    /* ─── ADVOCACY ───────────────────────────────────────────────── */
+    .advocacy-bg {
+      background:
+        radial-gradient(circle at 80% 10%, rgba(107,98,242,0.14), transparent 26rem),
+        radial-gradient(circle at 15% 85%, rgba(196,149,119,0.08), transparent 28rem),
+        var(--bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .advocacy-story {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: clamp(2rem, 5vw, 4rem);
+      margin-bottom: 2.5rem;
+    }
+    .advocacy-story-label { margin-bottom: 1.25rem; }
+    .advocacy-story h3 {
+      font-family: var(--mono);
+      font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--text);
+      max-width: 52rem;
+      margin-bottom: 1.5rem;
+    }
+    .advocacy-story h3 em { color: var(--text-3); font-style: italic; }
+    .advocacy-story-body {
+      display: grid;
+      grid-template-columns: 1fr min(28rem, 40%);
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .advocacy-story-body p { font-size: 15px; line-height: 1.75; color: var(--text-2); margin-bottom: 1rem; }
+    .advocacy-story-body p strong { color: var(--text); font-weight: 500; }
+    .advocacy-aside {
+      border-left: 2px solid rgba(107,98,242,0.45);
+      padding-left: 1.25rem;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-3);
+      font-style: italic;
+    }
+
+    /* ─── PLATFORM SECTION ───────────────────────────────────────── */
+    .platform-wrap {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .platform-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(229,229,229,0.03) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(229,229,229,0.025) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
+      pointer-events: none;
+    }
+    .platform-head {
+      display: grid;
+      grid-template-columns: 1fr min(380px, 36%);
+      gap: 2rem;
+      align-items: start;
+      padding: clamp(1rem, 2vw, 1.75rem);
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .platform-head h3 {
+      font-family: var(--mono);
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 0.98;
+      color: var(--text);
+    }
+    .platform-head p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-2);
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 1rem 1.15rem;
+      align-self: end;
+    }
+    .platform-cards {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 8px;
+      position: relative;
+    }
+    .platform-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: clamp(1rem, 2vw, 1.4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.18s, background 0.18s, transform 0.18s;
+    }
+    .platform-card::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(107,98,242,0.85), rgba(255,255,255,0.3), transparent);
+      opacity: 0.6;
+    }
+    .platform-card:hover {
+      border-color: var(--border-2);
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-2px);
+    }
+    .platform-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .platform-card-top .idx { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
+    .platform-card-top .cat { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); text-align: right; max-width: 12ch; line-height: 1.3; }
+    .platform-card h4 {
+      font-family: var(--mono);
+      font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.08;
+      margin-bottom: 0.75rem;
+    }
+    .platform-card p { font-size: 14px; line-height: 1.65; color: var(--text-2); }
+    .span-4  { grid-column: span 4; }
+    .span-6  { grid-column: span 6; }
+    .span-12 { grid-column: span 12; }
+
+    /* ─── PRESS ──────────────────────────────────────────────────── */
+    .press-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: rgba(255,255,255,0.03);
+    }
+    .press-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .press-filter {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-2);
+      border-radius: 99px;
+      padding: 0.55rem 0.8rem;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.18s, color 0.18s, background 0.18s;
+    }
+    .press-filter:hover,
+    .press-filter.active {
+      border-color: var(--accent);
+      color: var(--text);
+      background: rgba(107,98,242,0.16);
+    }
+    .press-count {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+      white-space: nowrap;
+    }
+    .press-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .press-group-label {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1.75rem 0 0.35rem;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .press-group-label:first-child { margin-top: 0; }
+    .press-group-label::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.8;
+    }
+    .press-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 1.25rem 1.35rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 10rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.18s, background 0.18s, transform 0.18s;
+    }
+    .press-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.2s ease;
+    }
+    .press-card:hover { border-color: var(--accent); background: #111118; transform: translateY(-2px); }
+    .press-card:hover::before { transform: scaleY(1); }
+    .press-card.is-hidden,
+    .press-group-label.is-hidden { display: none; }
+    .press-source { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.65rem; }
+    .press-card p { font-family: var(--mono); font-size: 14px; font-weight: 400; line-height: 1.25; color: var(--text); flex: 1; margin-bottom: 0.85rem; }
+    .press-arrow {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text);
+      transition: background 0.18s, color 0.18s, transform 0.18s;
+      flex-shrink: 0;
+    }
+    .press-card:hover .press-arrow { background: var(--text); color: var(--bg); transform: translate(2px,-2px); }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: clamp(4.8rem, 9.6vw, 7.8rem) 0 clamp(6.5rem, 11vw, 9rem);
+      background:
+        radial-gradient(circle at 70% 50%, rgba(107,98,242,0.08), transparent 28rem),
+        var(--bg);
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+    .footer-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    footer h2 {
+      font-family: var(--mono);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    footer p { font-size: clamp(16px, 1.35vw, 18px); line-height: 1.7; color: var(--text-2); max-width: 34rem; margin-bottom: 0.65rem; }
+    footer small { font-size: 12px; color: var(--text-3); }
+    .footer-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--bg);
+      background: var(--text);
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 99px;
+      transition: background 0.18s, color 0.18s;
+      white-space: nowrap;
+    }
+    .footer-cta:hover { background: var(--accent); color: #fff; }
+    .footer-cta svg { flex-shrink: 0; }
+    .footer-cta.secondary {
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--border-2);
+    }
+    .footer-cta.secondary:hover {
+      color: #fff;
+      background: rgba(107,98,242,0.18);
+      border-color: var(--accent);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      body { padding-bottom: 100px; }
+
+      .hero {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 2rem;
+        padding-bottom: 5rem;
+        gap: 2rem;
+        overflow: hidden;
+      }
+      .hero > div { width: 100%; min-width: 0; }
+      .hero-photo-wrap {
+        height: 36vh;
+        min-height: 200px;
+        order: -1;
+      }
+      .hero-title {
+        font-size: clamp(2.1rem, 10.4vw, 2.8rem);
+        line-height: 1.04;
+        max-width: calc(100vw - 2.5rem);
+      }
+      .hero-title .line {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
+      .hero-sub {
+        display: block;
+        font-size: 14.5px;
+        line-height: 1.65;
+        width: min(100%, 320px);
+        max-width: calc(100vw - 3rem);
+        overflow-wrap: anywhere;
+        word-break: normal;
+        white-space: normal;
+      }
+      .hero-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: calc(100vw - 3rem);
+      }
+      .stat-pill { min-width: 0; padding: 14px 16px; }
+      .stat-pill .num { font-size: clamp(2rem, 10vw, 2.7rem); }
+
+      .origin-inner { grid-template-columns: 1fr; }
+      .origin-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .origin-card:last-child { border-bottom: none; }
+
+      .quick-read-grid { grid-template-columns: 1fr; }
+      .stat-bar-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-block:nth-child(even) { border-right: none; }
+      .stat-block:nth-child(3) { border-top: 1px solid var(--border); }
+      .stat-block:nth-child(4) { border-top: 1px solid var(--border); }
+      .proof-grid { grid-template-columns: 1fr; }
+      .ventures-grid { grid-template-columns: 1fr; }
+      .venture-featured { grid-template-columns: 1fr; }
+      .venture-featured-media { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem; }
+      .case-grid { grid-template-columns: 1fr; }
+      .case-card,
+      .case-card.featured-case { grid-row: auto; min-height: auto; }
+      .case-meta { grid-template-columns: 1fr; }
+      .case-row { grid-template-columns: 1fr; gap: 0.35rem; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .advocacy-story-body { grid-template-columns: 1fr; }
+      .platform-head { grid-template-columns: 1fr; }
+      .platform-cards { grid-template-columns: 1fr; }
+      .span-4, .span-6, .span-12 { grid-column: 1 / -1; }
+      .platform-card { min-height: auto; }
+      .press-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .press-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-actions { justify-content: flex-start; }
+
+      .nav-logo { display: none; }
+      .nav { width: min(calc(100% - 0.5rem), 540px); bottom: 10px; }
+      .nav-inner { justify-content: center; padding: 6px 8px; }
+      .nav-links { width: 100%; justify-content: space-around; gap: 0; }
+      .nav-link {
+        font-size: 11px;
+        padding: 6px 7px;
+      }
+      .nav-cta { display: none; }
+      #progress { display: none; }
+      #scene-canvas {
+        opacity: 0.36;
+        filter: saturate(1) contrast(1);
+      }
+      .scene-fallback {
+        opacity: 0.26;
+      }
+      .depth-frame {
+        width: 130vw;
+        border-radius: 22px;
+      }
+      .light-plane {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <div id="progress"></div>
+  <a href="#summary" class="skip-link">Skip to content</a>
+  <canvas id="scene-canvas" aria-hidden="true"></canvas>
+  <div class="scene-fallback" aria-hidden="true">
+    <span class="depth-frame" style="--z:0; --r:0deg; --delay:0s"></span>
+    <span class="depth-frame" style="--z:120; --r:1.5deg; --delay:-1s"></span>
+    <span class="depth-frame" style="--z:240; --r:-1.2deg; --delay:-2s"></span>
+    <span class="depth-frame" style="--z:360; --r:2.2deg; --delay:-3s"></span>
+    <span class="light-plane" style="--x:58vw; --y:16vh; --r:-22deg; --delay:-1s"></span>
+    <span class="light-plane" style="--x:6vw; --y:66vh; --r:18deg; --delay:-4s"></span>
+  </div>
 
-    <!-- ═══════════ HERO ═══════════ -->
-    <header class="hero-bg relative min-h-[85vh] flex flex-col">
-        <!-- Background image -->
-        <div class="absolute inset-0 z-0 overflow-hidden">
-            <img src="https://daytonjewishobserver.org/wp-content/uploads/2025/11/IMG_0866.jpg" alt="" class="w-full h-full object-cover opacity-50 scale-105" style="object-position: center 25%;">
-            <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(15,15,15,0.2) 0%, rgba(15,15,15,0.6) 40%, #0f0f0f 100%);"></div>
-        </div>
+  <div class="splash" aria-hidden="true">
+    <span class="splash-name">SGC</span>
+  </div>
 
-        <!-- Content -->
-        <div class="relative z-10 flex-1 flex flex-col justify-end max-w-5xl mx-auto w-full px-6 md:px-12 pb-16 pt-16">
-            
-            <!-- Eyebrow -->
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-6 h-px bg-white opacity-40"></div>
-                <span class="section-label text-white opacity-50">Samuel Caruso Portfolio</span>
-            </div>
-
-            <!-- Headline -->
-            <h1 class="headline-title display font-black text-white mb-10" id="interactive-headline">
-                <!-- Javascript will inject the interactive letters here -->
-            </h1>
-
-            <!-- Three column intro -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-px border border-white border-opacity-10 rounded-2xl overflow-hidden mt-6 reveal">
-                <div class="p-6 bg-white bg-opacity-5 backdrop-blur-sm">
-                    <div class="section-label text-white opacity-40 mb-3">Origins</div>
-                    <p class="text-white text-opacity-70 text-sm leading-relaxed">Started young fixing shattered iPhone screens through iCareScreenRepair. Realized organizing people was harder but more effective, so I chartered buses, helped lead mass citywide protests, debated on national television, and became the youngest elected Bernie delegate in Ohio.</p>
-                </div>
-                <div class="p-6 bg-white bg-opacity-5 backdrop-blur-sm">
-                    <div class="section-label text-white opacity-40 mb-3">Education</div>
-                    <p class="text-white text-opacity-70 text-sm leading-relaxed">BA in History and Political Science Summa Cum Laude at Michigan. MS in Emerging Tech and Entrepreneurship at Miami University. Branstrom Prize, Dean's Medallion, Difference Maker, and tapped for leadership at UM because I actually do the reading.</p>
-                </div>
-                <div class="p-6 bg-white bg-opacity-5 backdrop-blur-sm">
-                    <div class="section-label text-white opacity-40 mb-3">Today</div>
-                    <p class="text-white text-opacity-70 text-sm leading-relaxed">Running tech businesses, building software ecosystems, and directing a digital human rights archive. The throughline is simple: entrepreneurship, public service, and advocacy, with enough operational discipline to make ideas move in public.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scroll nudge -->
-        <div class="relative z-10 flex justify-center pb-8 opacity-40 animate-bounce">
-            <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><rect x="6.5" y="1" width="3" height="5" rx="1.5" fill="white"/><path d="M8 19L3 14h10L8 19z" fill="white"/></svg>
-        </div>
-    </header>
-
-    <!-- ═══════════ STICKY NAV ═══════════ -->
-    <nav class="nav-bar sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-6 md:px-12 py-3 flex items-center justify-between gap-6 overflow-x-auto">
-            <span class="display font-bold text-sm whitespace-nowrap">Samuel Caruso</span>
-            <div class="flex items-center gap-1 overflow-x-auto no-scrollbar">
-                <a href="#ventures" class="section-label px-3 py-1.5 rounded-full hover:bg-black hover:text-white transition-all whitespace-nowrap">Ventures</a>
-                <a href="#timeline" class="section-label px-3 py-1.5 rounded-full hover:bg-black hover:text-white transition-all whitespace-nowrap">Timeline</a>
-                <a href="#advocacy" class="section-label px-3 py-1.5 rounded-full hover:bg-black hover:text-white transition-all whitespace-nowrap">Advocacy</a>
-                <a href="#press" class="section-label px-3 py-1.5 rounded-full hover:bg-black hover:text-white transition-all whitespace-nowrap">Press</a>
-            </div>
-            <a href="mailto:sgcaruso@umich.edu" class="hidden md:flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-xs font-semibold whitespace-nowrap hover:bg-neutral-800 transition-colors">
-                Get in touch
-            </a>
-        </div>
-    </nav>
-
-    <!-- ═══════════ CREDENTIALS STRIP ═══════════ -->
-    <div class="bg-paper-dark border-b border-rule py-4">
-        <div class="max-w-5xl mx-auto px-6 md:px-12 flex flex-wrap items-center gap-6 text-xs font-medium" style="color: var(--muted);">
-            <div class="flex items-center gap-2">
-                <img src="https://brand.umich.edu/assets/brand/style-guide/logo-guidelines/U-M_Logo-Hex.png" alt="UMich" class="h-3.5 opacity-60" style="mix-blend-mode: multiply;">
-                <span>BA History and Political Science Summa Cum Laude</span>
-            </div>
-            <div class="w-1 h-1 rounded-full bg-rule hidden md:block"></div>
-            <div class="flex items-center gap-2">
-                <img src="https://miamioh.edu/_hannonhill/_files/images/logos/primary-alternate-logos/alt-logo-stacked-oxford-black.png" alt="Miami" class="h-3.5 opacity-60" style="mix-blend-mode: multiply;">
-                <span>MS Emerging Tech and Entrepreneurship 4.0 GPA</span>
-            </div>
-            <div class="w-1 h-1 rounded-full bg-rule hidden md:block"></div>
-            <div class="flex items-center gap-2">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Seal_of_the_United_States_House_of_Representatives.svg" alt="Congress" class="h-3.5 opacity-60">
-                <span>U.S. House of Representatives Alum</span>
-            </div>
-        </div>
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav" aria-label="Site navigation">
+    <div class="nav-inner">
+      <span class="nav-logo">Samuel Caruso</span>
+      <div class="nav-links">
+        <a href="#summary"   class="nav-link">Summary</a>
+        <a href="#ventures"  class="nav-link">Ventures</a>
+        <a href="#featured"  class="nav-link">Work</a>
+        <a href="#timeline"  class="nav-link">Timeline</a>
+        <a href="#advocacy"  class="nav-link">Advocacy</a>
+        <a href="#press"     class="nav-link">Press</a>
+      </div>
+      <a href="mailto:sgcaruso@umich.edu" class="nav-cta">Get in touch</a>
     </div>
+  </nav>
 
-    <!-- ═══════════ VENTURES (LINKTREE ALTERNATIVE) ═══════════ -->
-    <section id="ventures" class="bg-paper py-20">
-        <div class="max-w-5xl mx-auto px-6 md:px-12">
-
-            <div class="mb-12 reveal flex flex-col md:flex-row md:items-end justify-between gap-6">
-                <div>
-                    <div class="section-label mb-2">My Linktree Alternative</div>
-                    <h2 class="display text-4xl md:text-5xl font-black">Current Ventures</h2>
-                </div>
-                <p class="text-sm max-w-sm" style="color:var(--muted);">
-                    Linktree is for influencers. I just link directly to the businesses and organizations I actively run because neither of us has time for corporate fluff.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                <a href="https://www.daytongrowth.co/" target="_blank" rel="noopener noreferrer" class="venture-card rounded-2xl p-8 block group reveal">
-                    <div class="flex items-start justify-between mb-6">
-                        <img src="https://i.ibb.co/tpyytrdT/Zoomed-Out-Logo.png" alt="DaytonGrowthCo." class="w-12 h-12 object-contain rounded-xl" style="mix-blend-mode:multiply;">
-                        <svg class="w-5 h-5 opacity-30 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                    <div class="section-label mb-1" style="color:var(--accent);">Founder</div>
-                    <h3 class="display font-bold text-2xl mb-3">DaytonGrowthCo.</h3>
-                    <p class="text-sm leading-relaxed" style="color:var(--muted);">Business automation and local search optimization. I build systems using Framer, Webflow, and Claude Code to handle the soul crushing repetitive work your employees pretend to do while browsing the internet. We make businesses run efficiently so you can focus on actual growth.</p>
-                </a>
-
-                <a href="https://echoesofgaza.org/" target="_blank" rel="noopener noreferrer" class="venture-card rounded-2xl p-8 block group reveal delay-1">
-                    <div class="flex items-start justify-between mb-6">
-                        <img src="https://i.postimg.cc/fT81SwN0/426559D6-9EF9-49AA-8A0B-84A3FA70B3E2.png" alt="Echoes of Gaza" class="w-12 h-12 object-contain rounded-xl" style="mix-blend-mode:multiply;">
-                        <svg class="w-5 h-5 opacity-30 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                    <div class="section-label mb-1" style="color:var(--accent);">Director</div>
-                    <h3 class="display font-bold text-2xl mb-3">Echoes of Gaza</h3>
-                    <p class="text-sm leading-relaxed" style="color:var(--muted);">An open source digital historical archive documenting Palestinian narratives. I designed and built the platform from scratch using HTML, CSS, and JavaScript. History is too important to be left to those trying to overwrite it.</p>
-                </a>
-
-                <a href="https://rscboy.github.io/shmuautomotive/" target="_blank" rel="noopener noreferrer" class="venture-card rounded-2xl p-8 block group reveal">
-                    <div class="flex items-start justify-between mb-6">
-                        <img src="https://i.ibb.co/B5fmCZDS/Screenshot-2026-04-23-at-10-51-12-PM.png" alt="Shmu's Automotive" class="w-12 h-12 object-contain rounded-xl" style="mix-blend-mode:multiply;">
-                        <svg class="w-5 h-5 opacity-30 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                    <div class="section-label mb-1" style="color:var(--accent);">Owner & Mechanic</div>
-                    <h3 class="display font-bold text-2xl mb-3">Shmu's Automotive</h3>
-                    <p class="text-sm leading-relaxed" style="color:var(--muted);">Mobile oil changes and repair. The garage comes to your driveway. No waiting rooms smelling like stale coffee. No service advisors trying to upsell you on blinker fluid. Just clean oil and a car that works.</p>
-                </a>
-
-                <a href="https://www.flightfix.biz/" target="_blank" rel="noopener noreferrer" class="venture-card rounded-2xl p-8 block group reveal delay-1">
-                    <div class="flex items-start justify-between mb-6">
-                        <img src="https://i.postimg.cc/RVjSKdGB/Flight-Fix-Logo.jpg" alt="FlightFix" class="w-12 h-12 object-contain rounded-xl" style="mix-blend-mode:multiply;">
-                        <svg class="w-5 h-5 opacity-30 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                    <div class="section-label mb-1" style="color:var(--accent);">Founder</div>
-                    <h3 class="display font-bold text-2xl mb-3">FlightFix</h3>
-                    <p class="text-sm leading-relaxed" style="color:var(--muted);">Travel planning and crisis management built on predictive analytics and AI. When airlines inevitably lose your luggage or cancel your flight for weather that happened three states away, I fix it. Consider me the cavalry for when the travel industry forgets how to function.</p>
-                </a>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════ TIMELINE ═══════════ -->
-    <section id="timeline" class="bg-paper-dark py-20 border-t border-rule">
-        <div class="max-w-5xl mx-auto px-6 md:px-12">
-
-            <!-- Header -->
-            <div class="flex items-end justify-between mb-12 reveal">
-                <div>
-                    <div class="section-label mb-2">Chapter by Chapter</div>
-                    <h2 class="display text-4xl md:text-5xl font-black">The Timeline</h2>
-                </div>
-                <span class="display italic text-muted text-sm hidden md:block" style="color:var(--muted);">A decade of actual work</span>
-            </div>
-
-            <!-- Timeline entries -->
-            <div class="space-y-0">
-
-                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 pb-10 border-b border-rule">
-                    <div class="year-tag text-right pt-1">2026</div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot active-dot"></div>
-                        <div class="flex-1 w-px bg-rule mt-2"></div>
-                    </div>
-                    <div class="pb-2 space-y-5">
-                        <div>
-                            <h3 class="display font-bold text-xl mb-1">Launched DaytonGrowthCo.</h3>
-                            <p class="text-sm leading-relaxed" style="color:var(--muted);">Decided local businesses should stop fighting with clunky software. Automating the boring work so humans do not have to.</p>
-                        </div>
-                        <div>
-                            <h3 class="display font-bold text-xl mb-1">Chief of Staff Intern at Matriosh</h3>
-                            <p class="text-sm leading-relaxed" style="color:var(--muted);">Stealth startup out of Wilmington Delaware. I handle recruitment, company culture, and pitch decks. Every founder eventually realizes they need someone to actually organize the chaos.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-1">
-                    <div class="year-tag text-right pt-1">2025</div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="flex-1 w-px bg-rule mt-2"></div>
-                    </div>
-                    <div class="space-y-5">
-                        <div>
-                            <h3 class="display font-bold text-xl mb-1">Operations at Tarvo</h3>
-                            <p class="text-sm leading-relaxed" style="color:var(--muted);">Defined product roadmaps for scalable manufacturing software. Figured out how to make generative AI write pitch decks that investors actually read.</p>
-                        </div>
-                        <div>
-                            <h3 class="display font-bold text-xl mb-1">Sales Intern at Enthea</h3>
-                            <p class="text-sm leading-relaxed" style="color:var(--muted);">Healthcare startup where I optimized their HubSpot CRM and researched ketamine studies. Proved that good data hygiene is more effective than buzzwords.</p>
-                        </div>
-                        <div>
-                            <h3 class="display font-bold text-xl mb-1">Co-created The Travel Agents Academy</h3>
-                            <p class="text-sm leading-relaxed" style="color:var(--muted);">A new host agency for travel advisors under Chima Travel. Teaching people how to actually navigate the travel industry.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-2">
-                    <div class="year-tag text-right pt-1">2024</div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="flex-1 w-px bg-rule mt-2"></div>
-                    </div>
-                    <div>
-                        <h3 class="display font-bold text-xl mb-1">Director, Echoes of Gaza</h3>
-                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Built and deployed a historical archive from scratch to preserve narratives the twenty four hour news cycle tends to bury.</p>
-                    </div>
-                </div>
-
-                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-1">
-                    <div class="year-tag text-right pt-1">2023</div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="flex-1 w-px bg-rule mt-2"></div>
-                    </div>
-                    <div>
-                            <h3 class="display font-bold text-xl mb-1">Voter Registration Organizer & UM Leader</h3>
-                            <p class="text-sm leading-relaxed" style="color:var(--muted);">Registered over one thousand seven hundred students to vote, built Dinners for Democracy programming, and was tapped for student leadership at the University of Michigan. Democracy requires actual paperwork.</p>
-                    </div>
-                </div>
-
-                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-2">
-                    <div class="year-tag text-right pt-1">2022</div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="flex-1 w-px bg-rule mt-2"></div>
-                    </div>
-                    <div>
-                        <h3 class="display font-bold text-xl mb-1">Congressional Intern</h3>
-                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Learned how the gears of government turn in Representative Andy Levin's office. Pitched housing policy directly to the Congressman to try and make them turn faster.</p>
-                    </div>
-                </div>
-
-                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-1">
-                    <div class="year-tag text-right pt-1">2020</div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="flex-1 w-px bg-rule mt-2"></div>
-                    </div>
-                    <div>
-                        <h3 class="display font-bold text-xl mb-1">Youngest Elected Bernie Delegate</h3>
-                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Represented Ohio District Ten and served as a precinct captain in Iowa. Learned that political revolutions require a lot of folding chairs.</p>
-                    </div>
-                </div>
-
-                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule">
-                    <div class="year-tag text-right pt-1">2019</div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="flex-1 w-px bg-rule mt-2"></div>
-                    </div>
-                    <div>
-                        <div class="space-y-5">
-                            <div>
-                                <h3 class="display font-bold text-xl mb-1">Campaign Manager</h3>
-                                <p class="text-sm leading-relaxed" style="color:var(--muted);">Ran Adrienne Draper's city council race. Handled social media, accounting, and door knocking. Won by exactly three hundred votes.</p>
-                            </div>
-                            <div>
-                                <h3 class="display font-bold text-xl mb-1">Debated on National Television</h3>
-                                <p class="text-sm leading-relaxed" style="color:var(--muted);">Debated Chris Matthew on MSNBC about gun violence and appeared on The Young Turks network.</p>
-                            </div>
-                            <div>
-                                <h3 class="display font-bold text-xl mb-1">TEDxYouth Speaker</h3>
-                                <p class="text-sm leading-relaxed" style="color:var(--muted);">Delivered The Future Is Ours on youth activism and why waiting for adult permission is a losing strategy for student organizers.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-1">
-                    <div class="year-tag text-right pt-1">2018</div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="flex-1 w-px bg-rule mt-2"></div>
-                    </div>
-                    <div>
-                        <h3 class="display font-bold text-xl mb-1">Anti Gun Violence Organizer</h3>
-                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Organized bus trips from Dayton to Washington D.C. and helped lead mass citywide walkouts and rallies for gun violence prevention. If you want a crowd to move, you need to be the one holding the map.</p>
-                    </div>
-                </div>
-
-                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10 border-b border-rule delay-2">
-                    <div class="year-tag text-right pt-1">2016</div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                        <div class="flex-1 w-px bg-rule mt-2"></div>
-                    </div>
-                    <div>
-                        <h3 class="display font-bold text-xl mb-1">Music Teacher at Temple Israel</h3>
-                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Taught music for a year in Dayton Ohio. My introduction to standing in front of groups of people and hoping they listen.</p>
-                    </div>
-                </div>
-
-                <div class="reveal grid grid-cols-[64px_20px_1fr] gap-x-6 py-10">
-                    <div class="year-tag text-right pt-1">2015</div>
-                    <div class="flex flex-col items-center">
-                        <div class="timeline-dot"></div>
-                    </div>
-                    <div>
-                        <h3 class="display font-bold text-xl mb-1">Founded iCareScreenRepair</h3>
-                        <p class="text-sm leading-relaxed" style="color:var(--muted);">Started repairing iPhone screens while I was still young enough that most people underestimated the invoice. My first real lesson in business strategy and fixing things that other people drop.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════ ADVOCACY ═══════════ -->
-    <section id="advocacy" class="relative bg-ink text-white py-24 overflow-hidden border-t border-rule">
-        
-        <!-- Background image with improved visibility -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://sgcaruso.weebly.com/uploads/1/3/9/6/139609743/background-images/392636855.jpg" alt="Advocacy Background" class="w-full h-full object-cover opacity-40 scale-105 mix-blend-screen" style="object-position: center top;">
-            <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(15,15,15,0.4) 0%, rgba(15,15,15,0.85) 100%);"></div>
+  <!-- ═══ HERO ═══ -->
+  <header>
+    <div class="hero">
+      <div>
+        <div class="eyebrow">
+          <span class="rule" aria-hidden="true"></span>
+          <span class="tag">Entrepreneur · Organizer · Builder</span>
         </div>
 
-        <div class="relative z-10 max-w-5xl mx-auto px-6 md:px-12">
+        <h1 class="hero-title reveal" id="hero-title">
+          <span class="line">I build ventures,</span>
+          <span class="line">archive history,</span>
+          <span class="line">and move people.</span>
+        </h1>
 
-            <div class="mb-16 reveal">
-                <div class="section-label mb-2" style="color:#888;">Action and Reaction</div>
-                <h2 class="display text-4xl md:text-5xl font-black">Public Scrutiny<br><em class="font-normal">& Advocacy</em></h2>
-                <p class="text-lg leading-relaxed text-neutral-300 mt-6 max-w-2xl">
-                    I do not just advocate for one issue. I organize for systemic change across the board. When you execute instead of just posting on social media, you make institutions uncomfortable. The pushback I have received is proof that the work is effective.
-                </p>
-            </div>
+        <p class="hero-sub reveal" style="--d:1">
+          A decade of <strong>starting companies from scratch</strong>, organizing mass movements,
+          debating on national television, and building digital infrastructure that outlasts the news
+          cycle. Ideally with fewer committee meetings.
+        </p>
 
-            <!-- The Platform Grid (Bernie / Zohran Style) -->
-            <div class="mb-20">
-                <h3 class="display text-2xl font-bold mb-6 tracking-wide uppercase" style="color:var(--accent);">The Platform</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    
-                    <!-- Card 1 -->
-                    <div class="bg-[#111] border-2 border-[#333] border-l-4 border-l-[var(--accent)] p-6 reveal hover:border-[#666] transition-colors">
-                        <h4 class="font-black text-xl mb-3 tracking-tight uppercase">Healthcare & Economy</h4>
-                        <p class="text-sm text-neutral-400 leading-relaxed">
-                            Elected Bernie Sanders delegate fighting for Medicare for All, universal basic income, and tuition free college. Working class people deserve actual safety nets.
-                        </p>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="bg-[#111] border-2 border-[#333] border-l-4 border-l-[var(--accent)] p-6 reveal delay-1 hover:border-[#666] transition-colors">
-                        <h4 class="font-black text-xl mb-3 tracking-tight uppercase">Gun Violence Prevention</h4>
-                        <p class="text-sm text-neutral-400 leading-relaxed">
-                            Organized buses for the March For Our Lives. Debated the issue on national television. Demanding safer gun laws and a complete ban on semi automatic weapons.
-                        </p>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="bg-[#111] border-2 border-[#333] border-l-4 border-l-[var(--accent)] p-6 reveal delay-2 hover:border-[#666] transition-colors">
-                        <h4 class="font-black text-xl mb-3 tracking-tight uppercase">Climate Action</h4>
-                        <p class="text-sm text-neutral-400 leading-relaxed">
-                            Organizing for a massive overhaul of our environmental regulations. We need a cleaner climate and a Green New Deal to secure a livable future.
-                        </p>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="bg-[#111] border-2 border-[#333] border-l-4 border-l-[var(--accent)] p-6 reveal hover:border-[#666] transition-colors">
-                        <h4 class="font-black text-xl mb-3 tracking-tight uppercase">Anti Corruption</h4>
-                        <p class="text-sm text-neutral-400 leading-relaxed">
-                            Fighting corrupt corporate greed at every level of government. Demanding real campaign finance reform and absolutely zero Super PACs.
-                        </p>
-                    </div>
-
-                    <!-- Card 5 -->
-                    <div class="bg-[#111] border-2 border-[#333] border-l-4 border-l-[var(--accent)] p-6 reveal delay-1 hover:border-[#666] transition-colors">
-                        <h4 class="font-black text-xl mb-3 tracking-tight uppercase">Human Rights & Peace</h4>
-                        <p class="text-sm text-neutral-400 leading-relaxed">
-                            Advocating for Palestinian rights. Demanding an end to forever wars. Human rights are not conditional and must be applied across the board.
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- The Pushback Section -->
-            <div class="bg-black border border-[#333] p-8 md:p-12 rounded-xl reveal shadow-2xl">
-                <div class="section-label mb-4" style="color:var(--accent);">The Backlash</div>
-                <h3 class="display font-bold text-3xl text-white mb-6">When you challenge the establishment, institutions panic.</h3>
-                
-                <div class="space-y-6 text-neutral-400 text-sm md:text-base leading-relaxed">
-                    <p>
-                        My advocacy as an Anti-Zionist Jewish American has drawn intense, targeted scrutiny. After speaking up for Palestinian rights at a Dayton rally, I publicly commended the local Jewish Observer for printing an opposing perspective. 
-                    </p>
-                    <p>
-                        The establishment reaction was immediate. Extremists doxxed me. My family received death threats. The President of the local Jewish Federation quickly published an op ed to defend the status quo and explicitly reject my stance.
-                    </p>
-                    <p class="text-white font-medium border-l-2 border-[var(--accent)] pl-4 py-1 mt-4">
-                        I declined to apologize. I issued my final response from Krakow, Poland, while visiting Holocaust memorial sites. The message is simple. Never Again applies to everyone.
-                    </p>
-                </div>
-            </div>
-
+        <div class="hero-stats reveal" style="--d:2">
+          <div class="stat-pill">
+            <div class="num">1,700<sup>+</sup></div>
+            <div class="label">Voters Registered</div>
+          </div>
+          <div class="stat-pill">
+            <div class="num">4</div>
+            <div class="label">Active Ventures</div>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- ═══════════ PRESS ═══════════ -->
-    <section id="press" class="bg-paper py-20 border-t border-rule">
-        <div class="max-w-5xl mx-auto px-6 md:px-12">
+      <div class="hero-photo-wrap reveal" style="--d:1">
+        <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/Panel5.jpg"
+             alt="Samuel Caruso speaking at a Dayton Metro Library panel" id="hero-photo">
+      </div>
+    </div>
+  </header>
 
-            <div class="mb-12 reveal">
-                <div class="section-label mb-2">Documentation</div>
-                <h2 class="display text-4xl md:text-5xl font-black">The Paper Trail</h2>
-                <p class="text-sm mt-3 max-w-lg" style="color:var(--muted);">The full media record of advocacy, national debates, and public scrutiny.</p>
-            </div>
+  <!-- ═══ ORIGIN STRIP ═══ -->
+  <div class="origin-strip">
+    <div class="origin-inner">
+      <div class="origin-card reveal">
+        <span class="tag">Origins</span>
+        <p>Started young fixing shattered iPhone screens. Moved on to shattered systems, which are less profitable but apparently more addictive.</p>
+      </div>
+      <div class="origin-card reveal" style="--d:1">
+        <span class="tag">Education</span>
+        <p>Michigan, Miami, Branstrom Prize, Dean's Medallion, Difference Maker. Proof that sometimes doing the reading has market value.</p>
+      </div>
+      <div class="origin-card reveal" style="--d:2">
+        <span class="tag">Today</span>
+        <p>Running tech businesses and a human rights archive. The pattern is simple: make the thing real, then let people argue with the receipt.</p>
+      </div>
+    </div>
+  </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <!-- ═══ SUMMARY ═══ -->
+  <section class="section quick-read" id="summary" tabindex="-1">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="tag"><span class="rule" aria-hidden="true"></span>30 Second Read</div>
+        <h2 class="section-title">Builder, organizer, operator.</h2>
+        <p class="section-sub">Entrepreneurship, civic engagement, and advocacy backed by documented work across startups, elections, public service, national media, and university leadership.</p>
+      </div>
 
-                <a href="https://youtu.be/TixrzeUJmgw?si=2yyA8sO3aDyYbb-X" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">The Young Turks</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Guest appearance to discuss organizing and activism</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
+      <div class="quick-read-grid">
+        <a href="#ventures" class="qr-card reveal">
+          <div>
+            <div class="idx">01</div>
+            <strong>What I build</strong>
+            <p>DaytonGrowthCo., Echoes of Gaza, FlightFix, and practical systems that turn messy work into something usable.</p>
+          </div>
+          <span class="arrow">See ventures →</span>
+        </a>
+        <a href="#timeline" class="qr-card reveal" style="--d:1">
+          <div>
+            <div class="idx">02</div>
+            <strong>Proof of execution</strong>
+            <p>1,700+ voters registered, campaign wins, TEDx speaking, public service, and startup operating experience.</p>
+          </div>
+          <span class="arrow">Scan timeline →</span>
+        </a>
+        <a href="#press" class="qr-card reveal" style="--d:2">
+          <div>
+            <div class="idx">03</div>
+            <strong>Receipts</strong>
+            <p>National, local, university, and issue-based coverage collected in one documented paper trail.</p>
+          </div>
+          <span class="arrow">Open press →</span>
+        </a>
+      </div>
 
-                <a href="https://x.com/Oakwood_Schools/status/1141474151741435907" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-1">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">MSNBC</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Live debate with Chris Matthew regarding gun violence</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
+      <div class="quick-actions reveal" style="--d:3">
+        <a href="Samuel-Caruso-Resume.pdf" class="quick-action" download>Download resume</a>
+        <a href="#featured" class="quick-action">View featured work</a>
+        <a href="mailto:sgcaruso@umich.edu" class="quick-action">Email Samuel</a>
+      </div>
+    </div>
+  </section>
 
-                <a href="https://youtu.be/jZpLNnJNulo?si=ijo-gqIsnDl5OaN9" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-2">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">TEDx Talks</div>
-                    <p class="text-sm font-medium leading-snug mb-4">The Future Is Ours Student Activism</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://www.daytondailynews.com/local/opinion/voices-death-threats-have-no-place-in-judaism/article_f914b08d-4d67-589e-b286-6cc8f496225a.html" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">Dayton Daily News</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Death threats have no place in Judaism</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://daytonjewishobserver.org/2025/11/local-jewish-grad-student-among-speakers-at-call-it-genocide-rally-downtown/" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-1">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">Dayton Jewish Observer</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Local grad student among speakers at human rights rally</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://daytonjewishobserver.org/2025/12/the-jewish-federation-of-greater-dayton-stands-with-israel/" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-2">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">Dayton Jewish Observer</div>
-                    <p class="text-sm font-medium leading-snug mb-4">The Jewish Federation of Greater Dayton stands with Israel</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://ysnews.com/news/2026/02/community-forum-on-israel-and-palestine-held-at-antioch" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">Yellow Springs News</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Community forum on Israel and Palestine held at Antioch</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://www.daytondailynews.com/local/protesters-in-downtown-dayton-call-for-an-end-to-the-war-against-iran-conflicts-overseas/article_bb0186a6-32ac-4d67-9d97-a305e41e6079.html" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-1">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">Dayton Daily News</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Protesters call for an end to conflicts overseas</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://www.wdtn.com/news/local-news/local-walkouts-spark-conversations-about-tougher-gun-laws/" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-2">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">WDTN News</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Local walkouts spark conversations about tougher gun laws</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://www.wyso.org/news/2018-04-20/local-schools-join-national-school-walkout-on-columbine-anniversary" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">WYSO Public Radio</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Local schools join national school walkout on Columbine anniversary</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://www.wyso.org/news/2018-03-23/crowds-rally-in-dayton-and-cities-nationwide-for-saturday-march-for-our-lives" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-1">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">WYSO Public Radio</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Crowds rally in Dayton and cities nationwide for March For Our Lives</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://www.franceinfo.fr/monde/usa/video-nous-en-avons-assez-nous-sommes-revoltes-ces-lyceens-americains-vont-marcher-contre-les-armes-a-feu_2671178.html" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-2">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">FranceInfo</div>
-                    <p class="text-sm font-medium leading-snug mb-4">International television coverage of local student walkouts</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://dayton247now.com/news/local/fairmont-and-oakwood-students-join-the-national-walkout-movement-together" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">Dayton 247 Now</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Students join the national walkout movement together</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://michigandifferencemakers.com/samuel_caruso" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-1">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">University of Michigan</div>
-                    <p class="text-sm font-medium leading-snug mb-4">University Difference Maker Official Profile</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://www.thejewishnews.com/community/people/jewishedu/jewish-edu-a-different-perspective/article_baa9c7e8-8967-11ee-a259-f306470a9d86.html" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-2">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">The Jewish News</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Jewish Edu A Different Perspective</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://www.wyso.org/news/2018-04-19/dayton-students-to-participate-in-national-school-walkouts-in-protest-of-school-shootings" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">WYSO Public Radio</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Dayton students to participate in national school walkouts</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-                <a href="https://rac.org/blog/record-number-ohio-reform-jews-turnout-advocate-gvp-and-criminal-justice-reform" target="_blank" rel="noopener noreferrer" class="press-card rounded-xl p-5 block group reveal delay-1">
-                    <div class="section-label press-source mb-2" style="color:var(--muted);">Religious Action Center</div>
-                    <p class="text-sm font-medium leading-snug mb-4">Record number of Ohio Reform Jews turnout to advocate</p>
-                    <div class="press-arrow w-7 h-7 rounded-full flex items-center justify-center transition-all" style="background:var(--paper-dark);">
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                    </div>
-                </a>
-
-            </div>
+  <!-- ═══ STAT BAR ═══ -->
+  <div class="stat-bar">
+    <div class="container">
+      <div class="stat-bar-grid">
+        <div class="stat-block reveal">
+          <div class="num" data-target="1700">0</div>
+          <div class="desc">Students registered<br>to vote</div>
+          <div class="note">University of Michigan</div>
         </div>
-    </section>
-
-    <footer class="bg-paper-dark border-t border-rule py-16">
-        <div class="max-w-5xl mx-auto px-6 md:px-12 reveal">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="display text-3xl md:text-4xl font-black mb-4">You have reached the end.</h2>
-                    <p class="text-sm leading-relaxed max-w-sm" style="color:var(--muted);">I let results speak for themselves. Reach out if you need someone who knows how to execute.</p>
-                    <p class="text-xs mt-8" style="color:var(--rule);">© 2026 Samuel Caruso. No fluff included.</p>
-                </div>
-                <div class="flex justify-start md:justify-end">
-                    <a href="mailto:sgcaruso@umich.edu" class="inline-flex items-center gap-3 px-7 py-4 rounded-full text-white font-semibold text-sm hover:scale-105 active:scale-95 transition-all" style="background:var(--ink);">
-                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        Get in Touch
-                    </a>
-                </div>
-            </div>
+        <div class="stat-block reveal" style="--d:1">
+          <div class="num" data-target="300">0</div>
+          <div class="desc">Vote margin in<br>council win</div>
+          <div class="note">Adrienne Draper Campaign</div>
         </div>
-    </footer>
+        <div class="stat-block reveal" style="--d:2">
+          <div class="num">4.0</div>
+          <div class="desc">Graduate GPA at<br>Miami University</div>
+          <div class="note">Emerging Tech &amp; Entrepreneurship</div>
+        </div>
+        <div class="stat-block reveal" style="--d:3">
+          <div class="num">10<sup>+</sup></div>
+          <div class="desc">Years of documented<br>public impact</div>
+          <div class="note">2015 to present</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        // Headline Interactive Letters Logic
-        const desktopHeadlineLines = [
-            ['I', 'build', 'ventures,'],
-            ['archive', 'history,'],
-            ['and', 'move', 'people.']
-        ];
-        const compactHeadlineLines = [
-            ['I', 'build'],
-            ['ventures,'],
-            ['archive'],
-            ['history,'],
-            ['and', 'move'],
-            ['people.']
-        ];
-        const headlineLines = window.matchMedia('(max-width: 560px)').matches
-            ? compactHeadlineLines
-            : desktopHeadlineLines;
-        const headlineContainer = document.getElementById('interactive-headline');
-        
-        const wrapLetters = (word) => {
-            let result = '';
-            for (let i = 0; i < word.length; i++) {
-                result += `<span class="hover-letter">${word[i]}</span>`;
-            }
-            return result;
+  <!-- ═══ ACADEMICS ═══ -->
+  <section class="section" style="border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="tag"><span class="rule" aria-hidden="true"></span>Academic Proof</div>
+        <h2 class="section-title">Michigan rigor.<br>Miami execution.</h2>
+      </div>
+      <div class="proof-grid">
+        <div class="proof-card reveal">
+          <img src="https://brand.umich.edu/assets/brand/style-guide/logo-guidelines/U-M_Logo-Hex.png" alt="University of Michigan">
+          <span>BA History &amp; Political Science · Summa Cum Laude</span>
+        </div>
+        <div class="proof-card reveal" style="--d:1">
+          <img src="https://miamioh.edu/_hannonhill/_files/images/logos/primary-alternate-logos/alt-logo-stacked-oxford-black.png" alt="Miami University">
+          <span>MS Emerging Tech &amp; Entrepreneurship · 4.0 GPA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ VENTURES ═══ -->
+  <section class="section" id="ventures" style="border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-head reveal" style="display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;">
+        <div>
+          <div class="tag"><span class="rule" aria-hidden="true"></span>My Linktree Alternative</div>
+          <h2 class="section-title">Current Ventures</h2>
+        </div>
+        <p style="font-size:14px;color:var(--text-2);max-width:26rem;text-align:right;" class="hide-mobile">The main act is business automation. The rest is what happens when a person keeps saying "I can probably build that."</p>
+      </div>
+
+      <div class="ventures-grid">
+
+        <a href="https://www.daytongrowth.co/" target="_blank" rel="noopener" class="venture-featured reveal">
+          <div class="venture-featured-media">
+            <img src="https://i.ibb.co/tpyytrdT/Zoomed-Out-Logo.png" alt="DaytonGrowthCo.">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <div class="venture-featured-body">
+            <span class="kicker">Primary Venture</span>
+            <div class="name">DaytonGrowthCo.</div>
+            <p class="desc">Business automation and local search optimization for companies tired of manually duct-taping their operations together. I build systems using Framer, Webflow, and Claude Code to handle the repetitive work so your team can focus on things that actually require judgment.</p>
+            <div class="venture-proof" aria-label="DaytonGrowthCo proof points">
+              <span>Automation systems</span>
+              <span>Framer + Webflow</span>
+              <span>Claude Code workflows</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://echoesofgaza.org/" target="_blank" rel="noopener" class="venture reveal">
+          <div class="venture-header">
+            <img src="https://i.postimg.cc/fT81SwN0/426559D6-9EF9-49AA-8A0B-84A3FA70B3E2.png" alt="Echoes of Gaza">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <div class="venture-body">
+            <div class="venture-role">Director</div>
+            <div class="venture-name">Echoes of Gaza</div>
+            <p class="venture-desc">An open source digital historical archive documenting Palestinian narratives. Built from scratch using HTML, CSS, and JavaScript. History is too important to be left to those trying to overwrite it.</p>
+            <div class="venture-proof" aria-label="Echoes of Gaza proof points">
+              <span>Live archive</span>
+              <span>HTML CSS JS</span>
+              <span>Public documentation</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://rscboy.github.io/shmuautomotive/" target="_blank" rel="noopener" class="venture reveal" style="--d:1">
+          <div class="venture-header">
+            <img src="https://i.ibb.co/B5fmCZDS/Screenshot-2026-04-23-at-10-51-12-PM.png" alt="Shmu's Automotive">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <div class="venture-body">
+            <div class="venture-role">Owner &amp; Mechanic</div>
+            <div class="venture-name">Shmu's Automotive</div>
+            <p class="venture-desc">Mobile oil changes and repair. The garage comes to your driveway. No waiting rooms. No upselling blinker fluid. Just clean oil and a car that works.</p>
+            <div class="venture-proof" aria-label="Shmu's Automotive proof points">
+              <span>Mobile service model</span>
+              <span>Local operations</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://www.flightfix.biz/" target="_blank" rel="noopener" class="venture reveal" style="--d:2">
+          <div class="venture-header">
+            <img src="https://i.postimg.cc/RVjSKdGB/Flight-Fix-Logo.jpg" alt="FlightFix">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <div class="venture-body">
+            <div class="venture-role">Founder</div>
+            <div class="venture-name">FlightFix</div>
+            <p class="venture-desc">Travel planning and crisis management built on predictive analytics and AI. When airlines inevitably cancel your flight for weather that happened three states away, I fix it.</p>
+            <div class="venture-proof" aria-label="FlightFix proof points">
+              <span>AI-assisted ops</span>
+              <span>Travel crisis workflows</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURED WORK ═══ -->
+  <section class="section featured-work" id="featured">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="tag"><span class="rule" aria-hidden="true"></span>Featured Work</div>
+        <h2 class="section-title">Three case studies.<br>One operating pattern.</h2>
+        <p class="section-sub">For recruiters moving fast: these are the projects that show product sense, technical execution, operations, and the mildly inconvenient habit of finishing things.</p>
+      </div>
+
+      <div class="case-grid">
+        <article class="case-card featured-case reveal">
+          <div class="case-top">
+            <span class="case-num">01</span>
+            <span class="case-chip">Automation + Growth</span>
+          </div>
+          <h3>DaytonGrowthCo.</h3>
+          <div class="case-meta" aria-label="DaytonGrowthCo highlights">
+            <div class="case-metric">
+              <strong>Founder</strong>
+              <span>Business automation and local search</span>
+            </div>
+            <div class="case-metric">
+              <strong>No-code + AI</strong>
+              <span>Framer, Webflow, Claude Code</span>
+            </div>
+            <div class="case-metric">
+              <strong>Outcome</strong>
+              <span>Cleaner systems for small teams</span>
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="case-row">
+              <span class="label">Problem</span>
+              <p>Local businesses lose time to repetitive workflows, half-connected tools, and websites that look alive but do very little work.</p>
+            </div>
+            <div class="case-row">
+              <span class="label">Action</span>
+              <p>Built automation and local search systems that turn messy operations into repeatable, measurable processes. Less duct tape. More machine.</p>
+            </div>
+            <div class="case-row">
+              <span class="label">Result</span>
+              <p>A venture that packages technical implementation, growth strategy, and operational cleanup into something a business owner can actually understand.</p>
+            </div>
+          </div>
+          <a href="https://www.daytongrowth.co/" target="_blank" rel="noopener" class="case-link">
+            Visit DaytonGrowthCo.
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </article>
+
+        <article class="case-card reveal" style="--d:1">
+          <div class="case-top">
+            <span class="case-num">02</span>
+            <span class="case-chip">Archive + Advocacy</span>
+          </div>
+          <h3>Echoes of Gaza</h3>
+          <div class="case-body">
+            <div class="case-row">
+              <span class="label">Problem</span>
+              <p>Historical memory gets flattened by news cycles, institutional caution, and people who prefer archives only when they are convenient.</p>
+            </div>
+            <div class="case-row">
+              <span class="label">Action</span>
+              <p>Built and deployed an open source digital archive in HTML, CSS, and JavaScript to preserve Palestinian narratives and public documentation.</p>
+            </div>
+            <div class="case-row">
+              <span class="label">Result</span>
+              <p>A living public platform that connects technical execution with human rights advocacy.</p>
+            </div>
+          </div>
+          <a href="https://echoesofgaza.org/" target="_blank" rel="noopener" class="case-link">
+            Open archive
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </article>
+
+        <article class="case-card reveal" style="--d:2">
+          <div class="case-top">
+            <span class="case-num">03</span>
+            <span class="case-chip">Travel + Operations</span>
+          </div>
+          <h3>FlightFix</h3>
+          <div class="case-body">
+            <div class="case-row">
+              <span class="label">Problem</span>
+              <p>Flight disruptions create a maze of rebooking, compensation claims, and customer service rituals that seem designed by a committee with a grudge.</p>
+            </div>
+            <div class="case-row">
+              <span class="label">Action</span>
+              <p>Designed a travel concierge concept using predictive analytics and AI-assisted workflows for disruption response and passenger support.</p>
+            </div>
+            <div class="case-row">
+              <span class="label">Result</span>
+              <p>A portfolio-ready venture showing product thinking, workflow design, and market framing around a real consumer pain point.</p>
+            </div>
+          </div>
+          <a href="https://www.flightfix.biz/" target="_blank" rel="noopener" class="case-link">
+            Visit FlightFix
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TIMELINE ═══ -->
+  <section class="section" id="timeline" style="border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="tag"><span class="rule" aria-hidden="true"></span>Chapter by Chapter</div>
+        <h2 class="section-title">The Timeline</h2>
+      </div>
+
+      <div class="photo-grid reveal">
+        <div class="photo-card">
+          <img src="https://i.ytimg.com/vi/jZpLNnJNulo/maxresdefault.jpg" alt="Samuel Caruso speaking at TEDxYouth Dayton" loading="lazy">
+          <div class="photo-caption">
+            <div class="source">TEDxYouth Dayton</div>
+            <strong>The Future Is Ours</strong>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/panel7.JPG" alt="Samuel Caruso hosting TEDx UM-Dearborn" loading="lazy">
+          <div class="photo-caption">
+            <div class="source">TEDx UM-Dearborn</div>
+            <strong>Hosting the room</strong>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/spoken6.jpg" alt="Samuel Caruso speaking to an audience" loading="lazy">
+          <div class="photo-caption">
+            <div class="source">Speaking</div>
+            <strong>Making the room listen</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline">
+
+        <div class="tl-item reveal">
+          <div class="tl-year">2026</div>
+          <div class="tl-line"><div class="tl-dot active"></div></div>
+          <div class="tl-content">
+            <div class="tl-entry">
+              <h3>Launched DaytonGrowthCo.</h3>
+              <p>Decided local businesses should stop fighting with clunky software. Automating the boring work so humans don't have to.</p>
+            </div>
+            <div class="tl-entry">
+              <h3>Chief of Staff Intern at Matriosh</h3>
+              <p>Stealth startup out of Wilmington, Delaware. Handling recruitment, company culture, and pitch decks. Every founder eventually realizes they need someone to actually organize the chaos.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-year">2025</div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <div class="tl-entry">
+              <h3>Operations at Tarvo</h3>
+              <p>Defined product roadmaps for scalable manufacturing software. Figured out how to make generative AI write pitch decks that investors actually read.</p>
+            </div>
+            <div class="tl-entry">
+              <h3>Sales Intern at Enthea</h3>
+              <p>Healthcare startup where I optimized their HubSpot CRM and researched ketamine studies. Proved that good data hygiene is more effective than buzzwords.</p>
+            </div>
+            <div class="tl-entry">
+              <h3>Co-created The Travel Agents Academy</h3>
+              <p>A new host agency for travel advisors under Chima Travel. Teaching people how to actually navigate the travel industry.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-year">2024</div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <div class="tl-entry">
+              <h3>Director, Echoes of Gaza</h3>
+              <p>Built and deployed a historical archive from scratch to preserve narratives the 24-hour news cycle tends to bury.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-year">2023</div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <div class="tl-entry">
+              <h3>Voter Registration Organizer &amp; UM Leader</h3>
+              <p>Registered over 1,700 students to vote, built Dinners for Democracy programming, and was tapped for student leadership at the University of Michigan. Democracy requires actual paperwork.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-year">2022</div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <div class="tl-entry">
+              <h3>Congressional Intern</h3>
+              <p>Learned how the gears of government turn in Representative Andy Levin's office. Pitched housing policy directly to the Congressman to try and make them turn faster.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-year">2020</div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <div class="tl-entry">
+              <h3>Youngest Elected Bernie Delegate</h3>
+              <p>Represented Ohio District Ten and served as a precinct captain in Iowa. Learned that political revolutions require a lot of folding chairs.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-year">2019</div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <div class="tl-entry">
+              <h3>Campaign Manager</h3>
+              <p>Ran Adrienne Draper's city council race. Handled social media, accounting, and door knocking. Won by exactly 300 votes.</p>
+            </div>
+            <div class="tl-entry">
+              <h3>Debated on National Television</h3>
+              <p>Debated Chris Matthews on MSNBC about gun violence and appeared on The Young Turks network.</p>
+            </div>
+            <div class="tl-entry">
+              <h3>TEDxYouth Speaker</h3>
+              <p>Delivered "The Future Is Ours" on youth activism and why waiting for adult permission is a losing strategy for student organizers.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-year">2018</div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <div class="tl-entry">
+              <h3>Anti Gun Violence Organizer</h3>
+              <p>Organized bus trips from Dayton to Washington D.C. and helped lead mass citywide walkouts and rallies. If you want a crowd to move, you need to be the one holding the map.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-year">2016</div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <div class="tl-entry">
+              <h3>Music Teacher at Temple Israel</h3>
+              <p>Taught music in Dayton, Ohio. My introduction to standing in front of groups of people and hoping they listen.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-year">2015</div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <div class="tl-entry">
+              <h3>Founded iCareScreenRepair</h3>
+              <p>Started repairing iPhone screens while still young enough that most people underestimated the invoice. My first real lesson in business strategy and fixing things other people drop.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ADVOCACY ═══ -->
+  <section class="section advocacy-bg" id="advocacy">
+    <div class="container">
+
+      <div class="section-head reveal">
+        <div class="tag"><span class="rule" aria-hidden="true"></span>Action and Reaction</div>
+        <h2 class="section-title">Public Scrutiny<br>&amp; Advocacy</h2>
+        <p class="section-sub">I don't just advocate for one issue. I organize for systemic change across the board. When you do that in public, people occasionally respond with calm disagreement. Other times they choose the much weirder option.</p>
+      </div>
+
+      <div class="photo-grid reveal" style="margin-bottom:2.5rem;">
+        <div class="photo-card">
+          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/Panel2.jpg" alt="Samuel Caruso seated during a public forum on Israel and Palestine" loading="lazy">
+          <div class="photo-caption">
+            <div class="source">Public Forum</div>
+            <strong>Arguments in the open</strong>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/panel10.PNG" alt="Samuel Caruso speaking with organizers at an advocacy event" loading="lazy">
+          <div class="photo-caption">
+            <div class="source">Organizing</div>
+            <strong>Work with witnesses</strong>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="https://daytonjewishobserver.org/wp-content/uploads/2025/11/IMG_0866.jpg" alt="Samuel Caruso speaking into a microphone at Dayton Metro Library" loading="lazy">
+          <div class="photo-caption">
+            <div class="source">Panel Work</div>
+            <strong>Pressure into clarity</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="advocacy-story reveal">
+        <div class="advocacy-story-label">
+          <span class="tag">The Story Everyone Skims Past Too Quickly</span>
+        </div>
+        <h3>I was doxxed for defending Palestinian rights as a Jewish American. <em>That should probably be the headline.</em></h3>
+        <div class="advocacy-story-body">
+          <div>
+            <p>Before I spoke at a Dayton rally and publicly supported an anti-Zionist Jewish perspective, the reaction was already underway: <strong>extremists doxxed me, my family received death threats,</strong> and local institutions treated dissent like a liability to be managed.</p>
+            <p>I declined to apologize. I issued my response from Krakow while visiting Holocaust memorial sites, because subtlety is useful until history starts screaming. <strong>Never Again applies to everyone.</strong></p>
+          </div>
+          <p class="advocacy-aside">The point was never to be provocative for sport. The point was to say the consistent thing in the room where consistency had become inconvenient.</p>
+        </div>
+      </div>
+
+      <div class="platform-wrap reveal">
+        <div class="platform-head">
+          <div>
+            <div class="tag" style="margin-bottom:0.75rem;"><span class="rule" aria-hidden="true"></span>The Platform</div>
+            <h3>Six fights.<br>One operating system.</h3>
+          </div>
+          <p>The through-line is simple: build durable power for people who are usually told to wait, compromise, or be grateful for scraps.</p>
+        </div>
+
+        <div class="platform-cards">
+          <article class="platform-card span-6">
+            <div class="platform-card-top">
+              <span class="idx">01</span>
+              <span class="cat">Economic security</span>
+            </div>
+            <div>
+              <h4>Healthcare &amp; Economy</h4>
+              <p>Elected Bernie Sanders delegate fighting for Medicare for All, universal basic income, and tuition-free college. Working class people deserve actual safety nets.</p>
+            </div>
+          </article>
+
+          <article class="platform-card span-6">
+            <div class="platform-card-top">
+              <span class="idx">02</span>
+              <span class="cat">Public safety</span>
+            </div>
+            <div>
+              <h4>Gun Violence Prevention</h4>
+              <p>Organized buses for the March For Our Lives. Debated the issue on national television. Demanding safer gun laws and a complete ban on semi-automatic weapons.</p>
+            </div>
+          </article>
+
+          <article class="platform-card span-4">
+            <div class="platform-card-top">
+              <span class="idx">03</span>
+              <span class="cat">Livable future</span>
+            </div>
+            <div>
+              <h4>Climate Action</h4>
+              <p>Organizing for a massive overhaul of our environmental regulations. We need a cleaner climate and a Green New Deal.</p>
+            </div>
+          </article>
+
+          <article class="platform-card span-4">
+            <div class="platform-card-top">
+              <span class="idx">04</span>
+              <span class="cat">Clean government</span>
+            </div>
+            <div>
+              <h4>Anti Corruption</h4>
+              <p>Fighting corrupt corporate greed at every level of government. Demanding real campaign finance reform and zero Super PACs.</p>
+            </div>
+          </article>
+
+          <article class="platform-card span-4">
+            <div class="platform-card-top">
+              <span class="idx">05</span>
+              <span class="cat">Rights abroad</span>
+            </div>
+            <div>
+              <h4>Human Rights &amp; Peace</h4>
+              <p>Advocating for Palestinian rights. Demanding an end to forever wars. Human rights are not conditional.</p>
+            </div>
+          </article>
+
+          <article class="platform-card span-12" style="min-height:auto;padding:clamp(1.25rem,2.5vw,1.75rem);">
+            <div class="platform-card-top">
+              <span class="idx">06</span>
+              <span class="cat">Tenants first</span>
+            </div>
+            <div>
+              <h4>Affordable Housing</h4>
+              <p>Fighting for tenants and housing stability. Started a tenants union in Dearborn because rent hikes, bad landlords, and housing insecurity are not abstract policy problems when people are living through them.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ PRESS ═══ -->
+  <section class="section" id="press" style="border-top:1px solid var(--border);">
+    <div class="container">
+
+      <div class="section-head reveal">
+        <div class="tag"><span class="rule" aria-hidden="true"></span>Documentation</div>
+        <h2 class="section-title">The Paper Trail</h2>
+        <p class="section-sub">Not all receipts are equal. National hits, institutional profiles, local reporting, and the small-town articles that somehow age better than official statements.</p>
+      </div>
+
+      <div class="press-toolbar reveal" style="--d:1">
+        <div class="press-filters" aria-label="Filter press coverage">
+          <button type="button" class="press-filter active" data-press-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="press-filter" data-press-filter="tv" aria-pressed="false">TV + Talks</button>
+          <button type="button" class="press-filter" data-press-filter="advocacy" aria-pressed="false">Advocacy</button>
+          <button type="button" class="press-filter" data-press-filter="student" aria-pressed="false">Student Press</button>
+          <button type="button" class="press-filter" data-press-filter="broadcast" aria-pressed="false">Broadcast</button>
+          <button type="button" class="press-filter" data-press-filter="institutional" aria-pressed="false">Profiles</button>
+        </div>
+        <div class="press-count" aria-live="polite">Showing all coverage</div>
+      </div>
+
+      <div class="photo-grid reveal" style="margin-bottom:2rem;">
+        <div class="photo-card">
+          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/panel9.JPG" alt="Samuel Caruso appearing in documented media coverage" loading="lazy">
+          <div class="photo-caption">
+            <div class="source">Coverage</div>
+            <strong>Seen, quoted, contested</strong>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/panel12.JPG" alt="Students gathered during a public organizing action" loading="lazy">
+          <div class="photo-caption">
+            <div class="source">Student Organizing</div>
+            <strong>From walkouts to headlines</strong>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="https://daytonjewishobserver.org/wp-content/uploads/2025/11/IMG_0866.jpg" alt="Samuel Caruso speaking during a community panel discussion" loading="lazy">
+          <div class="photo-caption">
+            <div class="source">Panel Work</div>
+            <strong>Pressure into clarity</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="press-grid">
+        <div class="press-group-label" data-press-label="tv">National TV + Talks</div>
+
+        <a href="https://youtu.be/TixrzeUJmgw?si=2yyA8sO3aDyYbb-X" target="_blank" rel="noopener" class="press-card reveal" data-press="tv">
+          <div class="press-source">The Young Turks</div>
+          <p>Guest appearance to discuss organizing and activism</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://x.com/Oakwood_Schools/status/1141474151741435907" target="_blank" rel="noopener" class="press-card reveal" style="--d:1" data-press="tv">
+          <div class="press-source">MSNBC</div>
+          <p>Live debate with Chris Matthews regarding gun violence</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://youtu.be/jZpLNnJNulo?si=ijo-gqIsnDl5OaN9" target="_blank" rel="noopener" class="press-card reveal" style="--d:2" data-press="tv">
+          <div class="press-source">TEDx Talks</div>
+          <p>The Future Is Ours — Student Activism</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <div class="press-group-label" data-press-label="advocacy">Advocacy + Jewish Community</div>
+
+        <a href="https://www.daytondailynews.com/local/opinion/voices-death-threats-have-no-place-in-judaism/article_f914b08d-4d67-589e-b286-6cc8f496225a.html" target="_blank" rel="noopener" class="press-card reveal" data-press="advocacy">
+          <div class="press-source">Dayton Daily News</div>
+          <p>Death threats have no place in Judaism</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://daytonjewishobserver.org/2025/11/local-jewish-grad-student-among-speakers-at-call-it-genocide-rally-downtown/" target="_blank" rel="noopener" class="press-card reveal" style="--d:1" data-press="advocacy">
+          <div class="press-source">Dayton Jewish Observer</div>
+          <p>Local grad student among speakers at human rights rally</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://daytonjewishobserver.org/2025/12/the-jewish-federation-of-greater-dayton-stands-with-israel/" target="_blank" rel="noopener" class="press-card reveal" style="--d:2" data-press="advocacy">
+          <div class="press-source">Dayton Jewish Observer</div>
+          <p>The Jewish Federation of Greater Dayton stands with Israel</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://ysnews.com/news/2026/02/community-forum-on-israel-and-palestine-held-at-antioch" target="_blank" rel="noopener" class="press-card reveal" data-press="advocacy">
+          <div class="press-source">Yellow Springs News</div>
+          <p>Community forum on Israel and Palestine held at Antioch</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.daytondailynews.com/local/protesters-in-downtown-dayton-call-for-an-end-to-the-war-against-iran-conflicts-overseas/article_bb0186a6-32ac-4d67-9d97-a305e41e6079.html" target="_blank" rel="noopener" class="press-card reveal" style="--d:1" data-press="advocacy">
+          <div class="press-source">Dayton Daily News</div>
+          <p>Protesters call for an end to conflicts overseas</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <div class="press-group-label" data-press-label="student">Student Organizing + Dayton Press</div>
+
+        <a href="https://www.daytondailynews.com/local/area-students-head-to-d-c-to-march-for-gun-control/article_dba3d7f9-4330-5f71-b808-0c716b11039c.html" target="_blank" rel="noopener" class="press-card reveal" style="--d:2" data-press="student">
+          <div class="press-source">Dayton Daily News</div>
+          <p>Area students head to D.C. to march for gun control</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.daytondailynews.com/local/high-school-students-lead-anti-gun-violence-rally-in-downtown-dayton/article_2d7e9415-65f4-5738-830b-cb9c9fb733a5.html" target="_blank" rel="noopener" class="press-card reveal" data-press="student">
+          <div class="press-source">Dayton Daily News</div>
+          <p>High school students lead anti-gun violence rally in downtown Dayton</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.daytondailynews.com/local/students-say-enough-is-enough-at-anti-violence-rally/article_abfdd9bf-df32-56d7-b2e5-ee348a2e328b.html" target="_blank" rel="noopener" class="press-card reveal" style="--d:1" data-press="student">
+          <div class="press-source">Dayton Daily News</div>
+          <p>Students say enough is enough at anti-violence rally</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.daytondailynews.com/local/oakwood-kettering-students-plan-large-walkout-rally/article_88635344-5ef8-5e5a-b846-d24c77bac4c9.html" target="_blank" rel="noopener" class="press-card reveal" style="--d:2" data-press="student">
+          <div class="press-source">Dayton Daily News</div>
+          <p>Oakwood, Kettering students plan large walkout rally</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.daytondailynews.com/local/local-students-politicians-rally-against-gun-violence/article_dd429f24-ebf0-5c9a-bccb-cc8df269110f.html" target="_blank" rel="noopener" class="press-card reveal" data-press="student">
+          <div class="press-source">Dayton Daily News</div>
+          <p>Local students, politicians rally against gun violence</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.daytondailynews.com/local/50-years-later-tinker-case-resonates-with-students/article_30ead5f5-e0ed-5cb3-aeaf-73fe2d28dc04.html" target="_blank" rel="noopener" class="press-card reveal" style="--d:1" data-press="student">
+          <div class="press-source">Dayton Daily News</div>
+          <p>50 years later: Tinker case resonates with students</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.daytondailynews.com/local/arab-american-heritage-month-celebrated-at-library-event/article_fb5eb416-8cbc-51c6-934b-c5b45bc375fc.html" target="_blank" rel="noopener" class="press-card reveal" style="--d:2" data-press="student">
+          <div class="press-source">Dayton Daily News</div>
+          <p>Arab American Heritage Month celebrated at library event</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.daytondailynews.com/local/just-announced-speakers-details-announced-for-4th-annual-tedxyouth-dayton-event/article_8e347e33-5a68-575f-a6ba-b2c707e987e7.html" target="_blank" rel="noopener" class="press-card reveal" data-press="student">
+          <div class="press-source">Dayton Daily News</div>
+          <p>Speakers announced for 4th Annual TEDxYouth@Dayton</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.daytondailynews.com/local/crime/after-chanting-vote-them-out-will-the-students-vote/article_c60753ba-9fba-5cc2-9c62-dd8ada42b265.html" target="_blank" rel="noopener" class="press-card reveal" style="--d:1" data-press="student">
+          <div class="press-source">Dayton Daily News</div>
+          <p>After chanting vote them out, will the students vote?</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.daytondailynews.com/local/thousands-of-ohio-students-walk-out-community-should-be-very-proud/article_45163c7b-a5aa-59b4-81a9-7d47ab07ebec.html" target="_blank" rel="noopener" class="press-card reveal" style="--d:2" data-press="student">
+          <div class="press-source">Dayton Daily News</div>
+          <p>Thousands of Ohio students walk out</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <div class="press-group-label" data-press-label="broadcast">Broadcast + Public Radio</div>
+
+        <a href="https://www.wdtn.com/news/local-news/local-walkouts-spark-conversations-about-tougher-gun-laws/" target="_blank" rel="noopener" class="press-card reveal" data-press="broadcast">
+          <div class="press-source">WDTN News</div>
+          <p>Local walkouts spark conversations about tougher gun laws</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.wdtn.com/news/local-news/local-leaders-promote-bipartisan-do-something-campaign/" target="_blank" rel="noopener" class="press-card reveal" style="--d:1" data-press="broadcast">
+          <div class="press-source">WDTN News</div>
+          <p>Miami Valley leaders promote bipartisan Do Something campaign</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.wdtn.com/news/dayton-mayor-locals-respond-to-news-of-texas-shooting/" target="_blank" rel="noopener" class="press-card reveal" style="--d:2" data-press="broadcast">
+          <div class="press-source">WDTN News</div>
+          <p>Dayton Mayor, locals respond to news of Texas shooting</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.wyso.org/news/2018-04-20/local-schools-join-national-school-walkout-on-columbine-anniversary" target="_blank" rel="noopener" class="press-card reveal" data-press="broadcast">
+          <div class="press-source">WYSO Public Radio</div>
+          <p>Local schools join national school walkout on Columbine anniversary</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.wyso.org/news/2018-03-23/crowds-rally-in-dayton-and-cities-nationwide-for-saturday-march-for-our-lives" target="_blank" rel="noopener" class="press-card reveal" style="--d:1" data-press="broadcast">
+          <div class="press-source">WYSO Public Radio</div>
+          <p>Crowds rally in Dayton and cities nationwide for March For Our Lives</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <div class="press-group-label" data-press-label="institutional">International + Institutional</div>
+
+        <a href="https://www.franceinfo.fr/monde/usa/video-nous-en-avons-assez-nous-sommes-revoltes-ces-lyceens-americains-vont-marcher-contre-les-armes-a-feu_2671178.html" target="_blank" rel="noopener" class="press-card reveal" style="--d:2" data-press="institutional">
+          <div class="press-source">FranceInfo</div>
+          <p>International television coverage of local student walkouts</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://dayton247now.com/news/local/fairmont-and-oakwood-students-join-the-national-walkout-movement-together" target="_blank" rel="noopener" class="press-card reveal" data-press="institutional">
+          <div class="press-source">Dayton 247 Now</div>
+          <p>Students join the national walkout movement together</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://dayton247now.com/news/local/feast-of-giving-serves-thousands-on-thanksgiving" target="_blank" rel="noopener" class="press-card reveal" style="--d:1" data-press="institutional">
+          <div class="press-source">Dayton 247 Now</div>
+          <p>11th Annual Feast of Giving serves thousands more than a hot meal</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://thepolitic.org/do-something/" target="_blank" rel="noopener" class="press-card reveal" style="--d:2" data-press="institutional">
+          <div class="press-source">Yale's The Politic</div>
+          <p>Do Something</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://michigandifferencemakers.com/samuel_caruso" target="_blank" rel="noopener" class="press-card reveal" data-press="institutional">
+          <div class="press-source">University of Michigan</div>
+          <p>University Difference Maker Official Profile</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.thejewishnews.com/community/people/jewishedu/jewish-edu-a-different-perspective/article_baa9c7e8-8967-11ee-a259-f306470a9d86.html" target="_blank" rel="noopener" class="press-card reveal" style="--d:1" data-press="institutional">
+          <div class="press-source">The Jewish News</div>
+          <p>Jewish@edu — A Different Perspective</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.thejewishnews.com/news/on-the-cover-being-jewish-on-campus/article_0a175a56-99d1-11ee-b2b3-aba245ccaa31.html" target="_blank" rel="noopener" class="press-card reveal" style="--d:2" data-press="institutional">
+          <div class="press-source">The Jewish News</div>
+          <p>On the Cover: Being Jewish on Campus</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://www.wyso.org/news/2018-04-19/dayton-students-to-participate-in-national-school-walkouts-in-protest-of-school-shootings" target="_blank" rel="noopener" class="press-card reveal" data-press="institutional">
+          <div class="press-source">WYSO Public Radio</div>
+          <p>Dayton students to participate in national school walkouts</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+        <a href="https://rac.org/blog/record-number-ohio-reform-jews-turnout-advocate-gvp-and-criminal-justice-reform" target="_blank" rel="noopener" class="press-card reveal" style="--d:1" data-press="institutional">
+          <div class="press-source">Religious Action Center</div>
+          <p>Record number of Ohio Reform Jews turnout to advocate</p>
+          <div class="press-arrow" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner reveal">
+        <div>
+          <h2>You have reached the end.</h2>
+          <p>I let results speak for themselves. Reach out if you need someone who knows how to execute.</p>
+          <small>© 2026 Samuel Caruso. No fluff included.</small>
+        </div>
+        <div class="footer-actions">
+          <a href="mailto:sgcaruso@umich.edu" class="footer-cta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Get in Touch
+          </a>
+          <a href="Samuel-Caruso-Resume.pdf" class="footer-cta secondary" download>
+            Download Resume
+          </a>
+          <a href="https://www.daytongrowth.co/" target="_blank" rel="noopener" class="footer-cta secondary">
+            DaytonGrowthCo.
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── SPLASH ─────────────────────────────────────────────────── */
+    try {
+      const splashKey = 'sgc_splash_seen_at';
+      const splashTTL = 24 * 60 * 60 * 1000;
+      const splashSeenAt = parseInt(localStorage.getItem(splashKey) || '0', 10);
+      const splashFresh = Number.isFinite(splashSeenAt) && Date.now() - splashSeenAt < splashTTL;
+      if (new URLSearchParams(location.search).has('nosplash') || splashFresh) {
+        document.documentElement.classList.add('seen-splash');
+      }
+      setTimeout(() => localStorage.setItem(splashKey, String(Date.now())), 1600);
+    } catch(e) {}
+
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const prefersReducedMotion = () => reducedMotionQuery.matches;
+
+    function waitForLibrary(scriptToken, predicate) {
+      if (predicate()) return Promise.resolve(true);
+      const script = Array.from(document.scripts).find(node => node.src && node.src.includes(scriptToken));
+      if (!script) return Promise.resolve(false);
+
+      return new Promise(resolve => {
+        let settled = false;
+        const settle = value => {
+          if (settled) return;
+          settled = true;
+          resolve(Boolean(value));
         };
-        headlineContainer.innerHTML = headlineLines
-            .map(line => line
-                .map(word => `<span class="headline-word">${wrapLetters(word)}</span>`)
-                .join(' '))
-            .join('<br>');
+        script.addEventListener('load', () => settle(predicate()), { once: true });
+        script.addEventListener('error', () => settle(false), { once: true });
+      });
+    }
 
-        // Reveal on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('active');
-                    observer.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    const libraries = {
+      three: waitForLibrary('three.min.js', () => window.THREE),
+      gsap: waitForLibrary('gsap.min.js', () => window.gsap),
+      scrollTrigger: waitForLibrary('ScrollTrigger.min.js', () => window.ScrollTrigger),
+      lenis: waitForLibrary('lenis', () => window.Lenis)
+    };
 
-        // Activate timeline dots on scroll
-        const dotObserver = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    const dot = e.target.querySelector('.timeline-dot');
-                    if (dot) dot.classList.add('active-dot');
-                }
-            });
-        }, { threshold: 0.5 });
-        document.querySelectorAll('.grid.grid-cols-\\[64px_20px_1fr\\]').forEach(el => dotObserver.observe(el));
-    </script>
+    /* ─── PROGRESS ───────────────────────────────────────────────── */
+    const bar = document.getElementById('progress');
+    function updateProgress() {
+      const scrollable = document.documentElement.scrollHeight - innerHeight;
+      bar.style.width = scrollable > 0 ? (scrollY / scrollable * 100) + '%' : '0%';
+    }
+    addEventListener('scroll', updateProgress, { passive: true });
+
+    /* ─── SMOOTH SCROLL ──────────────────────────────────────────── */
+    function initSmoothScroll() {
+      if (prefersReducedMotion()) return;
+      const LenisCtor = window.Lenis && (window.Lenis.default || window.Lenis);
+      if (!LenisCtor || !window.gsap || !window.ScrollTrigger) return;
+
+      const lenis = new LenisCtor({
+        duration: 2.05,
+        easing: t => 1 - Math.pow(1 - t, 4),
+        smoothWheel: true,
+        wheelMultiplier: 0.72,
+        touchMultiplier: 1.0
+      });
+
+      lenis.on('scroll', () => {
+        updateProgress();
+        ScrollTrigger.update();
+      });
+      gsap.ticker.add(time => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+          const href = link.getAttribute('href');
+          if (!href || href === '#') return;
+          const target = document.querySelector(href);
+          if (!target) return;
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -18, duration: 1.9 });
+        });
+      });
+
+      window.sgcLenis = lenis;
+    }
+    Promise.all([libraries.gsap, libraries.scrollTrigger, libraries.lenis]).then(initSmoothScroll);
+
+    /* ─── HERO PHOTO ─────────────────────────────────────────────── */
+    const heroPhoto = document.getElementById('hero-photo');
+    if (heroPhoto) {
+      const onLoad = () => heroPhoto.classList.add('loaded');
+      heroPhoto.complete ? onLoad() : heroPhoto.addEventListener('load', onLoad);
+    }
+
+    /* ─── REVEAL ON SCROLL ───────────────────────────────────────── */
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    /* ─── COUNTERS ───────────────────────────────────────────────── */
+    function animateCount(el, target, duration = 1500) {
+      const start = performance.now();
+      const tick = now => {
+        const t = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(ease * target).toLocaleString();
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+    const countObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const target = parseInt(e.target.dataset.target, 10);
+        if (!isNaN(target)) animateCount(e.target, target);
+        countObs.unobserve(e.target);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-target]').forEach(el => countObs.observe(el));
+
+    /* ─── TIMELINE DOTS ──────────────────────────────────────────── */
+    const dotObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const dot = e.target.querySelector('.tl-dot');
+          if (dot) dot.classList.add('active');
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.tl-item').forEach(el => dotObs.observe(el));
+
+    /* ─── PRESS FILTERS ─────────────────────────────────────────── */
+    const pressFilters = document.querySelectorAll('[data-press-filter]');
+    const pressCards = document.querySelectorAll('.press-card[data-press]');
+    const pressLabels = document.querySelectorAll('[data-press-label]');
+    const pressCount = document.querySelector('.press-count');
+    const pressNames = {
+      all: 'all coverage',
+      tv: 'TV + talks',
+      advocacy: 'advocacy coverage',
+      student: 'student press',
+      broadcast: 'broadcast coverage',
+      institutional: 'profiles'
+    };
+
+    function setPressFilter(filter) {
+      let visible = 0;
+      pressCards.forEach(card => {
+        const match = filter === 'all' || card.dataset.press === filter;
+        card.classList.toggle('is-hidden', !match);
+        if (match) visible += 1;
+      });
+      pressLabels.forEach(label => {
+        const match = filter === 'all' || label.dataset.pressLabel === filter;
+        label.classList.toggle('is-hidden', !match);
+      });
+      pressFilters.forEach(button => {
+        const active = button.dataset.pressFilter === filter;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      if (pressCount) {
+        pressCount.textContent = filter === 'all'
+          ? `Showing all ${visible} items`
+          : `Showing ${visible} ${pressNames[filter] || 'items'}`;
+      }
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    }
+
+    pressFilters.forEach(button => {
+      button.addEventListener('click', () => setPressFilter(button.dataset.pressFilter || 'all'));
+    });
+    if (pressFilters.length) setPressFilter('all');
+
+    /* ─── CINEMATIC PAGE MOTION ──────────────────────────────────── */
+    function initCinematicMotion() {
+      if (prefersReducedMotion()) return;
+      if (!window.gsap || !window.ScrollTrigger) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const mm = gsap.matchMedia();
+
+      mm.add('(min-width: 901px)', () => {
+        gsap.timeline({
+          defaults: { ease: 'none' },
+          scrollTrigger: { trigger: 'header', start: 'top top', end: 'bottom top', scrub: 2.8 }
+        })
+          .to('.hero-photo-wrap', { yPercent: -5, rotateY: -3.5, rotateX: 1.2, scale: 0.985, transformPerspective: 1200 }, 0)
+          .to('.hero-photo-wrap img', { scale: 1.14, yPercent: 7 }, 0)
+          .to('.hero-title', { yPercent: -7, opacity: 0.82 }, 0)
+          .to('.hero-sub', { yPercent: -9, opacity: 0.72 }, 0)
+          .to('.hero-stats', { yPercent: -12, opacity: 0.82 }, 0);
+
+        gsap.utils.toArray('section:not(#timeline) > .container, footer .container').forEach(container => {
+          gsap.fromTo(container,
+            { y: 78, scale: 0.965, rotateX: 2.4, opacity: 0.78, transformPerspective: 1200, transformOrigin: '50% 60%' },
+            {
+              y: 0,
+              scale: 1,
+              rotateX: 0,
+              opacity: 1,
+              ease: 'none',
+              scrollTrigger: { trigger: container, start: 'top 96%', end: 'top 42%', scrub: 2.2 }
+            }
+          );
+        });
+
+        gsap.utils.toArray('.photo-card').forEach((card, i) => {
+          const img = card.querySelector('img');
+          if (!img) return;
+          gsap.fromTo(card,
+            { clipPath: 'inset(7% round 28px)' },
+            {
+              clipPath: 'inset(0% round 28px)',
+              ease: 'none',
+              scrollTrigger: { trigger: card, start: 'top 92%', end: 'top 45%', scrub: 2 }
+            }
+          );
+          gsap.fromTo(img,
+            { scale: 1.17, yPercent: i % 2 ? -5 : 5 },
+            {
+              scale: 1.04,
+              yPercent: i % 2 ? 5 : -5,
+              ease: 'none',
+              scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: 2.5 }
+            }
+          );
+        });
+
+        gsap.utils.toArray('.venture-featured, .advocacy-story, .platform-wrap').forEach(panel => {
+          gsap.fromTo(panel,
+            { y: 46, scale: 0.975, opacity: 0.84 },
+            {
+              y: 0,
+              scale: 1,
+              opacity: 1,
+              ease: 'none',
+              scrollTrigger: { trigger: panel, start: 'top 90%', end: 'top 48%', scrub: 2 }
+            }
+          );
+        });
+      });
+
+      mm.add('(max-width: 900px)', () => {
+        gsap.utils.toArray('section:not(#timeline) > .container, footer .container').forEach(container => {
+          gsap.fromTo(container,
+            { y: 34, opacity: 0.86 },
+            {
+              y: 0,
+              opacity: 1,
+              ease: 'none',
+              scrollTrigger: { trigger: container, start: 'top 95%', end: 'top 55%', scrub: 1.8 }
+            }
+          );
+        });
+
+        gsap.utils.toArray('.photo-card img').forEach(img => {
+          gsap.fromTo(img,
+            { scale: 1.1, yPercent: 3 },
+            {
+              scale: 1.03,
+              yPercent: -3,
+              ease: 'none',
+              scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: 2.2 }
+            }
+          );
+        });
+      });
+
+      if (!prefersReducedMotion() && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        document.querySelectorAll('.photo-card, .venture, .case-card, .press-card, .qr-card, .proof-card, .platform-card').forEach(card => {
+          const maxTilt = card.classList.contains('photo-card') ? 4.2 : 2.4;
+          const maxMove = card.classList.contains('photo-card') ? 7 : 4;
+          card.addEventListener('pointermove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform = `perspective(1000px) rotateX(${(-y * maxTilt).toFixed(2)}deg) rotateY(${(x * maxTilt).toFixed(2)}deg) translate3d(${(x * maxMove).toFixed(2)}px, ${(-2 + y * maxMove).toFixed(2)}px, 0) scale(1.006)`;
+          }, { passive: true });
+          card.addEventListener('pointerleave', () => {
+            card.style.transform = '';
+          });
+        });
+      }
+
+      ScrollTrigger.refresh();
+    }
+    Promise.all([libraries.gsap, libraries.scrollTrigger]).then(initCinematicMotion);
+
+    /* ─── THREE.JS SCENE ─────────────────────────────────────────── */
+    function initScene() {
+      if (prefersReducedMotion()) return;
+      if (!window.THREE || !window.gsap || !window.ScrollTrigger) return;
+
+      const canvas = document.getElementById('scene-canvas');
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+      renderer.setSize(innerWidth, innerHeight);
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.2;
+
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x02030a, 0.014);
+
+      const camera = new THREE.PerspectiveCamera(52, innerWidth / innerHeight, 0.1, 120);
+      camera.position.set(0, 0.1, 8.4);
+
+      const root = new THREE.Group();
+      scene.add(root);
+
+      const makeNebulaTexture = (stops) => {
+        const size = 512;
+        const nebulaCanvas = document.createElement('canvas');
+        nebulaCanvas.width = size;
+        nebulaCanvas.height = size;
+        const ctx = nebulaCanvas.getContext('2d');
+        ctx.clearRect(0, 0, size, size);
+        stops.forEach(({ x, y, r, color }) => {
+          const gradient = ctx.createRadialGradient(x * size, y * size, 0, x * size, y * size, r * size);
+          gradient.addColorStop(0, color);
+          gradient.addColorStop(0.42, color.replace(/, [0-9.]+\)$/, ', 0.18)'));
+          gradient.addColorStop(1, color.replace(/, [0-9.]+\)$/, ', 0)'));
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, 0, size, size);
+        });
+        const texture = new THREE.CanvasTexture(nebulaCanvas);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        return texture;
+      };
+
+      const nebula = new THREE.Group();
+      const nebulaMaps = [
+        makeNebulaTexture([
+          { x: 0.38, y: 0.42, r: 0.72, color: 'rgba(107, 98, 242, 0.42)' },
+          { x: 0.64, y: 0.58, r: 0.54, color: 'rgba(196, 149, 119, 0.25)' }
+        ]),
+        makeNebulaTexture([
+          { x: 0.54, y: 0.36, r: 0.62, color: 'rgba(78, 124, 255, 0.28)' },
+          { x: 0.36, y: 0.66, r: 0.48, color: 'rgba(255, 255, 255, 0.12)' }
+        ])
+      ];
+      nebulaMaps.forEach((map, i) => {
+        const cloud = new THREE.Mesh(
+          new THREE.PlaneGeometry(i ? 15 : 18, i ? 9 : 10),
+          new THREE.MeshBasicMaterial({
+            map,
+            transparent: true,
+            opacity: innerWidth > 900 ? (i ? 0.32 : 0.42) : (i ? 0.16 : 0.2),
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+            side: THREE.DoubleSide
+          })
+        );
+        cloud.position.set(i ? 3.2 : -2.4, i ? 1.8 : -0.85, i ? -18 : -14);
+        cloud.userData.baseX = cloud.position.x;
+        cloud.userData.baseY = cloud.position.y;
+        cloud.rotation.set(0, 0, i ? -0.18 : 0.14);
+        nebula.add(cloud);
+      });
+      root.add(nebula);
+
+      scene.add(new THREE.AmbientLight(0x8888ff, 0.9));
+      const key = new THREE.DirectionalLight(0xffffff, 1.5);
+      key.position.set(-4, 6, 5);
+      scene.add(key);
+      const rim = new THREE.PointLight(0x8b84ff, 5.2, 26, 1.5);
+      rim.position.set(3, -1, 3);
+      scene.add(rim);
+      const warm = new THREE.PointLight(0xc49577, 2.2, 22, 1.7);
+      warm.position.set(-3, 2, -3);
+      scene.add(warm);
+      const sweep = new THREE.PointLight(0xffffff, 1.35, 14, 2);
+      sweep.position.set(0, -1.2, 2);
+      scene.add(sweep);
+
+      const makeFrame = (w, h, color, opacity) => new THREE.LineSegments(
+        new THREE.EdgesGeometry(new THREE.BoxGeometry(w, h, 0.04)),
+        new THREE.LineBasicMaterial({
+          color,
+          transparent: true,
+          opacity,
+          blending: THREE.AdditiveBlending
+        })
+      );
+
+      /* Clean depth corridor, now reading as a space-flight path */
+      const corridor = new THREE.Group();
+      root.add(corridor);
+      const rings = [];
+      for (let i = 0; i < 12; i++) {
+        const ring = makeFrame(
+          6.8 + i * 0.38,
+          3.9 + i * 0.18,
+          i % 2 ? 0x6b62f2 : 0x8b84ff,
+          Math.max(innerWidth > 900 ? 0.05 : 0.025, 0.22 - i * 0.015)
+        );
+        ring.position.set(i % 2 ? -0.16 : 0.16, Math.sin(i * 0.7) * 0.06, 1.25 - i * 1.08);
+        ring.rotation.z = (i % 2 ? -1 : 1) * i * 0.012;
+        rings.push(ring);
+        corridor.add(ring);
+      }
+
+      /* Soft light beams, behind content */
+      const beamMatA = new THREE.MeshBasicMaterial({
+        color: 0x6b62f2,
+        transparent: true,
+        opacity: innerWidth > 900 ? 0.14 : 0.055,
+        side: THREE.DoubleSide,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending
+      });
+      const beamMatB = beamMatA.clone();
+      beamMatB.color.set(0xc49577);
+      beamMatB.opacity = innerWidth > 900 ? 0.1 : 0.04;
+      const beams = [
+        new THREE.Mesh(new THREE.PlaneGeometry(10, 1.05), beamMatA),
+        new THREE.Mesh(new THREE.PlaneGeometry(9, 0.7), beamMatB)
+      ];
+      beams.forEach((beam, i) => {
+        beam.position.set(i ? -1.4 : 1.8, i ? -0.62 : 1.16, -2.8 - i * 2.7);
+        beam.rotation.set(0.18, i ? -0.28 : 0.22, i ? -0.38 : 0.34);
+        root.add(beam);
+      });
+
+      const pathCurve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-3.2, -1.9, 0.9),
+        new THREE.Vector3(-1.2, -1.55, -1.7),
+        new THREE.Vector3(1.45, -1.74, -4.2),
+        new THREE.Vector3(2.25, -1.35, -6.4),
+        new THREE.Vector3(-0.45, -1.65, -9.2)
+      ]);
+      const path = new THREE.Mesh(
+        new THREE.TubeGeometry(pathCurve, 96, 0.011, 8, false),
+        new THREE.MeshBasicMaterial({
+          color: 0x8b84ff,
+          transparent: true,
+          opacity: innerWidth > 900 ? 0.5 : 0.18,
+          blending: THREE.AdditiveBlending
+        })
+      );
+      root.add(path);
+
+      /* particles */
+      const farN = innerWidth > 900 ? 1400 : 220;
+      const farPos = new Float32Array(farN * 3);
+      for (let i = 0; i < farN; i++) {
+        const radius = 3 + Math.random() * 18;
+        const angle = Math.random() * Math.PI * 2;
+        farPos[i*3] = Math.cos(angle) * radius;
+        farPos[i*3+1] = Math.sin(angle) * radius * 0.56;
+        farPos[i*3+2] = -12 - Math.random() * 70;
+      }
+      const farGeometry = new THREE.BufferGeometry();
+      farGeometry.setAttribute('position', new THREE.BufferAttribute(farPos, 3));
+      const farStars = new THREE.Points(
+        farGeometry,
+        new THREE.PointsMaterial({
+          color: 0xaeb6ff,
+          size: innerWidth > 900 ? 0.026 : 0.016,
+          transparent: true,
+          opacity: innerWidth > 900 ? 0.64 : 0.3,
+          depthWrite: false,
+          blending: THREE.AdditiveBlending
+        })
+      );
+      root.add(farStars);
+
+      const N = innerWidth > 900 ? 2200 : 340;
+      const pos = new Float32Array(N * 3);
+      const starSpeed = new Float32Array(N);
+      for (let i = 0; i < N; i++) {
+        const radius = Math.pow(Math.random(), 0.72) * (Math.random() < 0.16 ? 11 : 7.5);
+        const angle = Math.random() * Math.PI * 2;
+        pos[i*3]   = Math.cos(angle) * radius;
+        pos[i*3+1] = Math.sin(angle) * radius * 0.56;
+        pos[i*3+2] = 3 - Math.random()*34;
+        starSpeed[i] = 0.0055 + Math.random() * 0.016;
+      }
+      const particleGeometry = new THREE.BufferGeometry();
+      particleGeometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      const pts = new THREE.Points(
+        particleGeometry,
+        new THREE.PointsMaterial({
+          color: 0xd0ccff,
+          size: innerWidth > 900 ? 0.022 : 0.014,
+          transparent: true,
+          opacity: innerWidth > 900 ? 0.78 : 0.36,
+          depthWrite: false,
+          blending: THREE.AdditiveBlending
+        })
+      );
+      root.add(pts);
+
+      const closeN = innerWidth > 900 ? 120 : 24;
+      const closePos = new Float32Array(closeN * 3);
+      const closeSpeed = new Float32Array(closeN);
+      for (let i = 0; i < closeN; i++) {
+        closePos[i*3] = (Math.random() - 0.5) * 14;
+        closePos[i*3+1] = (Math.random() - 0.5) * 7;
+        closePos[i*3+2] = 2 - Math.random() * 18;
+        closeSpeed[i] = 0.011 + Math.random() * 0.021;
+      }
+      const closeGeometry = new THREE.BufferGeometry();
+      closeGeometry.setAttribute('position', new THREE.BufferAttribute(closePos, 3));
+      const closeStars = new THREE.Points(
+        closeGeometry,
+        new THREE.PointsMaterial({
+          color: 0xffffff,
+          size: innerWidth > 900 ? 0.032 : 0.018,
+          transparent: true,
+          opacity: innerWidth > 900 ? 0.55 : 0.24,
+          depthWrite: false
+        })
+      );
+      root.add(closeStars);
+
+      const streakCount = innerWidth > 900 ? 230 : 36;
+      const streakPos = new Float32Array(streakCount * 6);
+      const streakSpeed = new Float32Array(streakCount);
+      const streakLength = new Float32Array(streakCount);
+      const resetStreak = (i) => {
+        const radius = 1.1 + Math.pow(Math.random(), 0.7) * 7.6;
+        const angle = Math.random() * Math.PI * 2;
+        const z = -8 - Math.random() * 34;
+        const len = 0.34 + Math.random() * 1.25;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius * 0.56;
+        streakPos[i*6] = x;
+        streakPos[i*6+1] = y;
+        streakPos[i*6+2] = z;
+        streakPos[i*6+3] = x * 0.985;
+        streakPos[i*6+4] = y * 0.985;
+        streakPos[i*6+5] = z - len;
+        streakSpeed[i] = 0.016 + Math.random() * 0.035;
+        streakLength[i] = len;
+      };
+      for (let i = 0; i < streakCount; i++) resetStreak(i);
+      const streakGeometry = new THREE.BufferGeometry();
+      streakGeometry.setAttribute('position', new THREE.BufferAttribute(streakPos, 3));
+      const streaks = new THREE.LineSegments(
+        streakGeometry,
+        new THREE.LineBasicMaterial({
+          color: 0xffffff,
+          transparent: true,
+          opacity: innerWidth > 900 ? 0.28 : 0.13,
+          depthWrite: false,
+          blending: THREE.AdditiveBlending
+        })
+      );
+      root.add(streaks);
+
+      /* GSAP scroll */
+      gsap.registerPlugin(ScrollTrigger);
+      const master = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: { trigger: document.documentElement, start: 'top top', end: 'max', scrub: 2.8 }
+      });
+      master
+        .to(camera.position, { x: 0.28, y: 0.1, z: 7.15, duration: 1 })
+        .to(root.position, { x: -0.18, y: 0.06, z: 0.28, duration: 1 }, '<')
+        .to(root.rotation, { y: -0.06, x: -0.018, duration: 1 }, '<')
+        .to(camera.position, { x: -0.95, y: 0.34, z: 6.45, duration: 1.2 })
+        .to(root.position, { x: 0.36, y: -0.04, z: 0.7, duration: 1.2 }, '<')
+        .to(root.rotation, { y: 0.13, x: -0.03, duration: 1.2 }, '<')
+        .to(camera.position, { x: -0.35, y: 0.08, z: 5.55, duration: 1.15 })
+        .to(root.position, { x: -0.08, y: 0.02, z: 1.02, duration: 1.15 }, '<')
+        .to(root.rotation, { y: 0.03, x: -0.046, z: 0.012, duration: 1.15 }, '<')
+        .to(sweep, { intensity: 1.8, duration: 1.15 }, '<')
+        .to(camera.position, { x: 0.88, y: -0.02, z: 6, duration: 1.3 })
+        .to(root.rotation, { y: -0.16, x: 0.02, duration: 1.3 }, '<')
+        .to(rim, { intensity: 5.45, duration: 1.3 }, '<')
+        .to(camera.position, { x: -1.08, y: 0.4, z: 5.95, duration: 1.3 })
+        .to(root.position, { x: 0.58, y: 0.08, z: 1.1, duration: 1.3 }, '<')
+        .to(root.rotation, { y: 0.16, x: -0.038, duration: 1.3 }, '<')
+        .to(warm, { intensity: 2.85, duration: 1.3 }, '<')
+        .to(camera.position, { x: 0, y: 0.52, z: 6.95, duration: 1.05 })
+        .to(root.rotation, { y: 0.02, x: -0.048, duration: 1.05 }, '<')
+        .to(root.position, { x: 0, y: 0.18, z: 0.18, duration: 1.05 }, '<');
+
+      rings.forEach((ring, i) => {
+        master.to(ring.position, {
+          z: ring.position.z + 0.75,
+          duration: 6.9
+        }, 0);
+      });
+
+      beams.forEach((beam, i) => {
+        master.to(beam.position, {
+          x: beam.position.x + (i ? 1.5 : -1.5),
+          z: beam.position.z + 0.28,
+          duration: 6.9
+        }, 0);
+      });
+
+      const sceneState = { speed: 0.66 };
+      const applySceneStage = ({ opacity, fov, rimIntensity, warmIntensity, sweepIntensity, fogDensity, speed }) => {
+        const canvasOpacity = innerWidth > 900 ? opacity : Math.min(opacity * 0.42, 0.36);
+        gsap.to('#scene-canvas', { opacity: canvasOpacity, duration: 0.6, overwrite: true });
+        gsap.to(camera, {
+          fov,
+          duration: 0.8,
+          ease: 'power2.out',
+          onUpdate: () => camera.updateProjectionMatrix()
+        });
+        gsap.to(rim, { intensity: rimIntensity, duration: 0.8, overwrite: true });
+        gsap.to(warm, { intensity: warmIntensity, duration: 0.8, overwrite: true });
+        gsap.to(sweep, { intensity: sweepIntensity, duration: 0.8, overwrite: true });
+        gsap.to(scene.fog, { density: fogDensity, duration: 0.9, overwrite: true });
+        gsap.to(sceneState, { speed, duration: 0.9, overwrite: true });
+      };
+
+      [
+        { trigger: 'header',    opacity: 0.94, fov: 52, rimIntensity: 5.2, warmIntensity: 2.2, sweepIntensity: 1.35, fogDensity: 0.014, speed: 0.58 },
+        { trigger: '#ventures', opacity: 0.9,  fov: 49, rimIntensity: 5.6, warmIntensity: 2.1, sweepIntensity: 1.6,  fogDensity: 0.016, speed: 0.64 },
+        { trigger: '#featured', opacity: 0.92, fov: 47, rimIntensity: 6.1, warmIntensity: 2.45, sweepIntensity: 1.85, fogDensity: 0.018, speed: 0.7 },
+        { trigger: '#timeline', opacity: 0.66, fov: 52, rimIntensity: 4.4, warmIntensity: 1.85, sweepIntensity: 1.1,  fogDensity: 0.012, speed: 0.54 },
+        { trigger: '#advocacy', opacity: 0.78, fov: 50, rimIntensity: 5.9, warmIntensity: 3.2, sweepIntensity: 1.65, fogDensity: 0.02,  speed: 0.62 },
+        { trigger: '#press',    opacity: 0.9,  fov: 53, rimIntensity: 4.9, warmIntensity: 2.2, sweepIntensity: 1.4,  fogDensity: 0.015, speed: 0.58 }
+      ].forEach(stage => {
+        ScrollTrigger.create({
+          trigger: stage.trigger,
+          start: 'top 62%',
+          end: 'bottom 38%',
+          onEnter: () => applySceneStage(stage),
+          onEnterBack: () => applySceneStage(stage)
+        });
+      });
+
+      gsap.utils.toArray('section, header, footer').forEach((section) => {
+        gsap.fromTo(section,
+          { '--section-dim': 0 },
+          {
+            '--section-dim': 1,
+            scrollTrigger: { trigger: section, start: 'top 80%', end: 'bottom 20%', scrub: true }
+          }
+        );
+      });
+
+      ScrollTrigger.create({
+        trigger: '#timeline',
+        start: 'top bottom',
+        end: 'bottom top',
+        onEnter: () => {
+          gsap.to('#scene-canvas', { opacity: innerWidth > 900 ? 0.66 : 0.26, duration: 0.35, overwrite: true });
+        },
+        onLeave: () => {
+          gsap.to('#scene-canvas', { opacity: innerWidth > 900 ? 0.94 : 0.36, duration: 0.35, overwrite: true });
+        },
+        onEnterBack: () => {
+          gsap.to('#scene-canvas', { opacity: innerWidth > 900 ? 0.66 : 0.26, duration: 0.35, overwrite: true });
+        },
+        onLeaveBack: () => {
+          gsap.to('#scene-canvas', { opacity: innerWidth > 900 ? 0.94 : 0.36, duration: 0.35, overwrite: true });
+        }
+      });
+
+      ScrollTrigger.create({
+        trigger: '#advocacy',
+        start: 'top 80%',
+        end: 'bottom top',
+        onEnter: () => {
+          gsap.to('#scene-canvas', { opacity: innerWidth > 900 ? 0.78 : 0.3, duration: 0.35, overwrite: true });
+        },
+        onEnterBack: () => {
+          gsap.to('#scene-canvas', { opacity: innerWidth > 900 ? 0.78 : 0.3, duration: 0.35, overwrite: true });
+        },
+        onLeave: () => {
+          gsap.to('#scene-canvas', { opacity: innerWidth > 900 ? 0.94 : 0.36, duration: 0.35, overwrite: true });
+        },
+        onLeaveBack: () => {
+          gsap.to('#scene-canvas', { opacity: innerWidth > 900 ? 0.94 : 0.36, duration: 0.35, overwrite: true });
+        }
+      });
+
+      let mx = 0, my = 0;
+      addEventListener('pointermove', e => {
+        mx = (e.clientX/innerWidth - 0.5) * 0.15;
+        my = (e.clientY/innerHeight - 0.5) * -0.1;
+      }, { passive: true });
+
+      const clock = new THREE.Clock();
+      (function render() {
+        requestAnimationFrame(render);
+        const t = clock.getElapsedTime();
+        nebula.rotation.z = Math.sin(t * 0.018) * 0.018;
+        nebula.children.forEach((cloud, i) => {
+          cloud.position.x = cloud.userData.baseX + Math.sin(t * 0.018 + i) * 0.028;
+          cloud.position.y = cloud.userData.baseY + Math.cos(t * 0.016 + i) * 0.02;
+        });
+        farStars.rotation.y = t * 0.0012 * sceneState.speed;
+        farStars.rotation.x = Math.sin(t * 0.018) * 0.014;
+        pts.rotation.y = t * 0.0018 * sceneState.speed;
+        closeStars.rotation.y = t * 0.0026 * sceneState.speed;
+        const farPositions = farStars.geometry.attributes.position.array;
+        for (let i = 0; i < farN; i++) {
+          const zIndex = i * 3 + 2;
+          farPositions[zIndex] += 0.00115 * sceneState.speed;
+          if (farPositions[zIndex] > 6) {
+            const radius = 4 + Math.random() * 19;
+            const angle = Math.random() * Math.PI * 2;
+            farPositions[i * 3] = Math.cos(angle) * radius;
+            farPositions[i * 3 + 1] = Math.sin(angle) * radius * 0.56;
+            farPositions[zIndex] = -70 - Math.random() * 20;
+          }
+        }
+        farStars.geometry.attributes.position.needsUpdate = true;
+        const starPositions = pts.geometry.attributes.position.array;
+        for (let i = 0; i < N; i++) {
+          const zIndex = i * 3 + 2;
+          starPositions[zIndex] += starSpeed[i] * sceneState.speed;
+          if (starPositions[zIndex] > 4) {
+            const radius = Math.pow(Math.random(), 0.72) * (Math.random() < 0.16 ? 11 : 7.5);
+            const angle = Math.random() * Math.PI * 2;
+            starPositions[i * 3] = Math.cos(angle) * radius;
+            starPositions[i * 3 + 1] = Math.sin(angle) * radius * 0.56;
+            starPositions[zIndex] = -34 - Math.random() * 10;
+          }
+        }
+        pts.geometry.attributes.position.needsUpdate = true;
+        const closePositions = closeStars.geometry.attributes.position.array;
+        for (let i = 0; i < closeN; i++) {
+          const zIndex = i * 3 + 2;
+          closePositions[zIndex] += closeSpeed[i] * sceneState.speed;
+          if (closePositions[zIndex] > 4) {
+            const radius = 1.2 + Math.random() * 8;
+            const angle = Math.random() * Math.PI * 2;
+            closePositions[i * 3] = Math.cos(angle) * radius;
+            closePositions[i * 3 + 1] = Math.sin(angle) * radius * 0.56;
+            closePositions[zIndex] = -22 - Math.random() * 10;
+          }
+        }
+        closeStars.geometry.attributes.position.needsUpdate = true;
+        const streakPositions = streaks.geometry.attributes.position.array;
+        for (let i = 0; i < streakCount; i++) {
+          const head = i * 6;
+          streakPositions[head + 2] += streakSpeed[i] * sceneState.speed;
+          streakPositions[head + 5] += streakSpeed[i] * sceneState.speed;
+          if (streakPositions[head + 2] > 5.2) resetStreak(i);
+          streakPositions[head + 3] = streakPositions[head] * 0.985;
+          streakPositions[head + 4] = streakPositions[head + 1] * 0.985;
+          streakPositions[head + 5] = streakPositions[head + 2] - streakLength[i];
+        }
+        streaks.geometry.attributes.position.needsUpdate = true;
+        streaks.material.opacity = (innerWidth > 900 ? 0.12 : 0.055) + Math.sin(t * 0.42) * (innerWidth > 900 ? 0.03 : 0.012);
+        corridor.rotation.z = Math.sin(t * 0.045) * 0.014;
+        sweep.position.x = Math.sin(t * 0.1) * 2.1;
+        sweep.position.y = -0.8 + Math.cos(t * 0.08) * 0.42;
+        camera.rotation.x += (my * 0.36 - camera.rotation.x) * 0.035;
+        camera.rotation.y += (mx * 0.36 - camera.rotation.y) * 0.035;
+        renderer.render(scene, camera);
+      })();
+
+      addEventListener('resize', () => {
+        camera.aspect = innerWidth / innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(innerWidth, innerHeight);
+        ScrollTrigger.refresh();
+      });
+    }
+
+    Promise.all([libraries.three, libraries.gsap, libraries.scrollTrigger]).then(initScene);
+  </script>
 </body>
 </html>
