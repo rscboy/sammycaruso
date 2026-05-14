@@ -14,15 +14,37 @@
   <meta name="twitter:description" content="Entrepreneurship, public service, and advocacy. A decade of building businesses, organizing movements, and creating systems that actually work.">
   <meta name="twitter:image" content="https://i.ibb.co/xKgNgxTh/IMG-4053.avif">
   <link rel="icon" href="data:,">
+  <script>
+    (() => {
+      try {
+        const splashKey = 'sgc_splash_seen_at';
+        const splashTTL = 24 * 60 * 60 * 1000;
+        const splashSeenAt = parseInt(localStorage.getItem(splashKey) || '0', 10);
+        const splashFresh = Number.isFinite(splashSeenAt) && Date.now() - splashSeenAt < splashTTL;
+        const earlyConnection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (
+          new URLSearchParams(location.search).has('nosplash') ||
+          splashFresh ||
+          window.matchMedia('(max-width: 900px)').matches ||
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+          Boolean(earlyConnection && earlyConnection.saveData)
+        ) {
+          document.documentElement.classList.add('seen-splash');
+        }
+      } catch(e) {
+        document.documentElement.classList.add('seen-splash');
+      }
+    })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js" defer></script>
+  <link rel="preconnect" href="https://raw.githubusercontent.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preload" as="image" href="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/Panel5.jpg" fetchpriority="high">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Geist:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 
   <style>
     /* ─── DESIGN TOKENS ─────────────────────────────────────────── */
@@ -479,6 +501,8 @@
     /* ─── SECTION SHELL ──────────────────────────────────────────── */
     .section {
       padding: clamp(4rem, 8vw, 7rem) 0;
+      content-visibility: auto;
+      contain-intrinsic-size: 900px;
     }
     .section-head {
       margin-bottom: clamp(2.5rem, 5vw, 4rem);
@@ -1431,11 +1455,10 @@
       .nav-cta { display: none; }
       #progress { display: none; }
       #scene-canvas {
-        opacity: 0.36;
-        filter: saturate(1) contrast(1);
+        display: none;
       }
       .scene-fallback {
-        opacity: 0.26;
+        opacity: 0.32;
       }
       .depth-frame {
         width: 130vw;
@@ -1453,6 +1476,7 @@
       }
     }
   </style>
+  <noscript><style>.reveal{opacity:1;transform:none}.splash{display:none}</style></noscript>
 </head>
 
 <body>
@@ -1523,7 +1547,7 @@
 
       <div class="hero-photo-wrap reveal" style="--d:1">
         <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/Panel5.jpg"
-             alt="Samuel Caruso speaking at a Dayton Metro Library panel" id="hero-photo">
+             alt="Samuel Caruso speaking at a Dayton Metro Library panel" id="hero-photo" width="960" height="1280" fetchpriority="high" decoding="async">
       </div>
     </div>
   </header>
@@ -1627,11 +1651,11 @@
       </div>
       <div class="proof-grid">
         <div class="proof-card reveal">
-          <img src="https://brand.umich.edu/assets/brand/style-guide/logo-guidelines/U-M_Logo-Hex.png" alt="University of Michigan">
+          <img src="https://brand.umich.edu/assets/brand/style-guide/logo-guidelines/U-M_Logo-Hex.png" alt="University of Michigan" loading="lazy" decoding="async" width="280" height="88">
           <span>BA History &amp; Political Science · Summa Cum Laude</span>
         </div>
         <div class="proof-card reveal" style="--d:1">
-          <img src="https://miamioh.edu/_hannonhill/_files/images/logos/primary-alternate-logos/alt-logo-stacked-oxford-black.png" alt="Miami University">
+          <img src="https://miamioh.edu/_hannonhill/_files/images/logos/primary-alternate-logos/alt-logo-stacked-oxford-black.png" alt="Miami University" loading="lazy" decoding="async" width="280" height="88">
           <span>MS Emerging Tech &amp; Entrepreneurship · 4.0 GPA</span>
         </div>
       </div>
@@ -1653,7 +1677,7 @@
 
         <a href="https://www.daytongrowth.co/" target="_blank" rel="noopener" class="venture-featured reveal">
           <div class="venture-featured-media">
-            <img src="https://i.ibb.co/tpyytrdT/Zoomed-Out-Logo.png" alt="DaytonGrowthCo.">
+            <img src="https://i.ibb.co/tpyytrdT/Zoomed-Out-Logo.png" alt="DaytonGrowthCo." loading="lazy" decoding="async" width="96" height="96">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </div>
           <div class="venture-featured-body">
@@ -1670,7 +1694,7 @@
 
         <a href="https://echoesofgaza.org/" target="_blank" rel="noopener" class="venture reveal">
           <div class="venture-header">
-            <img src="https://i.postimg.cc/fT81SwN0/426559D6-9EF9-49AA-8A0B-84A3FA70B3E2.png" alt="Echoes of Gaza">
+            <img src="https://i.postimg.cc/fT81SwN0/426559D6-9EF9-49AA-8A0B-84A3FA70B3E2.png" alt="Echoes of Gaza" loading="lazy" decoding="async" width="88" height="88">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </div>
           <div class="venture-body">
@@ -1687,7 +1711,7 @@
 
         <a href="https://rscboy.github.io/shmuautomotive/" target="_blank" rel="noopener" class="venture reveal" style="--d:1">
           <div class="venture-header">
-            <img src="https://i.ibb.co/B5fmCZDS/Screenshot-2026-04-23-at-10-51-12-PM.png" alt="Shmu's Automotive">
+            <img src="https://i.ibb.co/B5fmCZDS/Screenshot-2026-04-23-at-10-51-12-PM.png" alt="Shmu's Automotive" loading="lazy" decoding="async" width="88" height="88">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </div>
           <div class="venture-body">
@@ -1703,7 +1727,7 @@
 
         <a href="https://www.flightfix.biz/" target="_blank" rel="noopener" class="venture reveal" style="--d:2">
           <div class="venture-header">
-            <img src="https://i.postimg.cc/RVjSKdGB/Flight-Fix-Logo.jpg" alt="FlightFix">
+            <img src="https://i.postimg.cc/RVjSKdGB/Flight-Fix-Logo.jpg" alt="FlightFix" loading="lazy" decoding="async" width="88" height="88">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </div>
           <div class="venture-body">
@@ -1836,21 +1860,21 @@
 
       <div class="photo-grid reveal">
         <div class="photo-card">
-          <img src="https://i.ytimg.com/vi/jZpLNnJNulo/maxresdefault.jpg" alt="Samuel Caruso speaking at TEDxYouth Dayton" loading="lazy">
+          <img src="https://i.ytimg.com/vi/jZpLNnJNulo/maxresdefault.jpg" alt="Samuel Caruso speaking at TEDxYouth Dayton" loading="lazy" decoding="async" width="640" height="480">
           <div class="photo-caption">
             <div class="source">TEDxYouth Dayton</div>
             <strong>The Future Is Ours</strong>
           </div>
         </div>
         <div class="photo-card">
-          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/panel7.JPG" alt="Samuel Caruso hosting TEDx UM-Dearborn" loading="lazy">
+          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/panel7.JPG" alt="Samuel Caruso hosting TEDx UM-Dearborn" loading="lazy" decoding="async" width="640" height="480">
           <div class="photo-caption">
             <div class="source">TEDx UM-Dearborn</div>
             <strong>Hosting the room</strong>
           </div>
         </div>
         <div class="photo-card">
-          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/spoken6.jpg" alt="Samuel Caruso speaking to an audience" loading="lazy">
+          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/spoken6.jpg" alt="Samuel Caruso speaking to an audience" loading="lazy" decoding="async" width="640" height="480">
           <div class="photo-caption">
             <div class="source">Speaking</div>
             <strong>Making the room listen</strong>
@@ -2006,21 +2030,21 @@
 
       <div class="photo-grid reveal" style="margin-bottom:2.5rem;">
         <div class="photo-card">
-          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/Panel2.jpg" alt="Samuel Caruso seated during a public forum on Israel and Palestine" loading="lazy">
+          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/Panel2.jpg" alt="Samuel Caruso seated during a public forum on Israel and Palestine" loading="lazy" decoding="async" width="640" height="480">
           <div class="photo-caption">
             <div class="source">Public Forum</div>
             <strong>Arguments in the open</strong>
           </div>
         </div>
         <div class="photo-card">
-          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/panel10.PNG" alt="Samuel Caruso speaking with organizers at an advocacy event" loading="lazy">
+          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/panel10.PNG" alt="Samuel Caruso speaking with organizers at an advocacy event" loading="lazy" decoding="async" width="640" height="480">
           <div class="photo-caption">
             <div class="source">Organizing</div>
             <strong>Work with witnesses</strong>
           </div>
         </div>
         <div class="photo-card">
-          <img src="https://daytonjewishobserver.org/wp-content/uploads/2025/11/IMG_0866.jpg" alt="Samuel Caruso speaking into a microphone at Dayton Metro Library" loading="lazy">
+          <img src="https://daytonjewishobserver.org/wp-content/uploads/2025/11/IMG_0866.jpg" alt="Samuel Caruso speaking into a microphone at Dayton Metro Library" loading="lazy" decoding="async" width="640" height="480">
           <div class="photo-caption">
             <div class="source">Panel Work</div>
             <strong>Pressure into clarity</strong>
@@ -2147,21 +2171,21 @@
 
       <div class="photo-grid reveal" style="margin-bottom:2rem;">
         <div class="photo-card">
-          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/panel9.JPG" alt="Samuel Caruso appearing in documented media coverage" loading="lazy">
+          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/panel9.JPG" alt="Samuel Caruso appearing in documented media coverage" loading="lazy" decoding="async" width="640" height="480">
           <div class="photo-caption">
             <div class="source">Coverage</div>
             <strong>Seen, quoted, contested</strong>
           </div>
         </div>
         <div class="photo-card">
-          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/panel12.JPG" alt="Students gathered during a public organizing action" loading="lazy">
+          <img src="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/panel12.JPG" alt="Students gathered during a public organizing action" loading="lazy" decoding="async" width="640" height="480">
           <div class="photo-caption">
             <div class="source">Student Organizing</div>
             <strong>From walkouts to headlines</strong>
           </div>
         </div>
         <div class="photo-card">
-          <img src="https://daytonjewishobserver.org/wp-content/uploads/2025/11/IMG_0866.jpg" alt="Samuel Caruso speaking during a community panel discussion" loading="lazy">
+          <img src="https://daytonjewishobserver.org/wp-content/uploads/2025/11/IMG_0866.jpg" alt="Samuel Caruso speaking during a community panel discussion" loading="lazy" decoding="async" width="640" height="480">
           <div class="photo-caption">
             <div class="source">Panel Work</div>
             <strong>Pressure into clarity</strong>
@@ -2481,29 +2505,46 @@
     const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const prefersReducedMotion = () => reducedMotionQuery.matches;
 
-    function waitForLibrary(scriptToken, predicate) {
-      if (predicate()) return Promise.resolve(true);
-      const script = Array.from(document.scripts).find(node => node.src && node.src.includes(scriptToken));
-      if (!script) return Promise.resolve(false);
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const saveData = Boolean(connection && connection.saveData);
+    const desktopMotionQuery = window.matchMedia('(min-width: 901px)');
+    const canUseEnhancedMotion = () => desktopMotionQuery.matches && !prefersReducedMotion() && !saveData;
+    const scriptCache = new Map();
+    const scriptSources = {
+      three: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.min.js',
+      gsap: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
+      scrollTrigger: 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
+      lenis: 'https://unpkg.com/lenis@1.1.20/dist/lenis.min.js'
+    };
 
-      return new Promise(resolve => {
-        let settled = false;
-        const settle = value => {
-          if (settled) return;
-          settled = true;
-          resolve(Boolean(value));
-        };
-        script.addEventListener('load', () => settle(predicate()), { once: true });
-        script.addEventListener('error', () => settle(false), { once: true });
-      });
+    function runWhenIdle(fn, timeout = 1200) {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(fn, { timeout });
+      } else {
+        setTimeout(fn, Math.min(timeout, 700));
+      }
     }
 
-    const libraries = {
-      three: waitForLibrary('three.min.js', () => window.THREE),
-      gsap: waitForLibrary('gsap.min.js', () => window.gsap),
-      scrollTrigger: waitForLibrary('ScrollTrigger.min.js', () => window.ScrollTrigger),
-      lenis: waitForLibrary('lenis', () => window.Lenis)
-    };
+    function loadScript(key) {
+      if (key === 'three' && window.THREE) return Promise.resolve(true);
+      if (key === 'gsap' && window.gsap) return Promise.resolve(true);
+      if (key === 'scrollTrigger' && window.ScrollTrigger) return Promise.resolve(true);
+      if (key === 'lenis' && window.Lenis) return Promise.resolve(true);
+      if (scriptCache.has(key)) return scriptCache.get(key);
+
+      const promise = new Promise(resolve => {
+        const script = document.createElement('script');
+        script.src = scriptSources[key];
+        script.async = true;
+        script.defer = true;
+        script.crossOrigin = 'anonymous';
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        document.head.appendChild(script);
+      });
+      scriptCache.set(key, promise);
+      return promise;
+    }
 
     /* ─── PROGRESS ───────────────────────────────────────────────── */
     const bar = document.getElementById('progress');
@@ -2547,7 +2588,10 @@
 
       window.sgcLenis = lenis;
     }
-    Promise.all([libraries.gsap, libraries.scrollTrigger, libraries.lenis]).then(initSmoothScroll);
+    function bootSmoothScroll() {
+      if (!canUseEnhancedMotion()) return;
+      Promise.all([loadScript('gsap'), loadScript('scrollTrigger'), loadScript('lenis')]).then(initSmoothScroll);
+    }
 
     /* ─── HERO PHOTO ─────────────────────────────────────────────── */
     const heroPhoto = document.getElementById('hero-photo');
@@ -2753,7 +2797,10 @@
 
       ScrollTrigger.refresh();
     }
-    Promise.all([libraries.gsap, libraries.scrollTrigger]).then(initCinematicMotion);
+    function bootCinematicMotion() {
+      if (!canUseEnhancedMotion()) return;
+      Promise.all([loadScript('gsap'), loadScript('scrollTrigger')]).then(initCinematicMotion);
+    }
 
     /* ─── THREE.JS SCENE ─────────────────────────────────────────── */
     function initScene() {
@@ -3226,7 +3273,18 @@
       });
     }
 
-    Promise.all([libraries.three, libraries.gsap, libraries.scrollTrigger]).then(initScene);
+    function bootScene() {
+      if (!canUseEnhancedMotion()) return;
+      Promise.all([loadScript('three'), loadScript('gsap'), loadScript('scrollTrigger')]).then(initScene);
+    }
+
+    addEventListener('load', () => {
+      runWhenIdle(() => {
+        bootSmoothScroll();
+        bootCinematicMotion();
+        bootScene();
+      }, 1400);
+    }, { once: true });
   </script>
 </body>
 </html>
