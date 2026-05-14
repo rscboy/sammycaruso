@@ -28,13 +28,13 @@
     /* ─── DESIGN TOKENS ─────────────────────────────────────────── */
     :root {
       --bg:        #0a0a0a;
-      --bg-2:      #111111;
-      --bg-3:      #1a1a1a;
-      --border:    #252525;
-      --border-2:  #333333;
-      --text:      #e8e8e8;
-      --text-2:    #888888;
-      --text-3:    #555555;
+      --bg-2:      #15151a;
+      --bg-3:      #202129;
+      --border:    #343440;
+      --border-2:  #4a4a58;
+      --text:      #f2f1f5;
+      --text-2:    #aaa8b4;
+      --text-3:    #777482;
       --accent:    #6b62f2;
       --accent-2:  #8b84f8;
       --warm:      #c49577;
@@ -61,8 +61,8 @@
     body {
       font-family: var(--sans);
       background:
-        radial-gradient(ellipse at 50% -10%, rgba(107,98,242,0.16), transparent 34rem),
-        radial-gradient(ellipse at 80% 30%, rgba(196,149,119,0.09), transparent 28rem),
+        radial-gradient(ellipse at 50% -10%, rgba(107,98,242,0.2), transparent 34rem),
+        radial-gradient(ellipse at 80% 30%, rgba(196,149,119,0.12), transparent 28rem),
         #02030a;
       color: var(--text);
       overflow-x: hidden;
@@ -362,6 +362,21 @@
       max-width: var(--max-w);
       margin: 0 auto;
     }
+    .hero-copy {
+      position: relative;
+      isolation: isolate;
+    }
+    .hero-copy::before {
+      content: '';
+      position: absolute;
+      inset: -2rem -2.5rem -1.5rem;
+      z-index: -1;
+      border-radius: var(--r-xl);
+      background:
+        radial-gradient(circle at 38% 45%, rgba(107,98,242,0.16), transparent 22rem),
+        linear-gradient(90deg, rgba(2,3,10,0.72), rgba(2,3,10,0.34), transparent 88%);
+      pointer-events: none;
+    }
     .hero-photo-wrap {
       position: relative;
       height: min(72vh, 640px);
@@ -467,6 +482,20 @@
     }
     .section-head {
       margin-bottom: clamp(2.5rem, 5vw, 4rem);
+      position: relative;
+      isolation: isolate;
+    }
+    .section-head::before {
+      content: '';
+      position: absolute;
+      inset: -1.2rem -1.5rem;
+      z-index: -1;
+      border-radius: var(--r-xl);
+      background:
+        radial-gradient(circle at 8% 20%, rgba(107,98,242,0.16), transparent 18rem),
+        linear-gradient(90deg, rgba(10,10,10,0.62), rgba(10,10,10,0.18), transparent);
+      filter: blur(0.2px);
+      pointer-events: none;
     }
     .section-head .tag { display: flex; align-items: center; margin-bottom: 1rem; }
     .section-title {
@@ -480,9 +509,23 @@
     .section-sub {
       font-size: 15px;
       line-height: 1.65;
-      color: var(--text-2);
+      color: #b8b6c0;
       max-width: 42rem;
       margin-top: 0.75rem;
+    }
+
+    .stat-pill,
+    .qr-card,
+    .proof-card,
+    .venture,
+    .venture-featured,
+    .case-card,
+    .advocacy-story,
+    .platform-wrap,
+    .press-card {
+      box-shadow:
+        0 24px 80px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.035);
     }
 
     /* ─── QUICK READ ─────────────────────────────────────────────── */
@@ -524,7 +567,7 @@
       margin-bottom: 0.5rem;
       font-family: var(--mono);
     }
-    .qr-card p { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+    .qr-card p { font-size: 14px; color: #b8b6c0; line-height: 1.6; }
     .qr-card .arrow {
       display: inline-block;
       margin-top: 1rem;
@@ -673,7 +716,7 @@
     .venture-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
     .venture-role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
     .venture-name { font-family: var(--mono); font-size: 1.2rem; font-weight: 400; color: var(--text); }
-    .venture-desc { font-size: 14px; line-height: 1.65; color: var(--text-2); margin-top: 0.25rem; }
+    .venture-desc { font-size: 14px; line-height: 1.65; color: #b8b6c0; margin-top: 0.25rem; }
     .venture-proof {
       display: flex;
       flex-wrap: wrap;
@@ -738,7 +781,7 @@
       padding: 4px 12px;
     }
     .venture-featured-body .name { font-family: var(--mono); font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 300; color: var(--text); line-height: 1.05; }
-    .venture-featured-body .desc { font-size: 15px; line-height: 1.7; color: var(--text-2); max-width: 520px; }
+    .venture-featured-body .desc { font-size: 15px; line-height: 1.7; color: #b8b6c0; max-width: 520px; }
 
     /* ─── FEATURED WORK ─────────────────────────────────────────── */
     .featured-work {
@@ -869,7 +912,7 @@
     .case-row p {
       font-size: 14px;
       line-height: 1.65;
-      color: #aaa;
+      color: #bfbdc8;
     }
     .case-link {
       display: inline-flex;
@@ -914,7 +957,9 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(10,10,10,0.88) 0%, transparent 55%);
+      background:
+        linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.18) 58%, transparent 100%),
+        radial-gradient(circle at 50% 95%, rgba(107,98,242,0.16), transparent 55%);
     }
     .photo-caption {
       position: absolute;
@@ -982,7 +1027,7 @@
       color: var(--text);
       margin-bottom: 0.4rem;
     }
-    .tl-entry p { font-size: 14px; line-height: 1.65; color: var(--text-2); }
+    .tl-entry p { font-size: 14px; line-height: 1.65; color: #b8b6c0; }
 
     /* ─── ADVOCACY ───────────────────────────────────────────────── */
     .advocacy-bg {
@@ -1017,7 +1062,7 @@
       gap: 2.5rem;
       align-items: start;
     }
-    .advocacy-story-body p { font-size: 15px; line-height: 1.75; color: var(--text-2); margin-bottom: 1rem; }
+    .advocacy-story-body p { font-size: 15px; line-height: 1.75; color: #b8b6c0; margin-bottom: 1rem; }
     .advocacy-story-body p strong { color: var(--text); font-weight: 500; }
     .advocacy-aside {
       border-left: 2px solid rgba(107,98,242,0.45);
@@ -1067,7 +1112,7 @@
     .platform-head p {
       font-size: 15px;
       line-height: 1.65;
-      color: var(--text-2);
+      color: #b8b6c0;
       background: rgba(0,0,0,0.2);
       border: 1px solid var(--border);
       border-radius: var(--r-md);
@@ -1122,7 +1167,7 @@
       line-height: 1.08;
       margin-bottom: 0.75rem;
     }
-    .platform-card p { font-size: 14px; line-height: 1.65; color: var(--text-2); }
+    .platform-card p { font-size: 14px; line-height: 1.65; color: #b8b6c0; }
     .span-4  { grid-column: span 4; }
     .span-6  { grid-column: span 6; }
     .span-12 { grid-column: span 12; }
@@ -1446,7 +1491,7 @@
   <!-- ═══ HERO ═══ -->
   <header>
     <div class="hero">
-      <div>
+      <div class="hero-copy">
         <div class="eyebrow">
           <span class="rule" aria-hidden="true"></span>
           <span class="tag">Entrepreneur · Organizer · Builder</span>
@@ -2475,11 +2520,11 @@
       if (!LenisCtor || !window.gsap || !window.ScrollTrigger) return;
 
       const lenis = new LenisCtor({
-        duration: 1.18,
-        easing: t => 1 - Math.pow(1 - t, 4),
+        duration: 0.62,
+        easing: t => 1 - Math.pow(1 - t, 3),
         smoothWheel: true,
-        wheelMultiplier: 0.98,
-        touchMultiplier: 1.12
+        wheelMultiplier: 1.25,
+        touchMultiplier: 1.35
       });
 
       lenis.on('scroll', () => {
@@ -2496,7 +2541,7 @@
           const target = document.querySelector(href);
           if (!target) return;
           e.preventDefault();
-          lenis.scrollTo(target, { offset: -18, duration: 1.15 });
+          lenis.scrollTo(target, { offset: -18, duration: 0.8 });
         });
       });
 
@@ -2606,7 +2651,7 @@
       mm.add('(min-width: 901px)', () => {
         gsap.timeline({
           defaults: { ease: 'none' },
-          scrollTrigger: { trigger: 'header', start: 'top top', end: 'bottom top', scrub: 1.75 }
+          scrollTrigger: { trigger: 'header', start: 'top top', end: 'bottom top', scrub: 0.65 }
         })
           .to('.hero-photo-wrap', { yPercent: -5, rotateY: -3.5, rotateX: 1.2, scale: 0.985, transformPerspective: 1200 }, 0)
           .to('.hero-photo-wrap img', { scale: 1.14, yPercent: 7 }, 0)
@@ -2623,7 +2668,7 @@
               rotateX: 0,
               opacity: 1,
               ease: 'none',
-              scrollTrigger: { trigger: container, start: 'top 96%', end: 'top 42%', scrub: 1.45 }
+              scrollTrigger: { trigger: container, start: 'top 96%', end: 'top 42%', scrub: 0.55 }
             }
           );
         });
@@ -2636,7 +2681,7 @@
             {
               clipPath: 'inset(0% round 28px)',
               ease: 'none',
-              scrollTrigger: { trigger: card, start: 'top 92%', end: 'top 45%', scrub: 1.35 }
+              scrollTrigger: { trigger: card, start: 'top 92%', end: 'top 45%', scrub: 0.5 }
             }
           );
           gsap.fromTo(img,
@@ -2645,7 +2690,7 @@
               scale: 1.04,
               yPercent: i % 2 ? 5 : -5,
               ease: 'none',
-              scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: 1.65 }
+              scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: 0.65 }
             }
           );
         });
@@ -2658,7 +2703,7 @@
               scale: 1,
               opacity: 1,
               ease: 'none',
-              scrollTrigger: { trigger: panel, start: 'top 90%', end: 'top 48%', scrub: 1.35 }
+              scrollTrigger: { trigger: panel, start: 'top 90%', end: 'top 48%', scrub: 0.5 }
             }
           );
         });
@@ -2672,7 +2717,7 @@
               y: 0,
               opacity: 1,
               ease: 'none',
-              scrollTrigger: { trigger: container, start: 'top 95%', end: 'top 55%', scrub: 1.15 }
+              scrollTrigger: { trigger: container, start: 'top 95%', end: 'top 55%', scrub: 0.45 }
             }
           );
         });
@@ -2684,7 +2729,7 @@
               scale: 1.03,
               yPercent: -3,
               ease: 'none',
-              scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: 1.45 }
+              scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: 0.6 }
             }
           );
         });
@@ -2976,7 +3021,7 @@
       gsap.registerPlugin(ScrollTrigger);
       const master = gsap.timeline({
         defaults: { ease: 'none' },
-        scrollTrigger: { trigger: document.documentElement, start: 'top top', end: 'max', scrub: 1.75 }
+        scrollTrigger: { trigger: document.documentElement, start: 'top top', end: 'max', scrub: 0.7 }
       });
       master
         .to(camera.position, { x: 0.28, y: 0.1, z: 7.15, duration: 1 })
