@@ -2475,11 +2475,11 @@
       if (!LenisCtor || !window.gsap || !window.ScrollTrigger) return;
 
       const lenis = new LenisCtor({
-        duration: 2.05,
+        duration: 1.18,
         easing: t => 1 - Math.pow(1 - t, 4),
         smoothWheel: true,
-        wheelMultiplier: 0.72,
-        touchMultiplier: 1.0
+        wheelMultiplier: 0.98,
+        touchMultiplier: 1.12
       });
 
       lenis.on('scroll', () => {
@@ -2496,7 +2496,7 @@
           const target = document.querySelector(href);
           if (!target) return;
           e.preventDefault();
-          lenis.scrollTo(target, { offset: -18, duration: 1.9 });
+          lenis.scrollTo(target, { offset: -18, duration: 1.15 });
         });
       });
 
@@ -2606,7 +2606,7 @@
       mm.add('(min-width: 901px)', () => {
         gsap.timeline({
           defaults: { ease: 'none' },
-          scrollTrigger: { trigger: 'header', start: 'top top', end: 'bottom top', scrub: 2.8 }
+          scrollTrigger: { trigger: 'header', start: 'top top', end: 'bottom top', scrub: 1.75 }
         })
           .to('.hero-photo-wrap', { yPercent: -5, rotateY: -3.5, rotateX: 1.2, scale: 0.985, transformPerspective: 1200 }, 0)
           .to('.hero-photo-wrap img', { scale: 1.14, yPercent: 7 }, 0)
@@ -2623,7 +2623,7 @@
               rotateX: 0,
               opacity: 1,
               ease: 'none',
-              scrollTrigger: { trigger: container, start: 'top 96%', end: 'top 42%', scrub: 2.2 }
+              scrollTrigger: { trigger: container, start: 'top 96%', end: 'top 42%', scrub: 1.45 }
             }
           );
         });
@@ -2636,7 +2636,7 @@
             {
               clipPath: 'inset(0% round 28px)',
               ease: 'none',
-              scrollTrigger: { trigger: card, start: 'top 92%', end: 'top 45%', scrub: 2 }
+              scrollTrigger: { trigger: card, start: 'top 92%', end: 'top 45%', scrub: 1.35 }
             }
           );
           gsap.fromTo(img,
@@ -2645,7 +2645,7 @@
               scale: 1.04,
               yPercent: i % 2 ? 5 : -5,
               ease: 'none',
-              scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: 2.5 }
+              scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: 1.65 }
             }
           );
         });
@@ -2658,7 +2658,7 @@
               scale: 1,
               opacity: 1,
               ease: 'none',
-              scrollTrigger: { trigger: panel, start: 'top 90%', end: 'top 48%', scrub: 2 }
+              scrollTrigger: { trigger: panel, start: 'top 90%', end: 'top 48%', scrub: 1.35 }
             }
           );
         });
@@ -2672,7 +2672,7 @@
               y: 0,
               opacity: 1,
               ease: 'none',
-              scrollTrigger: { trigger: container, start: 'top 95%', end: 'top 55%', scrub: 1.8 }
+              scrollTrigger: { trigger: container, start: 'top 95%', end: 'top 55%', scrub: 1.15 }
             }
           );
         });
@@ -2684,7 +2684,7 @@
               scale: 1.03,
               yPercent: -3,
               ease: 'none',
-              scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: 2.2 }
+              scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: 1.45 }
             }
           );
         });
@@ -2976,7 +2976,7 @@
       gsap.registerPlugin(ScrollTrigger);
       const master = gsap.timeline({
         defaults: { ease: 'none' },
-        scrollTrigger: { trigger: document.documentElement, start: 'top top', end: 'max', scrub: 2.8 }
+        scrollTrigger: { trigger: document.documentElement, start: 'top top', end: 'max', scrub: 1.75 }
       });
       master
         .to(camera.position, { x: 0.28, y: 0.1, z: 7.15, duration: 1 })
