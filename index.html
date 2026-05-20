@@ -1680,7 +1680,6 @@
       <div class="nav-links">
         <a href="#summary"   class="nav-link">Summary</a>
         <a href="#ventures"  class="nav-link">Ventures</a>
-        <a href="#featured"  class="nav-link">Work</a>
         <a href="#timeline"  class="nav-link">Timeline</a>
         <a href="#advocacy"  class="nav-link">Advocacy</a>
         <a href="#press"     class="nav-link">Press</a>
@@ -1708,7 +1707,6 @@
       <div class="hero-top-links" aria-label="Primary hero links">
         <a href="#summary">Summary</a>
         <a href="#ventures">Ventures</a>
-        <a href="#featured">Work</a>
         <a href="#press">Receipts</a>
         <a href="#work-with-me">Contact</a>
       </div>
@@ -1721,7 +1719,6 @@
       <div class="hero-mobile-panel" role="dialog" aria-label="Hero navigation menu">
         <a href="#summary">Summary</a>
         <a href="#ventures">Ventures</a>
-        <a href="#featured">Work</a>
         <a href="#press">Receipts</a>
         <a href="#work-with-me">Contact</a>
       </div>
@@ -4251,7 +4248,7 @@
             entries.forEach(entry => {
               if (!entry.isIntersecting) return;
               if (entry.target.id === 'work-with-me') {
-                setActiveHref('#featured');
+                setActiveHref('#press');
                 return;
               }
               setActive(entry.target.id);
@@ -4265,7 +4262,7 @@
           const workWithMe = document.querySelector('#work-with-me');
           if (workWithMe) navObserver.observe(workWithMe);
           const hashTarget = location.hash && document.querySelector(location.hash);
-          if (hashTarget && hashTarget.id === 'work-with-me') setActiveHref('#featured');
+          if (hashTarget && (hashTarget.id === 'work-with-me' || hashTarget.id === 'featured')) setActiveHref('#press');
           else if (hashTarget) setActive(hashTarget.id);
           else setActive(navPairs[0].target.id);
         } catch (error) {
@@ -5058,7 +5055,7 @@
       }
       .nav-links {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         width: 100%;
         gap: 5px;
       }
@@ -6423,7 +6420,7 @@
 
       .nav-links {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 4px;
       }
 
