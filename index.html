@@ -78,6 +78,10 @@
       filter: saturate(1.02) contrast(1.08) brightness(1.12) !important;
     }
 
+    html.hero-intro-playing:not(.hero-video-ready) .hero-bg-video {
+      opacity: 0 !important;
+    }
+
   </style>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,12 +90,10 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="preconnect" href="https://cdn.sceneai.art">
   <link rel="preconnect" href="https://stream.mux.com">
   <link rel="preconnect" href="https://i.ibb.co">
   <link rel="preload" as="video" href="https://pub-3592c0f33d62473e96882cebf2720dba.r2.dev/Caruso%20Portfolio%20Video.mp4" type="video/mp4" fetchpriority="high">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/Panel5.jpg" fetchpriority="high">
-  <link rel="preload" as="image" href="https://cdn.sceneai.art/Hero%20section%20image/0af7fd86-98c4-46c6-ad8b-dd299a32456a.png" fetchpriority="high">
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Geist:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 
@@ -1739,7 +1741,7 @@
 
   <!-- ═══ HERO ═══ -->
   <header class="hero-cinematic">
-    <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata" poster="https://cdn.sceneai.art/Hero%20section%20image/0af7fd86-98c4-46c6-ad8b-dd299a32456a.png" aria-hidden="true">
+    <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
       <source src="https://pub-3592c0f33d62473e96882cebf2720dba.r2.dev/Caruso%20Portfolio%20Video.mp4" type="video/mp4">
     </video>
     <div class="hero-video-mask" aria-hidden="true"></div>
@@ -5368,6 +5370,10 @@
         try {
           const video = document.querySelector('.hero-bg-video');
           if (!video) return;
+          const markReady = () => document.documentElement.classList.add('hero-video-ready');
+          if (video.readyState >= 2) markReady();
+          video.addEventListener('loadeddata', markReady, { once: true });
+          video.addEventListener('canplay', markReady, { once: true });
           if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
             video.pause();
             return;
@@ -7282,7 +7288,7 @@
       }
 
       const startedAt = window.sgcHeroIntroStartedAt || performance.now();
-      const remaining = Math.max(0, 2500 - (performance.now() - startedAt));
+      const remaining = Math.max(0, 2000 - (performance.now() - startedAt));
       setTimeout(completeHeroIntro, remaining);
     })();
   </script>
