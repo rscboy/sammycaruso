@@ -376,8 +376,6 @@
 
   </style>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://raw.githubusercontent.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://unpkg.com">
@@ -386,9 +384,6 @@
   <link rel="preconnect" href="https://i.ibb.co">
   <link rel="preload" as="video" href="https://pub-3592c0f33d62473e96882cebf2720dba.r2.dev/Caruso%20Portfolio%20Video.mp4" type="video/mp4" fetchpriority="high">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/rscboy/sammycaruso/refs/heads/main/Panel5.jpg" fetchpriority="high">
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Geist:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
-
   <style>
     /* ─── DESIGN TOKENS ─────────────────────────────────────────── */
     :root {
@@ -404,8 +399,8 @@
       --accent-2:  #8b84f8;
       --warm:      #c49577;
 
-      --sans: 'DM Sans', system-ui, sans-serif;
-      --mono: 'Geist', ui-monospace, monospace;
+      --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: ui-monospace, "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
 
       --r-sm:  6px;
       --r-md:  12px;
@@ -2121,7 +2116,16 @@
   <!-- ═══ NAV ═══ -->
   <nav class="nav" aria-label="Site navigation">
     <div class="nav-inner">
-      <a href="#home" class="nav-logo" aria-label="Back to top">Samuel Caruso</a>
+      <a href="#home" class="nav-logo axion-nav-logo" aria-label="Back to top">
+        <span class="axion-logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 42 42" role="img" focusable="false">
+            <path d="M21 3 36.6 12v18L21 39 5.4 30V12L21 3Z"></path>
+            <path d="M21 9v24M10.6 15l20.8 12M31.4 15 10.6 27"></path>
+            <circle cx="21" cy="21" r="4.2"></circle>
+          </svg>
+        </span>
+        <span class="axion-logo-word">Samuel Caruso</span>
+      </a>
       <div class="nav-links">
         <a href="#summary"   class="nav-link" data-desktop-label="Overview" data-mobile-label="Home">Overview</a>
         <a href="#ventures"  class="nav-link" data-desktop-label="Ventures" data-mobile-label="Ventures">Ventures</a>
@@ -2131,6 +2135,11 @@
         <a href="#work-with-me" class="nav-link nav-mobile-only" data-desktop-label="Contact" data-mobile-label="Contact">Contact</a>
       </div>
       <div class="nav-actions">
+        <span class="nav-clock" aria-label="Current time in London">
+          <span class="nav-clock-dot" aria-hidden="true"></span>
+          <span class="nav-clock-city">LDN</span>
+          <time class="nav-clock-time" datetime="">--:--</time>
+        </span>
         <a href="mailto:sgcaruso@umich.edu" class="nav-link contact-nav-link">Contact</a>
         <a href="https://drive.google.com/file/d/1U92sNcmg_vc_Rid_7JDSoHSeWdEGVMnc/view?usp=sharing" class="nav-link nav-resume" target="_blank" rel="noopener">Resume</a>
         <a href="mailto:sgcaruso@umich.edu" class="nav-cta">Get in touch</a>
@@ -2143,6 +2152,11 @@
     <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
       <source src="https://pub-3592c0f33d62473e96882cebf2720dba.r2.dev/Caruso%20Portfolio%20Video.mp4" type="video/mp4">
     </video>
+    <div class="axion-shader-bg" aria-hidden="true">
+      <canvas id="axion-shader-canvas"></canvas>
+      <div class="axion-fluted-glass" data-shader-layer="FlutedGlass"></div>
+      <div class="axion-film-grain" data-shader-layer="FilmGrain"></div>
+    </div>
     <div class="hero-video-mask" aria-hidden="true"></div>
 
     <div class="hero-top-nav" aria-label="Hero navigation">
@@ -2201,8 +2215,24 @@
         <p class="hero-subheadline reveal" style="--d:1">I turn messy ideas into polished products, campaigns, archives, and operating systems across startups, advocacy, media, and local business.</p>
 
         <div class="hero-cta-row reveal" style="--d:2">
-          <a href="#featured" class="hero-primary-cta">View featured work</a>
-          <a href="https://drive.google.com/file/d/1U92sNcmg_vc_Rid_7JDSoHSeWdEGVMnc/view?usp=sharing" class="hero-secondary-link" target="_blank" rel="noopener">Download resume</a>
+          <a href="#featured" class="hero-primary-cta axion-cascade-cta">
+            <span class="cta-marquee" aria-hidden="true">
+              <span>View featured work</span>
+              <span>View featured work</span>
+              <span>View featured work</span>
+            </span>
+            <span class="sr-only">View featured work</span>
+            <span class="cta-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+          <a href="https://drive.google.com/file/d/1U92sNcmg_vc_Rid_7JDSoHSeWdEGVMnc/view?usp=sharing" class="hero-secondary-link axion-cascade-cta" target="_blank" rel="noopener">
+            <span class="cta-marquee" aria-hidden="true">
+              <span>Download resume</span>
+              <span>Download resume</span>
+              <span>Download resume</span>
+            </span>
+            <span class="sr-only">Download resume</span>
+            <span class="cta-arrow" aria-hidden="true">&#8599;</span>
+          </a>
         </div>
 
         <div class="hero-credibility-chips reveal" style="--d:3" aria-label="Credibility highlights">
@@ -16511,5 +16541,880 @@
       }
     }
   </style>
+  <style id="axion-studio-visual-identity-final">
+    :root {
+      --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+      --mono: ui-monospace, "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace !important;
+      --axion-ink: #f8fbf7;
+      --axion-muted: rgba(248,251,247,0.68);
+      --axion-line: rgba(248,251,247,0.16);
+      --axion-glass: rgba(8,12,14,0.52);
+      --axion-glass-strong: rgba(8,12,14,0.72);
+      --axion-coral: #ff7b54;
+      --axion-cyan: #80ffe8;
+      --axion-mint: #bfffdc;
+      --axion-ease: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    html.sgc-stable-scroll body {
+      font-family: var(--sans) !important;
+    }
+
+    html.sgc-stable-scroll body .liquid-glass,
+    html.sgc-stable-scroll body .brand-charge-shell,
+    html.sgc-stable-scroll body .command-panel {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.035)),
+        rgba(10,14,16,0.46) !important;
+      border: 1px solid rgba(255,255,255,0.16) !important;
+      box-shadow:
+        0 28px 90px rgba(0,0,0,0.32),
+        inset 0 1px 0 rgba(255,255,255,0.24),
+        inset 0 -1px 0 rgba(255,255,255,0.07) !important;
+      backdrop-filter: blur(20px) saturate(1.24) contrast(1.02) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(1.24) contrast(1.02) !important;
+    }
+
+    html.sgc-stable-scroll body .hero-cinematic {
+      position: relative !important;
+      min-height: 100svh !important;
+      overflow: hidden !important;
+      isolation: isolate !important;
+      background:
+        radial-gradient(ellipse at 18% 10%, rgba(128,255,232,0.12), transparent 34rem),
+        radial-gradient(ellipse at 82% 34%, rgba(255,123,84,0.13), transparent 30rem),
+        #050708 !important;
+    }
+
+    html.sgc-stable-scroll body .hero-cinematic .hero {
+      position: relative !important;
+      z-index: 10 !important;
+    }
+
+    html.sgc-stable-scroll body .hero-cinematic .hero-copy,
+    html.sgc-stable-scroll body .hero-cinematic .hero-dashboard {
+      position: relative !important;
+      z-index: 12 !important;
+    }
+
+    html.sgc-stable-scroll body .hero-bg-video {
+      z-index: -30 !important;
+      opacity: 0.14 !important;
+      filter: saturate(0.72) contrast(1.12) brightness(0.48) !important;
+    }
+
+    html.sgc-stable-scroll body .hero-video-mask {
+      z-index: -5 !important;
+      background:
+        radial-gradient(ellipse at 52% 42%, rgba(255,255,255,0.035), transparent 21rem),
+        linear-gradient(90deg, rgba(5,7,8,0.72) 0%, rgba(5,7,8,0.4) 46%, rgba(5,7,8,0.76) 100%),
+        linear-gradient(to bottom, rgba(5,7,8,0.4) 0%, rgba(5,7,8,0.05) 44%, rgba(5,7,8,0.92) 100%) !important;
+      pointer-events: none !important;
+    }
+
+    .axion-shader-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -10;
+      overflow: hidden;
+      pointer-events: none;
+      contain: strict;
+      background:
+        radial-gradient(ellipse at 18% 16%, rgba(128,255,232,0.15), transparent 32rem),
+        radial-gradient(ellipse at 84% 26%, rgba(255,123,84,0.15), transparent 28rem),
+        #050708;
+    }
+
+    #axion-shader-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 0.95;
+      filter: saturate(1.08) contrast(1.06);
+    }
+
+    .axion-fluted-glass {
+      position: absolute;
+      inset: -2px;
+      opacity: 0.42;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 10px),
+        linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+      mix-blend-mode: screen;
+      backdrop-filter: blur(1px);
+      -webkit-backdrop-filter: blur(1px);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 84%, transparent 100%);
+    }
+
+    .axion-film-grain {
+      position: absolute;
+      inset: -30%;
+      opacity: 0.14;
+      mix-blend-mode: overlay;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.55) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 70% 30%, rgba(0,0,0,0.55) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 35% 80%, rgba(255,255,255,0.38) 0 1px, transparent 1.4px);
+      background-size: 31px 29px, 37px 41px, 53px 47px;
+      animation: axionFilmJitter 1.1s steps(2, end) infinite;
+    }
+
+    .axion-shader-fallback .axion-shader-bg::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(128,255,232,0.28), transparent 18rem),
+        radial-gradient(circle at 68% 48%, rgba(255,123,84,0.24), transparent 22rem),
+        conic-gradient(from 140deg at 50% 50%, rgba(128,255,232,0.14), transparent, rgba(255,123,84,0.16), transparent);
+      filter: blur(12px);
+      animation: axionFallbackSwirl 18s var(--axion-ease) infinite alternate;
+    }
+
+    @keyframes axionFilmJitter {
+      0% { transform: translate3d(-2%, -1%, 0); }
+      50% { transform: translate3d(1.5%, 2%, 0); }
+      100% { transform: translate3d(0.5%, -1.5%, 0); }
+    }
+
+    @keyframes axionFallbackSwirl {
+      from { transform: rotate(-6deg) scale(1.04); }
+      to { transform: rotate(7deg) scale(1.12); }
+    }
+
+    html.sgc-stable-scroll body .nav {
+      top: max(1rem, env(safe-area-inset-top)) !important;
+      bottom: auto !important;
+      width: min(74rem, calc(100vw - 2rem)) !important;
+      border: 0 !important;
+      border-radius: 999px !important;
+      background: transparent !important;
+      z-index: 260 !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    html.sgc-stable-scroll body .nav-inner {
+      min-height: 3.65rem !important;
+      padding: 0.36rem !important;
+      gap: 0.45rem !important;
+      border: 1px solid rgba(255,255,255,0.18) !important;
+      border-radius: inherit !important;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04)),
+        rgba(5,8,9,0.58) !important;
+      box-shadow:
+        0 24px 70px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.22) !important;
+      backdrop-filter: blur(22px) saturate(1.35) !important;
+      -webkit-backdrop-filter: blur(22px) saturate(1.35) !important;
+    }
+
+    html.sgc-stable-scroll body .axion-nav-logo {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.58rem !important;
+      min-height: 2.84rem !important;
+      padding: 0 0.88rem 0 0.42rem !important;
+      color: var(--axion-ink) !important;
+      border-radius: 999px !important;
+      background: rgba(255,255,255,0.07) !important;
+      border: 1px solid rgba(255,255,255,0.12) !important;
+    }
+
+    .axion-logo-mark {
+      width: 2.18rem;
+      height: 2.18rem;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      color: #07100f;
+      background:
+        radial-gradient(circle at 34% 26%, #ffffff 0 13%, transparent 14%),
+        linear-gradient(135deg, var(--axion-mint), var(--axion-cyan) 44%, var(--axion-coral));
+      box-shadow: 0 0 28px rgba(128,255,232,0.32);
+    }
+
+    .axion-logo-mark svg {
+      width: 1.42rem;
+      height: 1.42rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .axion-logo-word {
+      font: 750 0.74rem/1 var(--sans);
+      letter-spacing: 0;
+      color: rgba(255,255,255,0.92);
+    }
+
+    html.sgc-stable-scroll body .nav-links {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.18rem !important;
+      min-height: 2.84rem !important;
+      padding: 0.18rem !important;
+      border-radius: 999px !important;
+      background: rgba(255,255,255,0.07) !important;
+      border: 1px solid rgba(255,255,255,0.11) !important;
+    }
+
+    html.sgc-stable-scroll body .nav-link {
+      min-height: 2.38rem !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0 0.86rem !important;
+      border-radius: 999px !important;
+      color: rgba(255,255,255,0.74) !important;
+      font: 650 0.78rem/1 var(--sans) !important;
+      letter-spacing: 0 !important;
+      transition:
+        color 260ms var(--axion-ease),
+        background 260ms var(--axion-ease),
+        border-color 260ms var(--axion-ease),
+        transform 260ms var(--axion-ease) !important;
+    }
+
+    html.sgc-stable-scroll body .nav-link:hover,
+    html.sgc-stable-scroll body .nav-link:focus-visible,
+    html.sgc-stable-scroll body .nav-link.active {
+      color: #ffffff !important;
+      background: rgba(255,255,255,0.12) !important;
+      border-color: rgba(128,255,232,0.28) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    html.sgc-stable-scroll body .nav-actions {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.32rem !important;
+    }
+
+    .nav-clock {
+      min-height: 2.84rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.42rem;
+      padding: 0 0.84rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      color: rgba(255,255,255,0.84);
+      background: rgba(255,255,255,0.07);
+      font: 700 0.72rem/1 var(--mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .nav-clock-dot {
+      width: 0.46rem;
+      height: 0.46rem;
+      border-radius: 999px;
+      background: var(--axion-mint);
+      box-shadow: 0 0 18px rgba(191,255,220,0.72);
+    }
+
+    .nav-clock-city {
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em;
+    }
+
+    html.sgc-stable-scroll body .nav-cta {
+      min-height: 2.84rem !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0 1rem !important;
+      border-radius: 999px !important;
+      color: #06100f !important;
+      background: linear-gradient(135deg, var(--axion-mint), var(--axion-cyan) 52%, #ffe0c8) !important;
+      font: 760 0.78rem/1 var(--sans) !important;
+      letter-spacing: 0 !important;
+      box-shadow: 0 14px 36px rgba(128,255,232,0.24) !important;
+    }
+
+    .axion-cascade-cta {
+      position: relative !important;
+      overflow: hidden !important;
+      gap: 0.7rem !important;
+      isolation: isolate !important;
+      transform: translateZ(0) !important;
+      transition:
+        transform 420ms var(--axion-ease),
+        color 420ms var(--axion-ease),
+        background 420ms var(--axion-ease),
+        box-shadow 420ms var(--axion-ease) !important;
+    }
+
+    .axion-cascade-cta::before,
+    .axion-cascade-cta::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .axion-cascade-cta .cta-marquee {
+      display: grid;
+      height: 1.15em;
+      overflow: hidden;
+      line-height: 1.15;
+    }
+
+    .axion-cascade-cta .cta-marquee span {
+      display: block;
+      transition: transform 560ms cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    .axion-cascade-cta .cta-marquee span:nth-child(2) {
+      transition-delay: 30ms;
+    }
+
+    .axion-cascade-cta .cta-marquee span:nth-child(3) {
+      transition-delay: 60ms;
+    }
+
+    .axion-cascade-cta .cta-arrow {
+      display: inline-grid;
+      place-items: center;
+      width: 1.56rem;
+      height: 1.56rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      font-size: 1rem;
+      line-height: 1;
+      transform: rotate(0deg);
+      transition:
+        transform 520ms cubic-bezier(0.76, 0, 0.24, 1),
+        background 360ms var(--axion-ease) !important;
+    }
+
+    .axion-cascade-cta:hover,
+    .axion-cascade-cta:focus-visible {
+      transform: translateY(-2px) scale(1.015) !important;
+    }
+
+    .axion-cascade-cta:hover .cta-marquee span,
+    .axion-cascade-cta:focus-visible .cta-marquee span {
+      transform: translateY(-230%);
+    }
+
+    .axion-cascade-cta:hover .cta-arrow,
+    .axion-cascade-cta:focus-visible .cta-arrow {
+      transform: rotate(45deg) translate3d(1px, -1px, 0);
+      background: rgba(255,255,255,0.28);
+    }
+
+    html.sgc-stable-scroll body .hero-cinematic .hero-primary-cta {
+      color: #04100f !important;
+      background:
+        linear-gradient(135deg, #ffffff 0%, var(--axion-mint) 42%, var(--axion-cyan) 100%) !important;
+      border: 1px solid rgba(255,255,255,0.56) !important;
+      box-shadow:
+        0 18px 46px rgba(128,255,232,0.24),
+        inset 0 1px 0 rgba(255,255,255,0.88) !important;
+      font-family: var(--sans) !important;
+      font-weight: 760 !important;
+      letter-spacing: 0 !important;
+      text-transform: none !important;
+    }
+
+    html.sgc-stable-scroll body .hero-cinematic .hero-secondary-link {
+      min-height: 3.05rem !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0 0.42rem 0 1.06rem !important;
+      color: rgba(255,255,255,0.84) !important;
+      background: rgba(255,255,255,0.08) !important;
+      border: 1px solid rgba(255,255,255,0.15) !important;
+      border-radius: 999px !important;
+      font-family: var(--sans) !important;
+      font-weight: 680 !important;
+      letter-spacing: 0 !important;
+      text-transform: none !important;
+      backdrop-filter: blur(14px) saturate(1.15) !important;
+      -webkit-backdrop-filter: blur(14px) saturate(1.15) !important;
+    }
+
+    @media (max-width: 980px) {
+      html.sgc-stable-scroll body .nav {
+        top: auto !important;
+        bottom: max(0.72rem, env(safe-area-inset-bottom)) !important;
+        width: min(calc(100vw - 1rem), 36rem) !important;
+      }
+
+      html.sgc-stable-scroll body .nav-inner {
+        min-height: 3.25rem !important;
+        justify-content: center !important;
+        padding: 0.3rem !important;
+      }
+
+      html.sgc-stable-scroll body .axion-nav-logo,
+      html.sgc-stable-scroll body .nav-actions {
+        display: none !important;
+      }
+
+      html.sgc-stable-scroll body .nav-links {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 0.18rem !important;
+        background: transparent !important;
+        border: 0 !important;
+      }
+
+      html.sgc-stable-scroll body .nav-link {
+        min-width: 0 !important;
+        min-height: 2.6rem !important;
+        padding: 0 0.2rem !important;
+        font-size: clamp(0.64rem, 2.55vw, 0.76rem) !important;
+      }
+    }
+
+    @media (max-width: 820px) {
+      html.sgc-stable-scroll body .hero-cinematic .hero-primary-cta,
+      html.sgc-stable-scroll body .hero-cinematic .hero-secondary-link {
+        min-height: 3.08rem !important;
+      }
+
+      html.sgc-stable-scroll body .hero-cinematic .hero-secondary-link {
+        padding-left: 1rem !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #axion-shader-canvas,
+      .axion-film-grain,
+      .axion-fluted-glass {
+        animation: none !important;
+      }
+
+      .axion-cascade-cta,
+      .axion-cascade-cta * {
+        transition: none !important;
+      }
+    }
+  </style>
+  <script id="axion-studio-visual-identity-final-js">
+    (() => {
+      const root = document.documentElement;
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+      let activeAxionLenis = null;
+
+      function updateLondonClock() {
+        const timeEl = document.querySelector('.nav-clock-time');
+        if (!timeEl) return;
+        const now = new Date();
+        const label = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Europe/London',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        }).format(now);
+        timeEl.textContent = label;
+        timeEl.dateTime = now.toISOString();
+      }
+
+      updateLondonClock();
+      setInterval(updateLondonClock, 15000);
+
+      function loadLenis() {
+        if (window.Lenis) return Promise.resolve(true);
+        return new Promise(resolve => {
+          let settled = false;
+          const finish = value => {
+            if (settled) return;
+            settled = true;
+            resolve(value);
+          };
+          setTimeout(() => finish(Boolean(window.Lenis)), 1400);
+          const existing = document.querySelector('script[src*="lenis"]');
+          if (existing) {
+            existing.addEventListener('load', () => finish(Boolean(window.Lenis)), { once: true });
+            existing.addEventListener('error', () => finish(false), { once: true });
+            return;
+          }
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js';
+          script.async = true;
+          script.crossOrigin = 'anonymous';
+          script.onload = () => finish(true);
+          script.onerror = () => finish(false);
+          document.head.appendChild(script);
+        });
+      }
+
+      function destroyPriorLenis() {
+        ['sgcLenis', 'sgcPremiumLenis'].forEach(key => {
+          const instance = window[key];
+          if (instance && typeof instance.destroy === 'function') {
+            try { instance.destroy(); } catch (error) {}
+          }
+          window[key] = null;
+        });
+      }
+
+      function bindAnchorScroll(lenis) {
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+          const mode = lenis ? 'lenis' : 'native';
+          if (link.dataset.axionScrollBound === mode) return;
+          if (!lenis && link.dataset.axionScrollBound) return;
+          link.dataset.axionScrollBound = mode;
+          link.addEventListener('click', event => {
+            const href = link.getAttribute('href');
+            if (!href || href === '#') return;
+            const target = document.querySelector(href);
+            if (!target) return;
+            event.preventDefault();
+            if (lenis) {
+              lenis.scrollTo(target, { offset: -18, duration: 1.05 });
+            } else {
+              target.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
+            }
+          });
+        });
+      }
+
+      function runSmoothRaf(lenis) {
+        const raf = time => {
+          if (activeAxionLenis === lenis) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+          }
+        };
+        requestAnimationFrame(raf);
+      }
+
+      function createFallbackLenis() {
+        return class AxionLenisFallback {
+          constructor(options = {}) {
+            this.options = options;
+            this.current = scrollY || 0;
+            this.target = this.current;
+            this.active = false;
+            this.destroyed = false;
+            this.listeners = new Set();
+            this.onWheel = event => {
+              if (event.defaultPrevented || event.ctrlKey || event.metaKey) return;
+              const max = Math.max(0, document.documentElement.scrollHeight - innerHeight);
+              if (max <= 0) return;
+              event.preventDefault();
+              this.target = Math.max(0, Math.min(max, this.target + event.deltaY * (this.options.wheelMultiplier || 1)));
+              this.active = true;
+            };
+            this.onNativeScroll = () => {
+              if (!this.active) {
+                this.current = scrollY || 0;
+                this.target = this.current;
+              }
+            };
+            addEventListener('wheel', this.onWheel, { passive: false });
+            addEventListener('scroll', this.onNativeScroll, { passive: true });
+          }
+
+          on(eventName, callback) {
+            if (eventName === 'scroll' && typeof callback === 'function') this.listeners.add(callback);
+          }
+
+          scrollTo(target, options = {}) {
+            const offset = Number(options.offset || 0);
+            const max = Math.max(0, document.documentElement.scrollHeight - innerHeight);
+            const destination = typeof target === 'number'
+              ? target
+              : (target.getBoundingClientRect().top + scrollY + offset);
+            this.target = Math.max(0, Math.min(max, destination));
+            this.active = true;
+          }
+
+          raf() {
+            if (this.destroyed || !this.active) return;
+            const delta = this.target - this.current;
+            this.current += delta * 0.105;
+            if (Math.abs(delta) < 0.45) {
+              this.current = this.target;
+              this.active = false;
+            }
+            scrollTo(0, this.current);
+            this.listeners.forEach(callback => callback({ scroll: this.current }));
+          }
+
+          destroy() {
+            this.destroyed = true;
+            removeEventListener('wheel', this.onWheel);
+            removeEventListener('scroll', this.onNativeScroll);
+            this.listeners.clear();
+          }
+        };
+      }
+
+      async function initSmoothScroll() {
+        if (reduceMotion.matches) {
+          bindAnchorScroll(null);
+          return;
+        }
+        const loaded = await Promise.race([
+          loadLenis(),
+          new Promise(resolve => setTimeout(() => resolve(false), 1600))
+        ]);
+        destroyPriorLenis();
+        const LenisCtor = loaded && window.Lenis ? (window.Lenis.default || window.Lenis) : createFallbackLenis();
+        let lenis;
+        try {
+          lenis = new LenisCtor({
+            duration: 1.08,
+            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            smoothTouch: false,
+            wheelMultiplier: 0.88,
+            touchMultiplier: 1.12
+          });
+        } catch (error) {
+          const FallbackLenis = createFallbackLenis();
+          lenis = new FallbackLenis({
+            duration: 1.08,
+            wheelMultiplier: 0.88,
+            touchMultiplier: 1.12
+          });
+        }
+        activeAxionLenis = lenis;
+        try { window.sgcAxionLenis = lenis; } catch (error) {}
+        root.dataset.axionLenis = 'active';
+        root.classList.add('lenis', 'lenis-smooth');
+        bindAnchorScroll(lenis);
+        runSmoothRaf(lenis);
+      }
+
+      function ensureFallbackSmoothScroll() {
+        if (reduceMotion.matches || activeAxionLenis) return;
+        const FallbackLenis = createFallbackLenis();
+        const lenis = new FallbackLenis({
+          duration: 1.08,
+          wheelMultiplier: 0.88,
+          touchMultiplier: 1.12
+        });
+        activeAxionLenis = lenis;
+        try { window.sgcAxionLenis = lenis; } catch (error) {}
+        root.dataset.axionLenis = 'active';
+        root.classList.add('lenis', 'lenis-smooth');
+        bindAnchorScroll(lenis);
+        runSmoothRaf(lenis);
+      }
+
+      function initAxionShader() {
+        const canvas = document.getElementById('axion-shader-canvas');
+        if (!canvas || reduceMotion.matches) {
+          root.classList.add('axion-shader-fallback');
+          return;
+        }
+
+        const gl = canvas.getContext('webgl', {
+          alpha: true,
+          antialias: false,
+          depth: false,
+          stencil: false,
+          powerPreference: 'high-performance'
+        });
+        if (!gl) {
+          root.classList.add('axion-shader-fallback');
+          return;
+        }
+
+        const vertexSource = `
+          attribute vec2 a_position;
+          void main() {
+            gl_Position = vec4(a_position, 0.0, 1.0);
+          }
+        `;
+        const fragmentSource = `
+          precision highp float;
+          uniform vec2 u_resolution;
+          uniform vec2 u_pointer;
+          uniform float u_time;
+          uniform float u_hover;
+          uniform float u_scroll;
+
+          float hash(vec2 p) {
+            p = fract(p * vec2(123.34, 456.21));
+            p += dot(p, p + 45.32);
+            return fract(p.x * p.y);
+          }
+
+          float noise(vec2 p) {
+            vec2 i = floor(p);
+            vec2 f = fract(p);
+            vec2 u = f * f * (3.0 - 2.0 * f);
+            return mix(
+              mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x),
+              mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x),
+              u.y
+            );
+          }
+
+          mat2 rot(float a) {
+            float s = sin(a);
+            float c = cos(a);
+            return mat2(c, -s, s, c);
+          }
+
+          vec3 palette(float t) {
+            vec3 a = vec3(0.04, 0.07, 0.075);
+            vec3 b = vec3(0.45, 0.54, 0.49);
+            vec3 c = vec3(0.82, 0.62, 0.52);
+            vec3 d = vec3(0.02, 0.35, 0.32);
+            return a + b * cos(6.28318 * (c * t + d));
+          }
+
+          void main() {
+            vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+            vec2 p = uv - 0.5;
+            p.x *= u_resolution.x / u_resolution.y;
+
+            float flutes = sin((uv.x + sin(uv.y * 7.0 + u_time * 0.08) * 0.014) * 92.0);
+            p.x += flutes * 0.006;
+
+            float r = length(p);
+            float swirl = sin(r * 12.0 - u_time * 0.18 + noise(p * 2.2 + u_time * 0.04) * 2.4);
+            p *= rot(swirl * 0.19 + u_scroll * 0.00008);
+
+            vec2 pointer = u_pointer - 0.5;
+            pointer.x *= u_resolution.x / u_resolution.y;
+            float cursor = exp(-distance(p, pointer) * (5.8 - u_hover * 2.2));
+            float blobA = exp(-distance(p, vec2(-0.34, -0.08) + 0.035 * vec2(sin(u_time * 0.21), cos(u_time * 0.17))) * 4.0);
+            float blobB = exp(-distance(p, vec2(0.38, 0.12) + 0.04 * vec2(cos(u_time * 0.16), sin(u_time * 0.23))) * 3.5);
+            float chroma = blobA * 0.55 + blobB * 0.45 + cursor * (0.45 + u_hover * 0.72);
+
+            float field = noise(p * 3.4 + vec2(u_time * 0.035, -u_time * 0.025));
+            field += 0.5 * noise(p * 7.0 - vec2(u_time * 0.018, u_time * 0.03));
+            field += swirl * 0.12;
+
+            vec3 base = palette(field * 0.34 + r * 0.42 + u_time * 0.012);
+            vec3 chromaFlow = mix(vec3(0.5, 1.0, 0.9), vec3(1.0, 0.43, 0.28), smoothstep(0.0, 1.0, sin(field * 3.0 + u_time * 0.18) * 0.5 + 0.5));
+            vec3 color = base + chromaFlow * chroma * 0.52;
+
+            float vignette = smoothstep(1.18, 0.16, r);
+            float grain = hash(gl_FragCoord.xy + fract(u_time * 24.0) * 137.0) - 0.5;
+            color += grain * 0.052;
+            color *= vignette;
+            color += vec3(0.015, 0.022, 0.019);
+
+            gl_FragColor = vec4(color, 0.92);
+          }
+        `;
+
+        function compile(type, source) {
+          const shader = gl.createShader(type);
+          gl.shaderSource(shader, source);
+          gl.compileShader(shader);
+          if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            throw new Error(gl.getShaderInfoLog(shader) || 'Shader compile failed');
+          }
+          return shader;
+        }
+
+        let program;
+        try {
+          program = gl.createProgram();
+          gl.attachShader(program, compile(gl.VERTEX_SHADER, vertexSource));
+          gl.attachShader(program, compile(gl.FRAGMENT_SHADER, fragmentSource));
+          gl.linkProgram(program);
+          if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+            throw new Error(gl.getProgramInfoLog(program) || 'Shader link failed');
+          }
+        } catch (error) {
+          root.classList.add('axion-shader-fallback');
+          return;
+        }
+
+        const buffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+        gl.useProgram(program);
+        const position = gl.getAttribLocation(program, 'a_position');
+        gl.enableVertexAttribArray(position);
+        gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+
+        const uniforms = {
+          resolution: gl.getUniformLocation(program, 'u_resolution'),
+          pointer: gl.getUniformLocation(program, 'u_pointer'),
+          time: gl.getUniformLocation(program, 'u_time'),
+          hover: gl.getUniformLocation(program, 'u_hover'),
+          scroll: gl.getUniformLocation(program, 'u_scroll')
+        };
+
+        const pointer = { x: 0.62, y: 0.38, tx: 0.62, ty: 0.38 };
+        let hover = 0;
+        let hoverTarget = 0;
+
+        function resize() {
+          const dpr = Math.min(devicePixelRatio || 1, 2);
+          const width = Math.max(1, Math.floor(canvas.clientWidth * dpr));
+          const height = Math.max(1, Math.floor(canvas.clientHeight * dpr));
+          if (canvas.width !== width || canvas.height !== height) {
+            canvas.width = width;
+            canvas.height = height;
+            gl.viewport(0, 0, width, height);
+          }
+        }
+
+        addEventListener('resize', resize, { passive: true });
+        addEventListener('pointermove', event => {
+          pointer.tx = event.clientX / Math.max(1, innerWidth);
+          pointer.ty = 1 - event.clientY / Math.max(1, innerHeight);
+        }, { passive: true });
+
+        document.querySelectorAll('.axion-cascade-cta, .nav-link, .nav-cta, .axion-nav-logo').forEach(el => {
+          el.addEventListener('pointerenter', () => { hoverTarget = 1; });
+          el.addEventListener('pointerleave', () => { hoverTarget = 0; });
+        });
+
+        const start = performance.now();
+        function render(now) {
+          resize();
+          pointer.x += (pointer.tx - pointer.x) * 0.08;
+          pointer.y += (pointer.ty - pointer.y) * 0.08;
+          hover += (hoverTarget - hover) * 0.075;
+          gl.useProgram(program);
+          gl.uniform2f(uniforms.resolution, canvas.width, canvas.height);
+          gl.uniform2f(uniforms.pointer, pointer.x, pointer.y);
+          gl.uniform1f(uniforms.time, (now - start) * 0.001);
+          gl.uniform1f(uniforms.hover, hover);
+          gl.uniform1f(uniforms.scroll, scrollY || 0);
+          gl.drawArrays(gl.TRIANGLES, 0, 6);
+          requestAnimationFrame(render);
+        }
+        requestAnimationFrame(render);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          initAxionShader();
+          initSmoothScroll();
+          setTimeout(ensureFallbackSmoothScroll, 2600);
+          setTimeout(ensureFallbackSmoothScroll, 5200);
+        }, { once: true });
+      } else {
+        initAxionShader();
+        initSmoothScroll();
+        setTimeout(ensureFallbackSmoothScroll, 2600);
+        setTimeout(ensureFallbackSmoothScroll, 5200);
+      }
+    })();
+  </script>
 </body>
 </html>
